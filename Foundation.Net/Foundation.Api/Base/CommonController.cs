@@ -15,6 +15,7 @@ namespace Foundation.Api
     /// 
     /// </summary>
     //[Authorize]
+    [CustomAuthorise]
     public abstract class CommonController : ApiController, ICommonController
     {
         /// <summary>

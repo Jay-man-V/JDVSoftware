@@ -67,12 +67,12 @@ namespace Foundation.Repository
             IDatabaseParameters databaseParameters = new DatabaseParameters
             {
                 CreateParameter($"{FDC.Country.EntityName}{FDC.Country.IsoCode}", countryCode),
-                CreateParameter($"{FDC.NonWorkingDay.EntityName}{FDC.NonWorkingDay.Date}", date),
+                CreateParameter($"{FDC.NonWorkingDay.EntityName}{FDC.NonWorkingDay.Date}", date.Date),
             };
 
-            Int32 rowCount = ExecuteGetRowCount(sql.ToString(), CommandType.Text, databaseParameters);
+            Object result = ExecuteScalar(sql.ToString(), CommandType.Text, databaseParameters);
 
-            retVal = (rowCount > 0);
+            retVal = Convert.ToBoolean(result);
 
             LoggingHelpers.TraceCallReturn(retVal);
 
@@ -200,7 +200,7 @@ namespace Foundation.Repository
             sql.AppendLine("SELECT");
             sql.AppendLine("    MIN(Date) AS FirstWorkingDayOfMonth,");
             sql.AppendLine("    MAX(Date) AS LastWorkingDayOfMonth");
-            sql.AppendLine("0FROM");
+            sql.AppendLine("FROM");
             sql.AppendLine("    [dbo].[ufn_GetListOfWorkingDates] ( @startDate, @endDate )");
             sql.AppendLine("WHERE");
             sql.AppendLine("    DayOfWeekIndex NOT IN ( 1 , 7 )");

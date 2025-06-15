@@ -211,6 +211,7 @@ namespace Foundation.DataAccess.Database
             else if (parameterType == typeof(EntityId)) retVal = EntityId.DbType;
             else if (parameterType == typeof(AppId)) retVal = AppId.DbType;
             else if (parameterType == typeof(LogId)) retVal = LogId.DbType;
+            else if (parameterType == typeof(ScheduleInterval)) retVal = LogId.DbType;
             else if (parameterType == typeof(Boolean)) retVal = DbType.Boolean;
             else if (parameterType == typeof(Int16)) retVal = DbType.Int16;
             else if (parameterType == typeof(Int32)) retVal = DbType.Int32;

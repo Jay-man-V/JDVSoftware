@@ -82,9 +82,9 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(countryCode, date, intervalType, interval);
 
-            DateTime startDate = date.Add(intervalType, interval, date.TimeOfDay);
+            //DateTime startDate = date.Add(intervalType, interval, date.TimeOfDay);
 
-            DateTime retVal = Repository.GetNextWorkingDay(countryCode, startDate, intervalType, interval);
+            DateTime retVal = Repository.GetNextWorkingDay(countryCode, date, intervalType, interval);
 
             LoggingHelpers.TraceCallReturn(retVal);
 

@@ -49,6 +49,7 @@
     <Compile Include="..\FoundationAssemblyInfo.cs">
       <Link>Properties\FoundationAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Api\Core\ICalendarContorller.cs" />
     <Compile Include="ApplicationServices\IFileTransferService.cs" />
     <Compile Include="ApplicationServices\IRunTimeEnvironmentSettings.cs" />
     <Compile Include="ApplicationServices\IPasswordService.cs" />
@@ -345,10 +346,10 @@
     <Compile Include="Models\Workflow\IApprovalTask.cs" />
     <Compile Include="BusinessProcess\Workflow\IApprovalProcess.cs" />
     <Compile Include="Views\IWindow.cs" />
-    <Compile Include="WebApi\ICommonBusinessController.cs" />
-    <Compile Include="WebApi\ICommonController.cs" />
-    <Compile Include="WebApi\Core\IApplicationConfigurationController.cs" />
-    <Compile Include="WebApi\IHeartbeatController.cs" />
+    <Compile Include="Api\ICommonBusinessController.cs" />
+    <Compile Include="Api\ICommonController.cs" />
+    <Compile Include="Api\Core\IApplicationConfigurationController.cs" />
+    <Compile Include="Api\IHeartbeatController.cs" />
     <Compile Include="Workflow\IWorkflowProcess.cs" />
   </ItemGroup>
   <ItemGroup>

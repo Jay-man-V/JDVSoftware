@@ -16,7 +16,6 @@ namespace Foundation.Api
     /// <summary>
     /// 
     /// </summary>
-    //[Authorize]
     public abstract class CommonBusinessController : CommonController, ICommonBusinessController
     {
         /// <summary>

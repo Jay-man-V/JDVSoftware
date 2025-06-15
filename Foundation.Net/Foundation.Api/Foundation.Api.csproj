@@ -118,8 +118,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\CustomAuthoriseAttribute.cs" />
     <Compile Include="Base\CommonController.cs" />
     <Compile Include="Base\CommonBusinessController.cs" />
+    <Compile Include="Controllers\Core\CalendarController.cs" />
     <Compile Include="Controllers\Core\ApplicationConfigurationController.cs" />
     <Compile Include="Controllers\HeartbeatController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

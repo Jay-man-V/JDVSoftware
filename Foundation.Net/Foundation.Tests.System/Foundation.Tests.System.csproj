@@ -58,6 +58,7 @@
     <Compile Include=".Support\SystemTestBase.cs" />
     <Compile Include="Foundation.BusinessProcess\CommonBusinessProcessSystemTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\CalendarProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduleNextRunTests.cs" />
     <Compile Include="Foundation.Repository\.Support\SystemTestingDatabaseProvider.cs" />
     <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\BaseTestsHelpers.cs" />

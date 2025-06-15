@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05D1C1DE-89C6-4D16-BB2D-777A1811459A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Common</RootNamespace>
+    <AssemblyName>Foundation.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Foundation.Common.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ApplicationSupport\ApplicationControl.cs" />
+    <Compile Include="Configuration\ApplicationSettings.cs" />
+    <Compile Include="Configuration\SmtpConfiguration.cs" />
+    <Compile Include="DataColumns\.Base\FoundationEntity.cs" />
+    <Compile Include="DataColumns\.Specialised\DbSchemaColumn.cs" />
+    <Compile Include="DataColumns\.Specialised\DbSchemaTable.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\EntityStatus.cs" />
+    <Compile Include="DataColumns\Core\Department.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\DataStatus.cs" />
+    <Compile Include="DataColumns\Log\EventLogAttachment.cs" />
+    <Compile Include="DataColumns\Log\ImportExportControl.cs" />
+    <Compile Include="DataColumns\Log\ScheduledDataStatus.cs" />
+    <Compile Include="DataColumns\dbo\Catalogue.cs" />
+    <Compile Include="DataColumns\dbo\CatalogueItem.cs" />
+    <Compile Include="DataColumns\Core\ApplicationConfiguration.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ConfigurationScope.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ApprovalStatus.cs" />
+    <Compile Include="DataColumns\Core\ContactDetail.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ContactType.cs" />
+    <Compile Include="DataColumns\Core\Contract.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ContractType.cs" />
+    <Compile Include="DataColumns\Core\Country.cs" />
+    <Compile Include="DataColumns\Core\Currency.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ImageType.cs" />
+    <Compile Include="DataColumns\Core\Language.cs" />
+    <Compile Include="DataColumns\Core\NationalRegion.cs" />
+    <Compile Include="DataColumns\Core\NonWorkingDay.cs" />
+    <Compile Include="DataColumns\Core\Office.cs" />
+    <Compile Include="DataColumns\Core\OfficeWeekCalendar.cs" />
+    <Compile Include="DataColumns\Core\ScheduledJob.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\ScheduleInterval.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\Status.cs" />
+    <Compile Include="DataColumns\Core\EnumModels\TaskStatus.cs" />
+    <Compile Include="DataColumns\Core\TimeZone.cs" />
+    <Compile Include="DataColumns\Core\WorldRegion.cs" />
+    <Compile Include="DataColumns\Log\EventLog.cs" />
+    <Compile Include="DataColumns\Log\EventLogApplication.cs" />
+    <Compile Include="DataColumns\Log\EnumModels\LogSeverity.cs" />
+    <Compile Include="DataColumns\Sec\PermissionMatrix.cs" />
+    <Compile Include="DataColumns\Sec\Application.cs" />
+    <Compile Include="DataColumns\Sec\ApplicationApplicationType.cs" />
+    <Compile Include="DataColumns\Sec\EnumModels\ApplicationRole.cs" />
+    <Compile Include="DataColumns\Sec\AuthenticationToken.cs" />
+    <Compile Include="DataColumns\Sec\ApplicationType.cs" />
+    <Compile Include="DataColumns\Sec\ApplicationUserRole.cs" />
+    <Compile Include="DataColumns\Sec\LoggedOnUser.cs" />
+    <Compile Include="DataColumns\Sec\Role.cs" />
+    <Compile Include="DataColumns\Sec\UserProfile.cs" />
+    <Compile Include="DataColumns\Stg\ActiveDirectoryUser.cs" />
+    <Compile Include="DataColumns\FunctionNames.cs" />
+    <Compile Include="DataColumns\StoredProcedureNames.cs" />
+    <Compile Include="DataColumns\TableNames.cs" />
+    <Compile Include="Data\DataHelpers.DefaultValues.cs" />
+    <Compile Include="Data\DataHelpers.GetNullable.cs" />
+    <Compile Include="Data\DataHelpers.GetValue.cs" />
+    <Compile Include="Exceptions\ExceptionManagementDemo.cs" />
+    <Compile Include="ExtensionMethods\BitmapSourceExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\ByteExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\DateTimeExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\DecimalExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\DictionaryExtenstionMethods.cs" />
+    <Compile Include="ExtensionMethods\EnumExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\FieldInfoExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\EnumerableExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\IListExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\ImageExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\Int32ExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\ListExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\MethodInfoExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\ObjectExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\StringBuilderExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\TimeSpanExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\TypeExtensionsMethods.cs" />
+    <Compile Include="ExtensionMethods\UInt32ExtensionMethods.cs" />
+    <Compile Include="FoundationProperty.cs" />
+    <Compile Include="FoundationPropertyEventArgs.cs" />
+    <Compile Include="Helpers\SerialisationHelpers.cs" />
+    <Compile Include="Helpers\GridColumnDefinition.cs" />
+    <Compile Include="Configuration\Logging\AuditElement.cs" />
+    <Compile Include="Configuration\Logging\Constants.cs" />
+    <Compile Include="Configuration\Logging\ErrorElement.cs" />
+    <Compile Include="Configuration\Logging\InformationElement.cs" />
+    <Compile Include="Configuration\Logging\LoggingConfiguration.cs" />
+    <Compile Include="Configuration\Logging\LogWriter.cs" />
+    <Compile Include="Configuration\Logging\LogWritersCollection.cs" />
+    <Compile Include="Configuration\Logging\RootCustomElement.cs" />
+    <Compile Include="Configuration\Logging\TracingElement.cs" />
+    <Compile Include="Configuration\Logging\WarningElement.cs" />
+    <Compile Include="Logging\Formatting\ContextInformation.cs" />
+    <Compile Include="Logging\Formatting\ExceptionOutput.cs" />
+    <Compile Include="Logging\Formatting\MessageFormatter.cs" />
+    <Compile Include="Logging\LoggingConstants.cs" />
+    <Compile Include="Logging\LoggingHelpers.cs" />
+    <Compile Include="Logging\LoggingHelpers.LogAudit.cs" />
+    <Compile Include="Logging\LoggingHelpers.LogError.cs" />
+    <Compile Include="Logging\LoggingHelpers.LogInformation.cs" />
+    <Compile Include="Logging\LoggingHelpers.LogWarning.cs" />
+    <Compile Include="Logging\LoggingHelpers.Trace.cs" />
+    <Compile Include="Logging\LogWriters\EventLogWriter.cs" />
+    <Compile Include="Logging\LogWriters\LoggingBase.cs" />
+    <Compile Include="Logging\LogWriters\TraceLogWriter.cs" />
+    <Compile Include="ProgressEventTracking\CopyToClipBoardEventArgs.cs" />
+    <Compile Include="ProgressEventTracking\IProgressEventTracker.cs" />
+    <Compile Include="ProgressEventTracking\IProgressUpdater.cs" />
+    <Compile Include="ProgressEventTracking\ProgressItem.cs" />
+    <Compile Include="ProgressEventTracking\ProgressTracker.cs" />
+    <Compile Include="ProgressEventTracking\ProgressUpdater.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\HeartbeatResult.cs" />
+    <Compile Include="Reports\ReportDefinition.cs" />
+    <Compile Include="Reports\ReportRunRequest.cs" />
+    <Compile Include="Reports\ReportRunResponse.cs" />
+    <Compile Include="Settings\ArchiveTransferSettings.cs" />
+    <Compile Include="Settings\FileTransferSettings.cs" />
+    <Compile Include="Settings\MessageBoxSettings.cs" />
+    <Compile Include="Settings\OpenFolderDialogSettings.cs" />
+    <Compile Include="Settings\SaveFileDialogSettings.cs" />
+    <Compile Include="Utils\WeakAction.cs" />
+    <Compile Include="Utils\LocationUtils.cs" />
+    <Compile Include="Utils\ExecutionTimer.cs" />
+    <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="Utils\RelayCommandFactory.cs" />
+    <Compile Include="Validators\RequiredLogIdAttribute.cs" />
+    <Compile Include="Validators\RequiredEntityIdAttribute.cs" />
+    <Compile Include="Validators\RequiredAppIdAttribute.cs" />
+    <Compile Include="Validators\ValidationConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Interfaces\Foundation.Interfaces.csproj">
+      <Project>{7e709883-c064-4c98-a8b1-9ee62b47274d}</Project>
+      <Name>Foundation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Resources\Foundation.Resources.csproj">
+      <Project>{41b94fff-0bf0-4b9d-83e3-8514c1e63ecc}</Project>
+      <Name>Foundation.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\ExtraCleanup.targets" />
+</Project>

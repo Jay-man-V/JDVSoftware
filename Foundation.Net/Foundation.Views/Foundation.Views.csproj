@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D17A74E3-03C2-4249-BE4D-75FA0E610899}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>Foundation.Views</RootNamespace>
+    <AssemblyName>Foundation.Views</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Foundation.Views.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationClientsideProviders" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Behaviours\ColumnTemplateSelector.cs" />
+    <Compile Include="Behaviours\ComboBoxExtensionMethods.cs" />
+    <Compile Include="Behaviours\ComboBoxWidthFromItemsBehaviour.cs" />
+    <Compile Include="Behaviours\GridColumnsBindingBehaviour.cs" />
+    <Compile Include="Behaviours\GridRowHeaderBehaviour.cs" />
+    <Compile Include="Controls\AvailableSelectedControl.xaml.cs">
+      <DependentUpon>AvailableSelectedControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Base\StdWindowPanel.xaml.cs">
+      <DependentUpon>StdWindowPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\ButtonControl.xaml.cs">
+      <DependentUpon>ButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\BreadCrumbControl.xaml.cs">
+      <DependentUpon>BreadCrumbControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\ComboBoxControl.xaml.cs">
+      <DependentUpon>ComboBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContactDetailsControl.xaml.cs">
+      <DependentUpon>ContactDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomTabControl.xaml.cs">
+      <DependentUpon>CustomTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\DatetimePickerControl.xaml.cs">
+      <DependentUpon>DatetimePickerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Visuals\ReportSubTitleControl.xaml.cs">
+      <DependentUpon>ReportSubTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Visuals\ReportTitleControl.xaml.cs">
+      <DependentUpon>ReportTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserDetailsPopupControl.xaml.cs">
+      <DependentUpon>UserDetailsPopupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EntityDetailsControl.xaml.cs">
+      <DependentUpon>EntityDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\ExpanderControl.xaml.cs">
+      <DependentUpon>ExpanderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\GridViewControl.xaml.cs">
+      <DependentUpon>GridViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\LabelControl.xaml.cs">
+      <DependentUpon>LabelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoggedOnUsersControl.xaml.cs">
+      <DependentUpon>LoggedOnUsersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\ProgressBarControl.xaml.cs">
+      <DependentUpon>ProgressBarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Visuals\ScreenTitleControl.xaml.cs">
+      <DependentUpon>ScreenTitleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\TextBoxControl.xaml.cs">
+      <DependentUpon>TextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\ToggleButtonControl.xaml.cs">
+      <DependentUpon>ToggleButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Basic\TreeViewControl.xaml.cs">
+      <DependentUpon>TreeViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ByteArrayToMediaImageConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringMultiConverter.cs" />
+    <Compile Include="Converters\ImageToMediaImageConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\InvertBooleanConverter.cs" />
+    <Compile Include="Converters\NullStringVisibilityConverter.cs" />
+    <Compile Include="Converters\NumericIncrementer.cs" />
+    <Compile Include="Converters\RectConverter .cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Views\AboutSplashScreenForm.xaml.cs">
+      <DependentUpon>AboutSplashScreenForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationOptionsForm.xaml.cs">
+      <DependentUpon>ApplicationOptionsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GenericDataGridView.xaml.cs">
+      <DependentUpon>GenericDataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindowForm.xaml.cs">
+      <DependentUpon>MainWindowForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveDialogFilenameForm.xaml.cs">
+      <DependentUpon>SaveDialogFilenameForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageDialogForm.xaml.cs">
+      <DependentUpon>MessageDialogForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationWindow.xaml.cs">
+      <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgressBarForm.xaml.cs">
+      <DependentUpon>ProgressBarForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchEntityForm.xaml.cs">
+      <DependentUpon>SearchEntityForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StdContainerWindow.xaml.cs">
+      <DependentUpon>StdContainerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\BasicControlsView.xaml.cs">
+      <DependentUpon>BasicControlsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Test\TestForm.xaml.cs">
+      <DependentUpon>TestForm.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\AvailableSelectedControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Base\StdWindowPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ButtonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\BreadCrumbControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ComboBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ContactDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CustomTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\DatetimePickerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Visuals\ReportSubTitleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Visuals\ReportTitleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserDetailsPopupControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\EntityDetailsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ExpanderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\GridViewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\LabelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LoggedOnUsersControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ProgressBarControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Visuals\ScreenTitleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\TextBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ToggleButtonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\TreeViewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AboutSplashScreenForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ApplicationOptionsForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\GenericDataGridView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindowForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SaveDialogFilenameForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessageDialogForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ProgressBarForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SearchEntityForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\StdContainerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Test\BasicControlsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Test\TestForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Core\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Common\Foundation.Common.csproj">
+      <Project>{05d1c1de-89c6-4d16-bb2d-777a1811459a}</Project>
+      <Name>Foundation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Interfaces\Foundation.Interfaces.csproj">
+      <Project>{7e709883-c064-4c98-a8b1-9ee62b47274d}</Project>
+      <Name>Foundation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Resources\Foundation.Resources.csproj">
+      <Project>{41b94fff-0bf0-4b9d-83e3-8514c1e63ecc}</Project>
+      <Name>Foundation.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.135</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

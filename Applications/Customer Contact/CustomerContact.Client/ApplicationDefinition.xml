@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationDefinition>
+    <Name>Customer Contact</Name>
+    <DataConnectionName>CustomerContact</DataConnectionName>
+    <MenuItems>
+        <MenuItem>
+            <Name>Development</Name>
+            <Caption>Development</Caption>
+            <MenuItems>
+                <MenuItem>
+                    <Name>BasicControlsForm</Name>
+                    <Caption>Basic Controls Form</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IBasicControlsViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.Test.BasicControlsView" />
+                    <HelpText>A demonstrator form for the Basic Controls of WPF</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                    <Parameters>
+                        <Parameter name="A" value="123" />
+                    </Parameters>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Test Form</Name>
+                    <Caption>Test Form</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ITestFormViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.Test.TestForm" />
+                    <HelpText />
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>false</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem>
+            <Name>CoreReferenceData</Name>
+            <Caption>Core Reference Data</Caption>
+            <Icon />
+            <HelpText />
+            <MenuItems>
+                <MenuItem>
+                    <Name>Contact</Name>
+                    <Caption>Contacts</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContactDetailViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Contacts</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Contract</Name>
+                    <Caption>Contracts</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContractViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Contracts</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Office</Name>
+                    <Caption>Offices</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IOfficeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Offices</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem>
+            <Name>CoreStaticData</Name>
+            <Caption>Core Static Data</Caption>
+            <Icon />
+            <HelpText />
+            <MenuItems>
+                <MenuItem>
+                    <Name>ContractType</Name>
+                    <Caption>Contract Types</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContractTypeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Contract Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Country</Name>
+                    <Caption>Countries</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ICountryViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Countries</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Currency</Name>
+                    <Caption>Currencies</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ICurrencyViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Currencies</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Department</Name>
+                    <Caption>Department</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IDepartmentViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Departments</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>NationalRegion</Name>
+                    <Caption>National Regions</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.INationalRegionViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all National Regions</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>NonWorkingDays</Name>
+                    <Caption>Non-Working Days</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.INonWorkingDayViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Non-Working Days</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>OfficeWeekCalendar</Name>
+                    <Caption>Office Week Calendar</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IOfficeWeekCalendarViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Office Week Calendars</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>WorldRegion</Name>
+                    <Caption>World Regions</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IWorldRegionViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all World Regions</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem>
+            <Name>Logs</Name>
+            <Caption>Logs</Caption>
+            <Icon />
+            <HelpText />
+            <MenuItems>
+                <MenuItem>
+                    <Name>Import Export Control</Name>
+                    <Caption>Import Export Control</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IImportExportControlViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Import Export Control logs</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Event Log</Name>
+                    <Caption>Event Log</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEventLogViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Event Logs</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Event Log Applications</Name>
+                    <Caption>Event Log Applications</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEventLogApplicationViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Event Logs</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem>
+            <Name>Security</Name>
+            <Caption>Security</Caption>
+            <Icon />
+            <HelpText />
+            <MenuItems>
+                <MenuItem>
+                    <Name>Applications</Name>
+                    <Caption>Applications</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Applications</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ApplicationTypesMapping</Name>
+                    <Caption>Application Types Mapping</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationApplicationTypeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Application Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ApplicationRoles</Name>
+                    <Caption>Application Roles</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationRoleViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Application Roles</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ApplicationTypes</Name>
+                    <Caption>Application Types</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationTypeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Application Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ApplicationUserRolesMapping</Name>
+                    <Caption>Application User Roles Mapping</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationUserRoleViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Application Roles</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Roles</Name>
+                    <Caption>Roles</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IRoleViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Roles</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>UserProfiles</Name>
+                    <Caption>User Profiles</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IUserProfileViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all User Profiles</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>PermissionsMatrix</Name>
+                    <Caption>Permission Matrix</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IPermissionMatrixViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View Permission Matrix</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ActiveDirectoryUser</Name>
+                    <Caption>Active Directory Users</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IActiveDirectoryUserViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Active Directory Users</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+        <MenuItem>
+            <Name>SystemStaticData</Name>
+            <Caption>System Static Data</Caption>
+            <Icon />
+            <HelpText />
+            <MenuItems>
+                <MenuItem>
+                    <Name>ApplicationConfiguration</Name>
+                    <Caption>Application Configuration</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationConfigurationViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Application Configurations</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ApprovalStatus</Name>
+                    <Caption>Approval Status</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApprovalStatusViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Approval Statuses</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ConfigurationScope</Name>
+                    <Caption>Configuration Scope</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IConfigurationScopeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Configuration Scopes</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ContactType</Name>
+                    <Caption>Contact Types</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContactTypeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Contact Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>DataStatus</Name>
+                    <Caption>Data Statuses</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IDataStatusViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Data Statuses</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>EntityStatus</Name>
+                    <Caption>Entity Statuses</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEntityStatusViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Entity Statuses</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ImageType</Name>
+                    <Caption>Image Types</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IImageTypeViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Image Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Language</Name>
+                    <Caption>Languages</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ILanguageViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Languages</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Log Severity</Name>
+                    <Caption>Log Severity</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ILogSeverityViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Log Severities</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ScheduledJobs</Name>
+                    <Caption>Scheduled Jobs</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IScheduledJobViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Scheduled Jobs</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>ScheduleIntervalTypes</Name>
+                    <Caption>Schedule Interval Types</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IScheduleIntervalViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Schedule Interval Types</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>Status</Name>
+                    <Caption>Statuses</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IStatusViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Statuses</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
+                    <Name>TimeZone</Name>
+                    <Caption>Time Zones</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ITimeZoneViewModel" />
+                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Time Zones</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+            </MenuItems>
+        </MenuItem>
+    </MenuItems>
+</ApplicationDefinition>

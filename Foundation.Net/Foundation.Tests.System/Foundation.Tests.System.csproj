@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.props" Condition="Exists('..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props" Condition="Exists('..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Platform.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props" Condition="Exists('..\..\packages\Microsoft.Testing.Platform.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props')" />
+  <Import Project="..\..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BBC148BB-1789-454F-9963-5AAC8C9A6497}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Tests.System</RootNamespace>
+    <AssemblyName>Foundation.Tests.System</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include=".NetFramework\DatabaseDeploymentTests.cs" />
+    <Compile Include=".Support\DataAccessSystemTestBase.cs" />
+    <Compile Include=".Support\SystemTestBase.cs" />
+    <Compile Include="Foundation.BusinessProcess\CommonBusinessProcessSystemTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduleNextRunTests.cs" />
+    <Compile Include="Foundation.Repository\.Support\SystemTestingDatabaseProvider.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\BaseTestsHelpers.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\CreateEntityComplexTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\CreateEntitySimpleTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\DeleteEntityComplexTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\DeleteEntitySimpleTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\GetConnectionTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\GetTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\UpdateEntityComplexTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\UpdateEntitySimpleTests.cs" />
+    <Compile Include="Foundation.Repository\Specialised\DbSchemaColumnRepositoryTests.cs" />
+    <Compile Include="Foundation.Repository\Specialised\DbSchemaTableRepositoryTests.cs" />
+    <Compile Include="Foundation.EMailer\SendMailTests.cs" />
+    <Compile Include="Foundation.Models\TestMapModelsToDatabase.cs" />
+    <Compile Include="Foundation.Services.Application\PasswordServiceTests.cs" />
+    <Compile Include="Foundation.Services.WebApi\HttpWebApiTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include=".Support\_SystemTestTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\SampleDocuments\sample.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\WebResponse.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.BusinessProcess\Foundation.BusinessProcess.csproj">
+      <Project>{725011cf-adf0-4e4e-b8eb-bb46a333c916}</Project>
+      <Name>Foundation.BusinessProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Common\Foundation.Common.csproj">
+      <Project>{05d1c1de-89c6-4d16-bb2d-777a1811459a}</Project>
+      <Name>Foundation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.DataAccess\Foundation.DataAccess.Database.csproj">
+      <Project>{91cb239d-17b6-4417-b88f-06f41818c3ed}</Project>
+      <Name>Foundation.DataAccess.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Emailer\Foundation.Emailer.csproj">
+      <Project>{8f48ad74-ee26-4170-8d7a-4396bb15a4a6}</Project>
+      <Name>Foundation.Emailer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Interfaces\Foundation.Interfaces.csproj">
+      <Project>{7e709883-c064-4c98-a8b1-9ee62b47274d}</Project>
+      <Name>Foundation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Models\Foundation.Models.csproj">
+      <Project>{5181b7e8-4823-45b0-8e81-c8d3228d0099}</Project>
+      <Name>Foundation.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Repository\Foundation.Repository.csproj">
+      <Project>{1d3264d9-0778-4a35-b143-4feb1643e634}</Project>
+      <Name>Foundation.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Resources\Foundation.Resources.csproj">
+      <Project>{41b94fff-0bf0-4b9d-83e3-8514c1e63ecc}</Project>
+      <Name>Foundation.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.WebApi\Foundation.Services.WebApi.csproj">
+      <Project>{4c535a66-8a54-4fa7-b2e5-ab5172e6261b}</Project>
+      <Name>Foundation.Services.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Tests.Unit\Foundation.Tests.Unit.csproj">
+      <Project>{dff334ed-2e0b-470e-9dc1-59f7614c5de7}</Project>
+      <Name>Foundation.Tests.Unit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\0 - Create Unit Test Database.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\0 - Drop Unit Test Database.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1 - Create Generic Test Tables.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1 - Reset all tables.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.1.1 - Create - ufn_GetListOfCalendarDates.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.1.2 - Create - ufn_CheckIsWorkingDayOrGetNextWorkingDay.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.1.3 - Create - ufn_GetNextWorkingDay.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.1.4 - Create - ufn_CheckIsWorkingDayOrGetNextWorkingDay.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.2.1 - Create - usp_NonWorkingDays_GetWorkingDays.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.2.2 - Create - usp_NonWorkingDays_GetWorkingDaysByMonth.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\1.2.3 - Create - usp_UserProfile_LoadFromActiveDirectoryUsersFromStaging.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\2 - Business Tables - Initial Data.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\3 - Business Tables - Additional Data.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\Sql\Foundation.DataAccess\GetTests - CreateTestData.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Foundation.BusinessProcess\CoreTests\NonWorkingDayProcessTests\" />
+    <Folder Include="Foundation.BusinessProcess\LogTests\" />
+    <Folder Include="Foundation.BusinessProcess\SecTests\LoggedOnUserProcessTests\" />
+    <Folder Include="Foundation.BusinessProcess\SecTests\UserProfileProcessTests\" />
+    <Folder Include="Foundation.BusinessProcess\StgTests\" />
+    <Folder Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\.DataLogicProvidersTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\SampleDocuments\sample.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit">
+      <Version>4.3.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\ExtraCleanup.targets" />
+  <Import Project="..\..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\packages\Microsoft.Data.SqlClient.SNI.5.2.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.targets')" />
+  <Import Project="..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.targets" Condition="Exists('..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.targets')" />
+</Project>

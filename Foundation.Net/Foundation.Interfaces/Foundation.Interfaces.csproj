@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7E709883-C064-4C98-A8B1-9EE62B47274D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Interfaces</RootNamespace>
+    <AssemblyName>Foundation.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Foundation.Interfaces.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ApplicationServices\IFileTransferService.cs" />
+    <Compile Include="ApplicationServices\IRunTimeEnvironmentSettings.cs" />
+    <Compile Include="ApplicationServices\IPasswordService.cs" />
+    <Compile Include="ApplicationServices\IIdService.cs" />
+    <Compile Include="AssemblyHelpers\FullyQualifiedTypeName.cs" />
+    <Compile Include="Attributes\DependencyInjectionSingletonAttribute.cs" />
+    <Compile Include="Attributes\EmailAddressMaxLengthAttribute.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IConfigurationScopeProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IAuthorisationProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IAuthenticationProcess.cs" />
+    <Compile Include="ApplicationServices\IDateTimeService.cs" />
+    <Compile Include="ApplicationServices\IDialogService.cs" />
+    <Compile Include="ApplicationServices\IEmailServices.cs" />
+    <Compile Include="ApplicationServices\IEncryptionService.cs" />
+    <Compile Include="ApplicationServices\IFileApi.cs" />
+    <Compile Include="ApplicationServices\IHashingService.cs" />
+    <Compile Include="ApplicationServices\IMailAttachment.cs" />
+    <Compile Include="ApplicationServices\IMailMessage.cs" />
+    <Compile Include="ApplicationServices\ITestSupportService.cs" />
+    <Compile Include="ApplicationServices\IRandomService.cs" />
+    <Compile Include="Attributes\DependencyInjectionIgnoreAttribute.cs" />
+    <Compile Include="Attributes\DependencyInjectionScopedAttribute.cs" />
+    <Compile Include="Attributes\DependencyInjectionTransientAttribute.cs" />
+    <Compile Include="Attributes\IdAttribute.cs" />
+    <Compile Include="Attributes\IndexAttribute.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IApprovalStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\ICalendarProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IContactDetailProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IContactTypeProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IContractProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IContractTypeProcess.cs" />
+    <Compile Include="BusinessProcess\Core\ICountryProcess.cs" />
+    <Compile Include="BusinessProcess\Core\ICurrencyProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IEntityStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IImageTypeProces.cs" />
+    <Compile Include="BusinessProcess\Core\ILanguageProcess.cs" />
+    <Compile Include="BusinessProcess\Core\INationalRegionProcess.cs" />
+    <Compile Include="BusinessProcess\Core\INonWorkingDayProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IDepartmentProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IOfficeProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IOfficeWeekCalendarProcess.cs" />
+    <Compile Include="BusinessProcess\ICommonProcess.cs" />
+    <Compile Include="BusinessProcess\Log\IEventLogAttachmentProcess.cs" />
+    <Compile Include="EventArgs\CreateScheduledTaskEventArgs.cs" />
+    <Compile Include="Exceptions\ApplicationConcurrencyException.cs" />
+    <Compile Include="Exceptions\ApplicationPermissionsException.cs" />
+    <Compile Include="Exceptions\AuthenticationTokenException.cs" />
+    <Compile Include="Exceptions\NullValueException.cs" />
+    <Compile Include="Exceptions\TooManyRecordsDeletedException.cs" />
+    <Compile Include="Exceptions\TooManyRecordsUpdatedException.cs" />
+    <Compile Include="Exceptions\UnableToReadNewIdentityException.cs" />
+    <Compile Include="Exceptions\UserCredentialsException.cs" />
+    <Compile Include="Exceptions\UserLogonException.cs" />
+    <Compile Include="Exceptions\ValueNotInLookupListException.cs" />
+    <Compile Include="BusinessProcess\Log\IImportExportControl.cs" />
+    <Compile Include="BusinessProcess\Log\IScheduledDataStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IScheduledJobProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IScheduleIntervalProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\IDataStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\EnumProcesses\ITaskStatusProcess.cs" />
+    <Compile Include="BusinessProcess\Core\ITimeZoneProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IWorldRegionProcess.cs" />
+    <Compile Include="BusinessProcess\ICommonBusinessProcess.cs" />
+    <Compile Include="BusinessProcess\Core\IApplicationConfigurationProcess.cs" />
+    <Compile Include="BusinessProcess\IScheduledTask.cs" />
+    <Compile Include="BusinessProcess\Log\IEventLogApplicationProcess.cs" />
+    <Compile Include="BusinessProcess\Log\IEventLogProcess.cs" />
+    <Compile Include="BusinessProcess\Log\EnumProcesses\ILogSeverityProcess.cs" />
+    <Compile Include="BusinessProcess\Main\IMainApplicationProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IApplicationApplicationTypeProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IApplicationProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\EnumProcesses\IApplicationRoleProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IApplicationTypeProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IApplicationUserRoleProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\ILoggedOnUserProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IPermissionMatrixProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IRoleProcess.cs" />
+    <Compile Include="BusinessProcess\Sec\IUserProfileProcess.cs" />
+    <Compile Include="BusinessProcess\Stg\IActiveDirectoryUserProcess.cs" />
+    <Compile Include="Core\ICurrentLoggedOnUser.cs" />
+    <Compile Include="Core\ICore.cs" />
+    <Compile Include="Core\IIoC.cs" />
+    <Compile Include="CustomTypes\LogId.cs" />
+    <Compile Include="DataAccess\IFoundationDataAccess.cs" />
+    <Compile Include="Enums\FileTransferArchiveAction.cs" />
+    <Compile Include="Enums\FileTransferMethod.cs" />
+    <Compile Include="Enums\ServiceStatus.cs" />
+    <Compile Include="Enums\DataStatus.cs" />
+    <Compile Include="MenuConfig\ApplicationDefinition.cs" />
+    <Compile Include="MenuConfig\ViewController.cs" />
+    <Compile Include="MenuConfig\ViewMenuItem.cs" />
+    <Compile Include="MenuConfig\ViewParameter.cs" />
+    <Compile Include="MenuConfig\ViewScreen.cs" />
+    <Compile Include="Models\Core\EnumModels\IEntityStatus.cs" />
+    <Compile Include="Models\Core\EnumModels\IDataStatus.cs" />
+    <Compile Include="Models\Log\IEventLogAttachment.cs" />
+    <Compile Include="Models\Workflow\IProcessApprover.cs" />
+    <Compile Include="Models\Log\IImportExportControl.cs" />
+    <Compile Include="Models\Log\IScheduledDataStatus.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IEntityStatusRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IDataStatusRepository.cs" />
+    <Compile Include="Repository\Core\ICalendarRepository.cs" />
+    <Compile Include="Repository\DatabaseProvider\ISchemaDatabaseProvider.cs" />
+    <Compile Include="Repository\DatabaseProvider\IStagingDatabaseProvider.cs" />
+    <Compile Include="Repository\DatabaseProvider\ISecurityDatabaseProvider.cs" />
+    <Compile Include="Repository\DatabaseProvider\ILogDatabaseProvider.cs" />
+    <Compile Include="Repository\DatabaseProvider\ICoreDatabaseProvider.cs" />
+    <Compile Include="Repository\DatabaseProvider\IDatabaseProvider.cs" />
+    <Compile Include="Repository\Log\IEventLogAttachmentRepository.cs" />
+    <Compile Include="Repository\Log\IImportExportControlRepository.cs" />
+    <Compile Include="Repository\Log\IScheduledDataStatusRepository.cs" />
+    <Compile Include="Services\IFtpApi.cs" />
+    <Compile Include="Services\IImapApi.cs" />
+    <Compile Include="Services\IRestApi.cs" />
+    <Compile Include="Services\IHttpApi.cs" />
+    <Compile Include="Services\IMqApi.cs" />
+    <Compile Include="Services\IRemoteServiceApi.cs" />
+    <Compile Include="Support\IArchiveTransferSettings.cs" />
+    <Compile Include="Support\IFileTransferSettings.cs" />
+    <Compile Include="Repository\Sec\IPermissionMatrixRepository.cs" />
+    <Compile Include="Models\Sec\IPermissionMatrix.cs" />
+    <Compile Include="Support\IHeartbeatResult.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IEntityStatusViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IDataStatusViewModel.cs" />
+    <Compile Include="ViewModels\IAboutSplashScreenFormViewModel.cs" />
+    <Compile Include="ViewModels\Log\IEventLogAttachmentViewModel.cs" />
+    <Compile Include="ViewModels\Log\IImportExportControlViewModel.cs" />
+    <Compile Include="ViewModels\Log\IScheduledDataStatusViewModel.cs" />
+    <Compile Include="ViewModels\IClipBoardWrapper.cs" />
+    <Compile Include="ViewModels\IMouseBusyCursor.cs" />
+    <Compile Include="Utils\IExecuteWithObject.cs" />
+    <Compile Include="ViewModels\IMainMenuitem.cs" />
+    <Compile Include="ViewModels\IBasicControlsViewModel.cs" />
+    <Compile Include="ViewModels\ITestFormViewModel.cs" />
+    <Compile Include="ViewModels\IEntityViewModel.cs" />
+    <Compile Include="ViewModels\IMainViewModel.cs" />
+    <Compile Include="ViewModels\IGenericDataGridViewModelBase.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="CustomTypes\EmailAddress.cs" />
+    <Compile Include="CustomTypes\AppId.cs" />
+    <Compile Include="CustomTypes\EntityId.cs" />
+    <Compile Include="CustomTypes\AuthenticationToken.cs" />
+    <Compile Include="CustomTypes\PostCode.cs" />
+    <Compile Include="CustomTypes\TelephoneNumber.cs" />
+    <Compile Include="CustomTypes\TimeWindow.cs" />
+    <Compile Include="Repository\Specialised\IDbSchemaColumnRepository.cs" />
+    <Compile Include="Repository\Specialised\IDbSchemaTableRepository.cs" />
+    <Compile Include="Repository\Core\IApplicationConfigurationRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IConfigurationScopeRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IApprovalStatusRepository.cs" />
+    <Compile Include="Repository\Core\IContactDetailRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IContactTypeRepository.cs" />
+    <Compile Include="Repository\Core\IContractRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IContractTypeRepository.cs" />
+    <Compile Include="Repository\Core\ICountryRepository.cs" />
+    <Compile Include="Repository\Core\ICurrencyRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IImageTypeRepository.cs" />
+    <Compile Include="Repository\Core\ILanguageRepository.cs" />
+    <Compile Include="Repository\Core\INationalRegionRepository.cs" />
+    <Compile Include="Repository\Core\INonWorkingDayRepository.cs" />
+    <Compile Include="Repository\Core\IDepartmentRepository.cs" />
+    <Compile Include="Repository\Core\IOfficeRepository.cs" />
+    <Compile Include="Repository\Core\IOfficeWeekCalendarRepository.cs" />
+    <Compile Include="Repository\Core\IScheduledJobRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IScheduleIntervalRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\IStatusRepository.cs" />
+    <Compile Include="Repository\Core\EnumRepositories\ITaskStatusRepository.cs" />
+    <Compile Include="Repository\Core\ITimeZoneRepository.cs" />
+    <Compile Include="Repository\Core\IWorldRegionRepository.cs" />
+    <Compile Include="DataAccess\IDatabaseParameters.cs" />
+    <Compile Include="DataAccess\IDataLogicProvider.cs" />
+    <Compile Include="Repository\IFoundationModelRepository.cs" />
+    <Compile Include="Repository\Log\IEventLogApplicationRepository.cs" />
+    <Compile Include="Repository\Log\IEventLogRepository.cs" />
+    <Compile Include="Repository\Log\EnumRepositories\ILogSeverityRepository.cs" />
+    <Compile Include="Repository\Sec\IApplicationApplicationTypeRepository.cs" />
+    <Compile Include="Repository\Sec\IApplicationRepository.cs" />
+    <Compile Include="Repository\Sec\EnumRepositories\IApplicationRoleRepository.cs" />
+    <Compile Include="Repository\Sec\IApplicationTypeRepository.cs" />
+    <Compile Include="Repository\Sec\IApplicationUserRoleRepository.cs" />
+    <Compile Include="Repository\Sec\ILoggedOnUserRepository.cs" />
+    <Compile Include="Repository\Sec\IAuthenticationRepository.cs" />
+    <Compile Include="Repository\Sec\IRoleRepository.cs" />
+    <Compile Include="Repository\Sec\IUserProfileRepository.cs" />
+    <Compile Include="Repository\Stg\IActiveDirectoryUserRepository.cs" />
+    <Compile Include="DocumentGenerator\IWordProcessingGenerator.cs" />
+    <Compile Include="DocumentGenerator\ISpreadsheetGenerator.cs" />
+    <Compile Include="Enums\ConfigurationScope.cs" />
+    <Compile Include="Enums\MessageBoxImage.cs" />
+    <Compile Include="Enums\MessageBoxButton.cs" />
+    <Compile Include="Enums\DialogResult.cs" />
+    <Compile Include="Enums\ApplicationRole.cs" />
+    <Compile Include="Enums\ApprovalStatus.cs" />
+    <Compile Include="Enums\ControlToShow.cs" />
+    <Compile Include="Enums\DisplayTarget.cs" />
+    <Compile Include="Enums\EntityLife.cs" />
+    <Compile Include="Enums\EntityState.cs" />
+    <Compile Include="Enums\EntityStatus.cs" />
+    <Compile Include="Enums\ErrorDialogButtons.cs" />
+    <Compile Include="Enums\InputType.cs" />
+    <Compile Include="Enums\KnownFolder.cs" />
+    <Compile Include="Enums\LogSeverity.cs" />
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Enums\ScheduleInterval.cs" />
+    <Compile Include="Enums\TaskStatus.cs" />
+    <Compile Include="Enums\TextAlignment.cs" />
+    <Compile Include="Enums\WindowsMessages.cs" />
+    <Compile Include="Helpers\IGridColumnDefinition.cs" />
+    <Compile Include="Models\IFoundationModel.cs" />
+    <Compile Include="Models\IFoundationModelTracking.cs" />
+    <Compile Include="Models\IFoundationObjectId.cs" />
+    <Compile Include="Support\IMessageBoxSettings.cs" />
+    <Compile Include="Support\IOpenFolderDialogSettings.cs" />
+    <Compile Include="Support\IReportDefinition.cs" />
+    <Compile Include="Support\IReportRunRequest.cs" />
+    <Compile Include="Support\IReportRunResponse.cs" />
+    <Compile Include="Support\IOpenFileDialogSettings.cs" />
+    <Compile Include="Support\ISaveFileDialogSettings.cs" />
+    <Compile Include="Models\.Specialised\IDbSchemaColumn.cs" />
+    <Compile Include="Models\.Specialised\IDbSchemaTable.cs" />
+    <Compile Include="Models\Core\IApplicationConfiguration.cs" />
+    <Compile Include="Models\Core\EnumModels\IConfigurationScope.cs" />
+    <Compile Include="Models\Core\EnumModels\IApprovalStatus.cs" />
+    <Compile Include="Models\Core\IContactDetail.cs" />
+    <Compile Include="Models\Core\EnumModels\IContactType.cs" />
+    <Compile Include="Models\Core\IContract.cs" />
+    <Compile Include="Models\Core\EnumModels\IContractType.cs" />
+    <Compile Include="Models\Core\ICountry.cs" />
+    <Compile Include="Models\Core\ICurrency.cs" />
+    <Compile Include="Models\Core\EnumModels\IImageType.cs" />
+    <Compile Include="Models\Core\ILanguage.cs" />
+    <Compile Include="Models\Core\INationalRegion.cs" />
+    <Compile Include="Models\Core\INonWorkingDay.cs" />
+    <Compile Include="Models\Core\IDepartment.cs" />
+    <Compile Include="Models\Core\IOffice.cs" />
+    <Compile Include="Models\Core\IOfficeWeekCalendar.cs" />
+    <Compile Include="Models\Core\IScheduledJob.cs" />
+    <Compile Include="Models\Core\EnumModels\IScheduleInterval.cs" />
+    <Compile Include="Models\Core\EnumModels\IStatus.cs" />
+    <Compile Include="Models\Core\EnumModels\ITaskStatus.cs" />
+    <Compile Include="Models\Core\ITimeZone.cs" />
+    <Compile Include="Models\Core\IWorldRegion.cs" />
+    <Compile Include="Models\Log\IEventLog.cs" />
+    <Compile Include="Models\Log\IEventLogApplication.cs" />
+    <Compile Include="Models\Log\EnumModels\ILogSeverity.cs" />
+    <Compile Include="Models\Sec\IApplication.cs" />
+    <Compile Include="Models\Sec\IApplicationApplicationType.cs" />
+    <Compile Include="Models\Sec\EnumModels\IApplicationRole.cs" />
+    <Compile Include="Models\Sec\IApplicationType.cs" />
+    <Compile Include="Models\Sec\IApplicationUserRole.cs" />
+    <Compile Include="Models\Sec\ILoggedOnUser.cs" />
+    <Compile Include="Models\Sec\IRole.cs" />
+    <Compile Include="Models\Sec\IUserProfile.cs" />
+    <Compile Include="Models\Stg\IActiveDirectoryUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\.Specialised\IDbSchemaColumnViewModel.cs" />
+    <Compile Include="ViewModels\.Specialised\IDbSchemaTableViewModel.cs" />
+    <Compile Include="ViewModels\Core\IApplicationConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IApprovalStatusViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IConfigurationScopeViewModel.cs" />
+    <Compile Include="ViewModels\Core\IContactDetailViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IContactTypeViewModel.cs" />
+    <Compile Include="ViewModels\Core\IContractViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IContractTypeViewModel.cs" />
+    <Compile Include="ViewModels\Core\ICountryViewModel.cs" />
+    <Compile Include="ViewModels\Core\ICurrencyViewModel.cs" />
+    <Compile Include="ViewModels\Core\IDepartmentViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IImageTypeViewModel.cs" />
+    <Compile Include="ViewModels\Core\ILanguageViewModel.cs" />
+    <Compile Include="ViewModels\Core\INationalRegionViewModel.cs" />
+    <Compile Include="ViewModels\Core\INonWorkingDayViewModel.cs" />
+    <Compile Include="ViewModels\Core\IOfficeViewModel.cs" />
+    <Compile Include="ViewModels\Core\IOfficeWeekCalendarViewModel.cs" />
+    <Compile Include="ViewModels\Core\IScheduledJobViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IScheduleIntervalViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\IStatusViewModel.cs" />
+    <Compile Include="ViewModels\Core\EnumViewModels\ITaskStatusViewModel.cs" />
+    <Compile Include="ViewModels\Core\ITimeZoneViewModel.cs" />
+    <Compile Include="ViewModels\Core\IWorldRegionViewModel.cs" />
+    <Compile Include="ViewModels\Log\IEventLogViewModel.cs" />
+    <Compile Include="ViewModels\Log\IEventLogApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Log\EnumViewModels\ILogSeverityViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IApplicationApplicationTypeViewModel.cs" />
+    <Compile Include="ViewModels\Sec\EnumViewModels\IApplicationRoleViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IApplicationTypeViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IApplicationUserRoleViewModel.cs" />
+    <Compile Include="ViewModels\Sec\ILoggedOnUserViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IPermissionMatrixViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IRoleViewModel.cs" />
+    <Compile Include="ViewModels\Sec\IUserProfileViewModel.cs" />
+    <Compile Include="ViewModels\Stg\IActiveDirectoryUserViewModel.cs" />
+    <Compile Include="Models\Workflow\IApprovalTask.cs" />
+    <Compile Include="BusinessProcess\Workflow\IApprovalProcess.cs" />
+    <Compile Include="Views\IWindow.cs" />
+    <Compile Include="WebApi\ICommonBusinessController.cs" />
+    <Compile Include="WebApi\ICommonController.cs" />
+    <Compile Include="WebApi\Core\IApplicationConfigurationController.cs" />
+    <Compile Include="WebApi\IHeartbeatController.cs" />
+    <Compile Include="Workflow\IWorkflowProcess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dialogs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core">
+      <Version>5.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\ExtraCleanup.targets" />
+</Project>

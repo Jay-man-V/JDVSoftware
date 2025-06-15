@@ -1,0 +1,55 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="CurrencyViewModel.cs" company="JDV Software Ltd">
+//     Copyright (c) JDV Software Ltd. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+
+using Foundation.Common;
+using Foundation.Interfaces;
+
+namespace Foundation.ViewModels
+{
+    /// <summary>
+    /// The User Interface interaction logic for Currency maintenance
+    /// </summary>
+    /// <seealso cref="GenericDataGridViewModelBase{ICurrency}" />
+    [DependencyInjectionTransient]
+    public class CurrencyViewModel : GenericDataGridViewModelBase<ICurrency>, ICurrencyViewModel
+    {
+        /// <summary>
+        /// Initialises a new instance of the <see cref="CurrencyViewModel"/> class.
+        /// </summary>
+        /// <param name="core">The Foundation Core service.</param>
+        /// <param name="runTimeEnvironmentSettings">The runtime environment settings.</param>
+        /// <param name="dateTimeService">The date time service.</param>
+        /// <param name="dialogService">The dialog service.</param>
+        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="fileApi">The file service.</param>
+        /// <param name="currencyProcess">The currency process.</param>
+        public CurrencyViewModel
+        (
+            ICore core,
+            IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
+            IDateTimeService dateTimeService,
+            IDialogService dialogService,
+            IClipBoardWrapper clipBoardWrapper,
+            IFileApi fileApi,
+            ICurrencyProcess currencyProcess
+        ) :
+            base
+            (
+                core,
+                runTimeEnvironmentSettings,
+                dateTimeService,
+                dialogService,
+                clipBoardWrapper,
+                fileApi,
+                currencyProcess
+            )
+        {
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, currencyProcess);
+
+            LoggingHelpers.TraceCallReturn();
+        }
+    }
+}

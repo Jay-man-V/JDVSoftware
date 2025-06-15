@@ -1,0 +1,651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.props" Condition="Exists('..\..\packages\MSTest.TestAdapter.3.4.3\build\net462\MSTest.TestAdapter.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props" Condition="Exists('..\..\packages\Microsoft.Testing.Extensions.Telemetry.1.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.Testing.Platform.MSBuild.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.MSBuild.props')" />
+  <Import Project="..\..\packages\Microsoft.Testing.Platform.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props" Condition="Exists('..\..\packages\Microsoft.Testing.Platform.1.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props')" />
+  <Import Project="..\..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFF334ED-2E0B-470E-9DC1-59F7614C5DE7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Tests.Unit</RootNamespace>
+    <AssemblyName>Foundation.Tests.Unit</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include=".Mocks\CancelEventArgs.cs" />
+    <Compile Include=".Mocks\MockApplication.cs" />
+    <Compile Include=".Mocks\MockClipBoardWrapper.cs" />
+    <Compile Include=".Mocks\ViewModels\MockGenericDataGridViewModel.cs" />
+    <Compile Include=".Mocks\ViewModels\MockModelViewModel.cs" />
+    <Compile Include=".Mocks\MockWindow.cs" />
+    <Compile Include=".Mocks\ViewModels\MockViewModel.cs" />
+    <Compile Include=".Mocks\MockFoundationModelViewModel.cs" />
+    <Compile Include=".Mocks\MockHttpMessageHandler.cs" />
+    <Compile Include=".Mocks\MockFoundationModelRepository.cs" />
+    <Compile Include=".Mocks\MockFoundationModelProcess.cs" />
+    <Compile Include=".Mocks\MockFoundationModel.cs" />
+    <Compile Include=".Mocks\RandomCloneableObject.cs" />
+    <Compile Include=".Mocks\RandomObject.cs" />
+    <Compile Include=".NetFramework\CredentialsTests.cs" />
+    <Compile Include=".Support\ClassWillBeExcluded.cs" />
+    <Compile Include=".NetFramework\CustomClaimsPrincipalTests.cs" />
+    <Compile Include=".Support\DependencyInjectionClasses.cs" />
+    <Compile Include=".Support\DependencyInjectionInterfaces.cs" />
+    <Compile Include=".NUnitSupport\DeploymentItem.cs" />
+    <Compile Include=".Support\SerialiseTest.cs" />
+    <Compile Include=".Support\UnitTestingDatabaseProvider.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\GetGroupTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\SetValueTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\CalendarProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\DataStatusProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\EntityStatusProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\EventLogAttachmentProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\ImportExportControlProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\ScheduledDataStatusProcessTests.cs" />
+    <Compile Include="Foundation.Common\ApplicationSupportTests\ApplicationSupportTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\LogIdTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\NullValueExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\UInt32ExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\UInt32ExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\HelpersTests\SerialisationHelpers.CustomTypes.cs" />
+    <Compile Include="Foundation.Common\HelpersTests\SerialisationHelpers.DeserialiseTests.cs" />
+    <Compile Include="Foundation.Common\HelpersTests\SerialisationHelpers.SerialiseTests.cs" />
+    <Compile Include="Foundation.Common\ReportsTests\HeartbeatResultTests.cs" />
+    <Compile Include="Foundation.Core\DependencyInjectionSetupTests.cs" />
+    <Compile Include="Foundation.DataAccess.Csv\.Support\MyCsvRecord.cs" />
+    <Compile Include="Foundation.DataAccess.Csv\CsvLoadTypedClassWithQuotesTests.cs" />
+    <Compile Include="Foundation.DataAccess.Csv\CsvLoadTypedClassTests.cs" />
+    <Compile Include="Foundation.DataAccess.Csv\CsvLoadGenericClassTests.cs" />
+    <Compile Include="Foundation.Models\TestApplicationConfiguration.cs" />
+    <Compile Include="Foundation.Repository\.Support\ComplexTestEntityRepository.cs" />
+    <Compile Include="Foundation.Repository\.Support\SimpleTestEntityRepository.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\ConstructorComplexTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\ConstructorSimpleTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\CreateParameterTests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\ObjectCreation2Tests.cs" />
+    <Compile Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\ObjectCreationTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\ApplicationConfigurationKeysTests.cs" />
+    <Compile Include="Foundation.Services.Application\FileTransferServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\PasswordServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\IdServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\RunTimeEnvironmentSettingsTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\DepartmentProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\WebApiProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\PermissionMatrixProcessTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\TimeZonesTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\CharacterCodesTests.cs" />
+    <Compile Include=".NetFramework\ImageConversionTests.cs" />
+    <Compile Include=".NetFramework\NullCheckTests.cs" />
+    <Compile Include=".NetFramework\WindowsImpersonationTests.cs" />
+    <Compile Include=".Support\AppConfigModifier.cs" />
+    <Compile Include=".Support\CustomTraceListener.cs" />
+    <Compile Include=".Support\UnitTestBase.cs" />
+    <Compile Include=".Support\UnitTestsBaseTests.cs" />
+    <Compile Include=".Support\UserSecuritySupport.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\TimeSpanExtensionMethodsTests\AddScheduleIntervalTests.cs" />
+    <Compile Include="Foundation.Common\SettingsTests\ArchiveTransferSettingsTests.cs" />
+    <Compile Include="Foundation.Common\SettingsTests\FileTransferSettingsTests.cs" />
+    <Compile Include="Foundation.Services.WebApi\HttpWebApiTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\LoggedOnUserProcessTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\ValueNotInLookupListExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\AuthenticationTokenTests.cs" />
+    <Compile Include="Foundation.Common\SettingsTests\OpenFolderDialogSettingsTests.cs" />
+    <Compile Include="Foundation.DocumentGenerator\TestDocumentGeneratorSimple.cs" />
+    <Compile Include=".Support\_UnitTestTemplate.cs" />
+    <Compile Include="Foundation.Services.Application\TestSupportServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\_ForceCopyAction.cs" />
+    <Compile Include="Foundation.Services.Application\DateTimeServiceTests.cs" />
+    <Compile Include="Foundation.Services.UserInteraction\DialogServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\EncryptionServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\FileServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\HashingServiceTests.cs" />
+    <Compile Include="Foundation.Services.Application\RandomServicesTests.cs" />
+    <Compile Include=".Mocks\MockScheduledTask.cs" />
+    <Compile Include=".Mocks\MockScheduledTaskWithError.cs" />
+    <Compile Include=".Support\SchedulerSupport.cs" />
+    <Compile Include="Foundation.BusinessProcess\CommonBusinessProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\.Support\CommonBusinessProcessTestBaseClass.cs" />
+    <Compile Include="Foundation.BusinessProcess\ComponentsTests\ServerProcessTimerTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\AuthorisationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\AuthenticationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\GetDefaultValueTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\GetValueWithDefaultTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\GetValueTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ApprovalStatusProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ConfigurationScopeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ContactDetailProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ContactTypeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ContractProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ContractTypeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\CountryProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\CurrencyProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ImageTypeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\LanguageProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\NationalRegionProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\NonWorkingDayProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\NonWorkingDaySupportTests\BankHolidayEventTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\NonWorkingDaySupportTests\RootObjectTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\NonWorkingDaySupportTests\UkNationTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\OfficeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\OfficeWeekCalendarProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduledProcessBaseTests\RunTaskTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduledProcessBaseTests\ScheduleNextRunTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduledJobTests\CreateJobProcessorTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduledJobProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\ScheduleIntervalProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\StatusProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\TaskStatusProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\TimeZoneProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\CoreTests\WorldRegionProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\HelpersTests\CommandFormatterTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\HelpersTests\CommandParserTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\EventLogApplicationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\EventLogProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\LogTests\LogSeverityProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\MainTests\MainApplicationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationApplicationTypeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationRoleProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationTypeProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationUserRoleProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\UserProfileProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\SecTests\RoleProcessTests.cs" />
+    <Compile Include="Foundation.Core\CoreTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\StgTests\ActiveDirectoryUserProcessTests.cs" />
+    <Compile Include="Foundation.Common\AssemblyHelpersTests\CreateInstanceTests.cs" />
+    <Compile Include="Foundation.Common\AssemblyHelpersTests\FullyQualifiedTypeNameTests\FullyQualifiedTypeName.ConstructorTests.cs" />
+    <Compile Include="Foundation.Common\AssemblyHelpersTests\FullyQualifiedTypeNameTests\FullyQualifiedTypeName.OperatorEqualsTests.cs" />
+    <Compile Include="Foundation.Common\AttributesTests\AllAttributesTests.cs" />
+    <Compile Include="Foundation.Common\ConfigurationTests\LoggingConfigurationTests.cs" />
+    <Compile Include="Foundation.Common\ConfigurationTests\ApplicationSettingsTests.cs" />
+    <Compile Include="Foundation.Common\ConfigurationTests\ConfigPropertiesConfigurationTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\FormatsTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\GridColumnTemplateNamesTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\ReportParameterKeysTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\RegularExpressionsTests.cs" />
+    <Compile Include="Foundation.Resources\ConstantsTests\StaticDataKeysTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ConfigurationScopeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ApplicationConfigurationViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\DataStatusViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\EntityStatusViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\OfficeWeekCalendarViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\OfficeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\EventLogAttachmentViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\ImportExportControlViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\ScheduledDataStatusViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\TaskStatusViewModelTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\DateTimeToStringConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\DateTimeToStringMultiConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\ImageToMediaImageConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\BooleanToVisibleConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\InvertBooleanConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\NullStringVisibilityConverterTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\NumericIncrementerTests.cs" />
+    <Compile Include="Foundation.Views\ConvertersTests\RectConverterTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\EmailAddress.ConstructorTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\EmailAddress.OtherTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\EmailAddress.OverrideTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\EmailAddress.PropertyTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\EmailAddressTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EmailAddressTests\_EmailAddressValues.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\AuthenticationTokenTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\AppIdTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\EntityIdTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\PostCodeTests\PostCodeTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\PostCodeTests\_PostCodeValues.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\PostCodeTests\UkPostCodeTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\TelephoneNumberTests.cs" />
+    <Compile Include="Foundation.Common\CustomTypesTests\TimeWindowTests.cs" />
+    <Compile Include="Foundation.Common\DataColumnTests\AllDataColumnTests.cs" />
+    <Compile Include="Foundation.Common\DataTests\DataHelperTests\DefaultValuesTests.cs" />
+    <Compile Include="Foundation.Common\DataTests\DataHelperTests\GetNullableTests.cs" />
+    <Compile Include="Foundation.Common\DataTests\DataHelperTests\GetValueTests.cs" />
+    <Compile Include="Foundation.Common\EnumsTests\AllEnumTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\ApplicationConcurrencyExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\ApplicationPermissionsExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\ExceptionManagementDemoTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\TooManyRecordsDeletedExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\TooManyRecordsUpdatedExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\UnableToReadNewIdentityExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\UserCredentialsExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExceptionsTests\UserLogonExceptionTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\BitmapExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\BitmapImageExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ByteExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ByteExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ByteExtensionMethodsTests\ToBase64Tests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\AddScheduleIntervalTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\AddTimeWindowTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\AddWeeksTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\ToTimeZoneTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\IsWeekendTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DateTimeExtensionMethodsTests\StartOfWeekTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DecimalExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DecimalExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\DictionaryExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\EnumExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\IEnumerableExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\IListExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ImageExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\Int32ExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\Int32ExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ListExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ObjectExtensionMethodsTests\IsNativeTypeTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ObjectExtensionMethodsTests\IsNullTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\ObjectExtensionMethodsTests\IsNumericTypeTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\StringBuilderExtensionMethodsTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\TimeSpanExtensionMethodsTests\IsBetweenNotNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\TimeSpanExtensionMethodsTests\IsBetweenNullableTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\TypeExtensionMethodsTests\IsNativeTypeTests.cs" />
+    <Compile Include="Foundation.Common\ExtensionMethodsTests\TypeExtensionMethodsTests\IsNumericTypeTests.cs" />
+    <Compile Include="Foundation.Common\FileManagementTests\FileFiltersTests.cs" />
+    <Compile Include="Foundation.Common\FileManagementTests\FileIOHelpersTests.cs" />
+    <Compile Include="Foundation.Common\FileManagementTests\KnownFoldersTests.cs" />
+    <Compile Include="Foundation.Common\FileManagementTests\SystemFoldersTests.cs" />
+    <Compile Include="Foundation.Common\FileManagementTests\UserFoldersTests.cs" />
+    <Compile Include="Foundation.Common\FoundationPropertyChangedEventArgsTests.cs" />
+    <Compile Include="Foundation.Common\FoundationPropertyChangingEventArgsTests.cs" />
+    <Compile Include="Foundation.Common\FoundationPropertyEventArgsTests.cs" />
+    <Compile Include="Foundation.Common\FoundationPropertyTests.cs" />
+    <Compile Include="Foundation.Common\HelpersTests\GridColumnDefinitionTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\Common.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\FormattingTests\ContextInformationTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\FormattingTests\ExceptionOutputTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\FormattingTests\MessageFormatterTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\EventLogWriterTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\ExceptionOutputTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\LogWritingTests.cs" />
+    <Compile Include="Foundation.Common\ConfigurationTests\ApplicationSettingsMissingConfigsTests.cs" />
+    <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\TraceLogWriterTests.cs" />
+    <Compile Include="Foundation.Common\MenuConfigTests\ApplicationDefinitionTests.cs" />
+    <Compile Include="Foundation.Common\MenuConfigTests\ControllerTests.cs" />
+    <Compile Include="Foundation.Common\MenuConfigTests\MenuItemTests.cs" />
+    <Compile Include="Foundation.Common\MenuConfigTests\ParameterTests.cs" />
+    <Compile Include="Foundation.Common\MenuConfigTests\ViewTests.cs" />
+    <Compile Include="Foundation.Common\ProgressEventTrackingTests\MockProgressTracker.cs" />
+    <Compile Include="Foundation.Common\ProgressEventTrackingTests\MockProgressUpdater.cs" />
+    <Compile Include="Foundation.Common\ProgressEventTrackingTests\ProgressItemTests.cs" />
+    <Compile Include="Foundation.Common\ProgressEventTrackingTests\ProgressTrackerTests.cs" />
+    <Compile Include="Foundation.Common\ProgressEventTrackingTests\ProgressUpdaterTests.cs" />
+    <Compile Include="Foundation.Common\ReportsTests\ReportDefinitionTests.cs" />
+    <Compile Include="Foundation.Common\ReportsTests\ReportRunRequestTests.cs" />
+    <Compile Include="Foundation.Common\ReportsTests\ReportRunResponseTests.cs" />
+    <Compile Include="Foundation.Common\SettingsTests\MessageBoxSettingsTests.cs" />
+    <Compile Include="Foundation.Common\SettingsTests\SaveFileDialogSettingsTests.cs" />
+    <Compile Include="Foundation.Common\UtilsTests\LocationUtilsTests.cs" />
+    <Compile Include="Foundation.Common\UtilsTests\ExecutionTimerTests.cs" />
+    <Compile Include="Foundation.Common\UtilsTests\RelayCommandTests\CanExecuteTests.cs" />
+    <Compile Include="Foundation.Common\UtilsTests\RelayCommandTests\ExecuteTests.cs" />
+    <Compile Include="Foundation.Common\UtilsTests\RelayCommandTests\RequeryTests.cs" />
+    <Compile Include=".Support\TestEntitySupport.cs" />
+    <Compile Include="Foundation.Common\ValidatorsTests\RequiredApplicationIdAttributeTests.cs" />
+    <Compile Include="Foundation.Common\ValidatorsTests\RequiredEntityIdAttributeTests.cs" />
+    <Compile Include="Foundation.Common\ValidatorsTests\ValidationConstantsTests.cs" />
+    <Compile Include="Foundation.Emailer\MailAttachmentTests.cs" />
+    <Compile Include="Foundation.Emailer\MailMessageTests.cs" />
+    <Compile Include="Foundation.Emailer\SendMailTests.cs" />
+    <Compile Include="Foundation.Models\FoundationModelTests.cs" />
+    <Compile Include="Foundation.Models\TestAllModels.cs" />
+    <Compile Include="Foundation.Models\TestCurrentUser.cs" />
+    <Compile Include="Foundation.Resources\CompanyDetails.HeadOfficeTests.cs" />
+    <Compile Include="Foundation.Resources\CompanyDetailsTests.cs" />
+    <Compile Include="Foundation.Resources\ResourceLoaderTests.cs" />
+    <Compile Include="Foundation.Resources\ReportTemplatesTests.cs" />
+    <Compile Include="Foundation.Resources\Themes\Standard\ColourSchemeTests.cs" />
+    <Compile Include="Foundation.Resources\Themes\Standard\FontSizeTests.cs" />
+    <Compile Include="Foundation.Resources\Themes\Standard\FontsTests.cs" />
+    <Compile Include="Foundation.ViewModels\.Support\EntityViewModelTestBaseClass.cs" />
+    <Compile Include="Foundation.ViewModels\.Support\ViewModelTestBaseClass.cs" />
+    <Compile Include="Foundation.ViewModels\.Support\GenericDataGridViewModelTestBaseClass.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ScheduleIntervalViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\StatusViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\TimeZoneViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\WorldRegionViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ScheduledJobViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\NonWorkingDayViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\NationalRegionViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\LanguageViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ImageTypeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\DepartmentViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\CurrencyViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\CountryViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ContractViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ContractTypeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ContactTypeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ContactDetailViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\Services\MouseBusyCursorTests.cs" />
+    <Compile Include="Foundation.ViewModels\EntityViewModelBaseTests.cs" />
+    <Compile Include="Foundation.ViewModels\ViewModelBaseTests.cs" />
+    <Compile Include="Foundation.ViewModels\GenericDataGridViewModelBaseTests.cs" />
+    <Compile Include="Foundation.ViewModels\CoreTests\ApprovalStatusViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\EventLogApplicationViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\LogSeverityViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\LogTests\EventLogViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\ApplicationApplicationTypeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\ApplicationUserRoleViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\LoggedOnUserViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\PermissionMatrixViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\ApplicationViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\RoleViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\UserProfileViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\ApplicationRoleViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\SecTests\ApplicationTypeViewModelTests.cs" />
+    <Compile Include="Foundation.ViewModels\StgTests\ActiveDirectoryUserViewModelTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\FileManagement\ExistingFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\FileManagement\FileToDelete.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\FileManagement\SmallFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\FolderToDelete\ExistingFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\FolderToDelete\FileToDelete.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\FolderToDelete\SmallFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_RethrowAsNew.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_RethrowAsNewWithMessage.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_RethrowAsNewWithMessageFormat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_ThrowOriginal.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_ThrowOriginalWithMessage.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\Logging\Formatting\TestNestedException_ThrowOriginalWithMessageFormat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\ProgressEventTracker\TestCopyToClipboard.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\ProgressEventTracker\TestGenerateReport.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".ExpectedResults\SampleDocuments\sample.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\bank-holidays.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\100k - CSVFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\10k - CSVFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\1M - CSVFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\CSVFile with Quotes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\CSVFile.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\CsvFiles\Schema.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\JDV Software Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\Configs\MenuConfigSample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\32BitColour_16x16.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\Blank_10x10.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\Blank_5x5.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include=".Support\SampleDocuments\Embedded Sample Text Document.txt" />
+    <None Include=".Support\SampleDocuments\Sample Image.JPG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\Sample Text Document.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config" />
+    <None Include="NoTraceLevelConfig.App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NoConnectionStringConfig.App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NoEventLoggingConfig.App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include=".Support\SampleDocuments\Embedded Sample Word Document.docx" />
+    <None Include=".Support\SampleDocuments\Sample Excel Document.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\Sample PDF Document.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Support\SampleDocuments\Sample Word Document.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.DataAccess.Csv\Foundation.DataAccess.Csv.csproj">
+      <Project>{bb5b2fce-73c5-4171-959d-fa6399bd292b}</Project>
+      <Name>Foundation.DataAccess.Csv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.DataAccess\Foundation.DataAccess.Database.csproj">
+      <Project>{91cb239d-17b6-4417-b88f-06f41818c3ed}</Project>
+      <Name>Foundation.DataAccess.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Server.ScheduledTasks\Foundation.Server.ScheduledTasks.csproj">
+      <Project>{846e953e-236a-477a-90c8-c1e5c3895366}</Project>
+      <Name>Foundation.Server.ScheduledTasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.Application\Foundation.Services.Application.csproj">
+      <Project>{b578a4c7-795d-42d5-8f08-a1a90994c660}</Project>
+      <Name>Foundation.Services.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.BusinessProcess\Foundation.BusinessProcess.csproj">
+      <Project>{725011cf-adf0-4e4e-b8eb-bb46a333c916}</Project>
+      <Name>Foundation.BusinessProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Common\Foundation.Common.csproj">
+      <Project>{05d1c1de-89c6-4d16-bb2d-777a1811459a}</Project>
+      <Name>Foundation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Emailer\Foundation.Emailer.csproj">
+      <Project>{8f48ad74-ee26-4170-8d7a-4396bb15a4a6}</Project>
+      <Name>Foundation.Emailer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Interfaces\Foundation.Interfaces.csproj">
+      <Project>{7e709883-c064-4c98-a8b1-9ee62b47274d}</Project>
+      <Name>Foundation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Models\Foundation.Models.csproj">
+      <Project>{5181b7e8-4823-45b0-8e81-c8d3228d0099}</Project>
+      <Name>Foundation.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Repository\Foundation.Repository.csproj">
+      <Project>{1d3264d9-0778-4a35-b143-4feb1643e634}</Project>
+      <Name>Foundation.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Resources\Foundation.Resources.csproj">
+      <Project>{41b94fff-0bf0-4b9d-83e3-8514c1e63ecc}</Project>
+      <Name>Foundation.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.DocumentGenerator\Foundation.DocumentGenerator.csproj">
+      <Project>{78c65373-29c8-4b74-9412-3c021040cab6}</Project>
+      <Name>Foundation.DocumentGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.FileIdentification\Foundation.Services.FileIdentification.csproj">
+      <Project>{b25856b8-0431-47fd-94d4-b81cc71031a9}</Project>
+      <Name>Foundation.Services.FileIdentification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.MessageQueue\Foundation.Services.MessageQueue.csproj">
+      <Project>{5923e10d-7999-4547-8e2f-8b15390ae9aa}</Project>
+      <Name>Foundation.Services.MessageQueue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.WebApi\Foundation.Services.WebApi.csproj">
+      <Project>{4c535a66-8a54-4fa7-b2e5-ab5172e6261b}</Project>
+      <Name>Foundation.Services.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Services.UserInteraction\Foundation.Services.UserInteraction.csproj">
+      <Project>{d248ec7f-3165-4b93-9c35-caf14a6dd49f}</Project>
+      <Name>Foundation.Services.UserInteraction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.ViewModels\Foundation.ViewModels.csproj">
+      <Project>{87e43917-f8d2-49df-a64d-c3fcd95a1ad9}</Project>
+      <Name>Foundation.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Views\Foundation.Views.csproj">
+      <Project>{d17a74e3-03c2-4249-be4d-75fa0e610899}</Project>
+      <Name>Foundation.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.WorkflowEngine\Foundation.WorkflowEngine.csproj">
+      <Project>{e2ac2a66-28af-47e5-9c58-051b17b703e7}</Project>
+      <Name>Foundation.WorkflowEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".ExpectedResults\ExportToCsv\" />
+    <Folder Include="Foundation.BusinessProcess\SecTests\LoggedOnUserProcessTests\" />
+    <Folder Include="Foundation.BusinessProcess\SecTests\UserProfileProcessTests\" />
+    <Folder Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\.DataLogicProvidersTests\" />
+    <Folder Include="Foundation.Views\.Support\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\Logging\LogWriter\TestToString_1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\SampleDocuments\United Kingdom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Foundation.Resources\Images\Logos\JDV Software Logo.png">
+      <Link>.ExpectedResults\Foundation.Resources\Images\Logos\JDV Software Logo.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Foundation.Resources\EmailTemplates\Formal Template.html">
+      <Link>.ExpectedResults\Foundation.Resources\EmailTemplates\Formal Template.html</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\Logging\LogWriter\TestToString_2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".Support\SampleDocuments\WebResponse.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".ExpectedResults\SampleDocuments\sample.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".ExpectedResults\Foundation.Common\HelpersTests\Test_Serialise_CustomType.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NSubstitute">
+      <Version>5.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit">
+      <Version>4.3.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.DirectoryServices">
+      <Version>9.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="System.DirectoryServices.AccountManagement">
+      <Version>9.0.5</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\ExtraCleanup.targets" />
+</Project>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D3264D9-0778-4A35-B143-4FEB1643E634}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Foundation.Repository</RootNamespace>
+    <AssemblyName>Foundation.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Foundation.Repository.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\FoundationAssemblyInfo.cs">
+      <Link>Properties\FoundationAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include=".base\FoundationModelRepository.cs" />
+    <Compile Include=".LocalModels\FirstAndLastWorkingDays.cs" />
+    <Compile Include="Core\ApplicationConfigurationRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ConfigurationScopeRepository.cs" />
+    <Compile Include="Core\DepartmentRepository.cs" />
+    <Compile Include="Core\EnumRepositories\DataStatusRepository.cs" />
+    <Compile Include="Core\EnumRepositories\EntityStatusRepository.cs" />
+    <Compile Include="Core\CalendarRepository.cs" />
+    <Compile Include="DatabaseProvider\LogDatabaseProvider.cs" />
+    <Compile Include="DatabaseProvider\SchemaDatabaseProvider.cs" />
+    <Compile Include="DatabaseProvider\SecurityDatabaseProvider.cs" />
+    <Compile Include="DatabaseProvider\StagingDatabaseProvider.cs" />
+    <Compile Include="DatabaseProvider\CoreDatabaseProvider.cs" />
+    <Compile Include="Log\EventLogAttachmentRepository.cs" />
+    <Compile Include="Log\ImportExportControlRepository.cs" />
+    <Compile Include="Log\ScheduledDataStatusRepository.cs" />
+    <Compile Include="Sec\AuthenticationTokenRepository.cs" />
+    <Compile Include="Sec\PermissionMatrixRepository.cs" />
+    <Compile Include="Specialised\DbSchemaColumnRepository.cs" />
+    <Compile Include="Specialised\DbSchemaTableRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ApprovalStatusRepository.cs" />
+    <Compile Include="Core\ContactDetailRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ContactTypeRepository.cs" />
+    <Compile Include="Core\ContractRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ContractTypeRepository.cs" />
+    <Compile Include="Core\CountryRepository.cs" />
+    <Compile Include="Core\CurrencyRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ImageTypeRepository.cs" />
+    <Compile Include="Core\LanguageRepository.cs" />
+    <Compile Include="Core\NationalRegionRepository.cs" />
+    <Compile Include="Core\NonWorkingDayRepository.cs" />
+    <Compile Include="Core\OfficeRepository.cs" />
+    <Compile Include="Core\OfficeWeekCalendarRepository.cs" />
+    <Compile Include="Core\ScheduledJobRepository.cs" />
+    <Compile Include="Core\EnumRepositories\ScheduleIntervalRepository.cs" />
+    <Compile Include="Core\EnumRepositories\StatusRepository.cs" />
+    <Compile Include="Core\EnumRepositories\TaskStatusRepository.cs" />
+    <Compile Include="Core\TimeZoneRepository.cs" />
+    <Compile Include="Core\WorldRegionRepository.cs" />
+    <Compile Include="Log\EventLogApplicationRepository.cs" />
+    <Compile Include="Log\EventLogRepository.cs" />
+    <Compile Include="Log\EnumRepositories\LogSeverityRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sec\ApplicationApplicationTypeRepository.cs" />
+    <Compile Include="Sec\ApplicationRepository.cs" />
+    <Compile Include="Sec\EnumRepositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Sec\ApplicationTypeRepository.cs" />
+    <Compile Include="Sec\ApplicationUserRoleRepository.cs" />
+    <Compile Include="Sec\LoggedOnUserRepository.cs" />
+    <Compile Include="Sec\RoleRepository.cs" />
+    <Compile Include="Sec\UserProfileRepository.cs" />
+    <Compile Include="Stg\ActiveDirectoryUserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Foundation.Common\Foundation.Common.csproj">
+      <Project>{05d1c1de-89c6-4d16-bb2d-777a1811459a}</Project>
+      <Name>Foundation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Core\Foundation.Core.csproj">
+      <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
+      <Name>Foundation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.DataAccess\Foundation.DataAccess.Database.csproj">
+      <Project>{91cb239d-17b6-4417-b88f-06f41818c3ed}</Project>
+      <Name>Foundation.DataAccess.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Interfaces\Foundation.Interfaces.csproj">
+      <Project>{7e709883-c064-4c98-a8b1-9ee62b47274d}</Project>
+      <Name>Foundation.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Foundation.Models\Foundation.Models.csproj">
+      <Project>{5181b7e8-4823-45b0-8e81-c8d3228d0099}</Project>
+      <Name>Foundation.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.DirectoryServices">
+      <Version>9.0.5</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\ExtraCleanup.targets" />
+</Project>

@@ -54,7 +54,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetNextWorkingDay(String, DateTime)"/>
         [HttpGet]
-        public Task<DateTime> GetNextWorkingDay(String countryCode, DateTime date)
+        public Task<DateTime> GetNextWorkingDay([FromUri] String countryCode, [FromUri] DateTime date)
         {
             LoggingHelpers.TraceCallEnter(countryCode, date);
 
@@ -67,7 +67,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetNextWorkingDayScheduleInterval(String, DateTime, ScheduleInterval, Int32)"/>
         [HttpGet]
-        public Task<DateTime> GetNextWorkingDayScheduleInterval(String countryCode, DateTime date, ScheduleInterval intervalType, Int32 interval)
+        public Task<DateTime> GetNextWorkingDayScheduleInterval([FromUri] String countryCode, [FromUri] DateTime date, [FromUri] ScheduleInterval intervalType, [FromUri] Int32 interval)
         {
             LoggingHelpers.TraceCallEnter(countryCode, date, intervalType, interval);
 
@@ -80,7 +80,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.CheckIsWorkingDayOrGetNextWorkingDay(String, DateTime)"/>
         [HttpGet]
-        public Task<DateTime> CheckIsWorkingDayOrGetNextWorkingDay(String countryCode, DateTime date)
+        public Task<DateTime> CheckIsWorkingDayOrGetNextWorkingDay([FromUri] String countryCode, [FromUri] DateTime date)
         {
             LoggingHelpers.TraceCallEnter(countryCode, date);
 
@@ -93,7 +93,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetFirstWorkingDayOfMonthFromDate(String, DateTime)"/>
         [HttpGet]
-        public Task<DateTime> GetFirstWorkingDayOfMonthFromDate(String countryCode, DateTime date)
+        public Task<DateTime> GetFirstWorkingDayOfMonthFromDate([FromUri] String countryCode, [FromUri] DateTime date)
         {
             LoggingHelpers.TraceCallEnter(countryCode, date);
 
@@ -106,7 +106,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetFirstWorkingDayOfMonth(String, Int32, Int32)"/>
         [HttpGet]
-        public Task<DateTime> GetFirstWorkingDayOfMonth(String countryCode, Int32 year, Int32 month)
+        public Task<DateTime> GetFirstWorkingDayOfMonth([FromUri] String countryCode, [FromUri] Int32 year, [FromUri] Int32 month)
         {
             LoggingHelpers.TraceCallEnter(countryCode, year, month);
 
@@ -119,7 +119,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetLastWorkingDayOfMonthFromDate(String, DateTime)"/>
         [HttpGet]
-        public Task<DateTime> GetLastWorkingDayOfMonthFromDate(String countryCode, DateTime date)
+        public Task<DateTime> GetLastWorkingDayOfMonthFromDate([FromUri] String countryCode, [FromUri] DateTime date)
         {
             LoggingHelpers.TraceCallEnter(countryCode, date);
 
@@ -132,7 +132,7 @@ namespace Foundation.Api.Controllers
 
         /// <inheritdoc cref="ICalendarController.GetLastWorkingDayOfMonth(String, Int32, Int32)"/>
         [HttpGet]
-        public Task<DateTime> GetLastWorkingDayOfMonth(String countryCode, Int32 year, Int32 month)
+        public Task<DateTime> GetLastWorkingDayOfMonth([FromUri] String countryCode, [FromUri] Int32 year, [FromUri] Int32 month)
         {
             LoggingHelpers.TraceCallEnter(countryCode, year, month);
 

@@ -22,7 +22,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class PermissionMatrixProcessTests : CommonBusinessProcessTestBaseClass<IPermissionMatrix, IPermissionMatrixProcess, IPermissionMatrixRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 12;
+        protected override Int32 ColumnDefinitionsCount => 12;
         protected override String ExpectedScreenTitle => "Permissions Matrix";
         protected override String ExpectedStatusBarText => "Number of Permission Matrices:";
 

@@ -12,7 +12,7 @@
                     <Caption>Basic Controls Form</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IBasicControlsViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.Test.BasicControlsView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.Test.BasicControlsView" />
                     <HelpText>A demonstrator form for the Basic Controls of WPF</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -25,7 +25,7 @@
                     <Caption>Test Form</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ITestFormViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.Test.TestForm" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.Test.TestForm" />
                     <HelpText />
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>false</ShowInTab>
@@ -39,11 +39,21 @@
             <HelpText />
             <MenuItems>
                 <MenuItem>
+                    <Name>MenuItems</Name>
+                    <Caption>Menu Items</Caption>
+                    <Icon />
+                    <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IMenuItemViewModel" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <HelpText>View all Menu Items</HelpText>
+                    <MultiInstance>false</MultiInstance>
+                    <ShowInTab>true</ShowInTab>
+                </MenuItem>
+                <MenuItem>
                     <Name>Contact</Name>
                     <Caption>Contacts</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContactDetailViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Contacts</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -53,7 +63,7 @@
                     <Caption>Contracts</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContractViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Contracts</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -63,7 +73,7 @@
                     <Caption>Offices</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IOfficeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Offices</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -81,7 +91,7 @@
                     <Caption>Contract Types</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContractTypeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Contract Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -91,7 +101,7 @@
                     <Caption>Countries</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ICountryViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Countries</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -101,7 +111,7 @@
                     <Caption>Currencies</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ICurrencyViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Currencies</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -111,7 +121,7 @@
                     <Caption>Department</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IDepartmentViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Departments</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -121,7 +131,7 @@
                     <Caption>National Regions</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.INationalRegionViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all National Regions</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -131,7 +141,7 @@
                     <Caption>Non-Working Days</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.INonWorkingDayViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Non-Working Days</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -141,7 +151,7 @@
                     <Caption>Office Week Calendar</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IOfficeWeekCalendarViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Office Week Calendars</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -151,7 +161,7 @@
                     <Caption>World Regions</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IWorldRegionViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all World Regions</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -169,7 +179,7 @@
                     <Caption>Import Export Control</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IImportExportControlViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Import Export Control logs</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -179,7 +189,7 @@
                     <Caption>Event Log</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEventLogViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Event Logs</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -189,7 +199,7 @@
                     <Caption>Event Log Applications</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEventLogApplicationViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Event Logs</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -207,7 +217,7 @@
                     <Caption>Applications</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Applications</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -217,7 +227,7 @@
                     <Caption>Application Types Mapping</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationApplicationTypeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Application Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -227,7 +237,7 @@
                     <Caption>Application Roles</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationRoleViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Application Roles</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -237,7 +247,7 @@
                     <Caption>Application Types</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationTypeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Application Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -247,7 +257,7 @@
                     <Caption>Application User Roles Mapping</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationUserRoleViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Application Roles</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -257,7 +267,7 @@
                     <Caption>Roles</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IRoleViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Roles</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -267,7 +277,7 @@
                     <Caption>User Profiles</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IUserProfileViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all User Profiles</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -277,7 +287,7 @@
                     <Caption>Permission Matrix</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IPermissionMatrixViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View Permission Matrix</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -287,7 +297,7 @@
                     <Caption>Active Directory Users</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IActiveDirectoryUserViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Active Directory Users</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -305,7 +315,7 @@
                     <Caption>Application Configuration</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApplicationConfigurationViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Application Configurations</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -315,7 +325,7 @@
                     <Caption>Approval Status</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IApprovalStatusViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Approval Statuses</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -325,7 +335,7 @@
                     <Caption>Configuration Scope</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IConfigurationScopeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Configuration Scopes</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -335,7 +345,7 @@
                     <Caption>Contact Types</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IContactTypeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Contact Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -345,7 +355,7 @@
                     <Caption>Data Statuses</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IDataStatusViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Data Statuses</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -355,7 +365,7 @@
                     <Caption>Entity Statuses</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEntityStatusViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Entity Statuses</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -365,7 +375,7 @@
                     <Caption>Image Types</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IImageTypeViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Image Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -375,7 +385,7 @@
                     <Caption>Languages</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ILanguageViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Languages</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -385,7 +395,7 @@
                     <Caption>Log Severity</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ILogSeverityViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Log Severities</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -395,7 +405,7 @@
                     <Caption>Scheduled Jobs</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IScheduledJobViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Scheduled Jobs</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -405,7 +415,7 @@
                     <Caption>Schedule Interval Types</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IScheduleIntervalViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Schedule Interval Types</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -415,7 +425,7 @@
                     <Caption>Statuses</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IStatusViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Statuses</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
@@ -425,7 +435,7 @@
                     <Caption>Time Zones</Caption>
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.ITimeZoneViewModel" />
-                    <View assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
+                    <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
                     <HelpText>View all Time Zones</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>

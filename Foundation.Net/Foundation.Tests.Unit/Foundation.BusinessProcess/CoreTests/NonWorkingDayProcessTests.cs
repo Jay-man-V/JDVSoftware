@@ -24,7 +24,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class NonWorkingDayProcessTests : CommonBusinessProcessTestBaseClass<INonWorkingDay, INonWorkingDayProcess, INonWorkingDayRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Non-Working Days";
         protected override String ExpectedStatusBarText => "Number of Non-Working Days:";
 

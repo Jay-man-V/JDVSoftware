@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ScheduledDataStatusProcessTests : CommonBusinessProcessTestBaseClass<IScheduledDataStatus, IScheduledDataStatusProcess, IScheduledDataStatusRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 10;
+        protected override Int32 ColumnDefinitionsCount => 10;
         protected override String ExpectedScreenTitle => "Scheduled Data Statuses";
         protected override String ExpectedStatusBarText => "Number of Scheduled Data Statuses:";
 

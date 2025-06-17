@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class DepartmentProcessTests : CommonBusinessProcessTestBaseClass<IDepartment, IDepartmentProcess, IDepartmentRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 10;
+        protected override Int32 ColumnDefinitionsCount => 10;
         protected override String ExpectedScreenTitle => "Departments";
         protected override String ExpectedStatusBarText => "Number of Departments:";
 

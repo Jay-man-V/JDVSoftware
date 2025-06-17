@@ -14,6 +14,11 @@ namespace Foundation.Core
 {
     public class DependencyResolver : IDependencyResolver
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="container"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public DependencyResolver(IServiceProvider container)
         {
             if (container == null)
@@ -26,6 +31,7 @@ namespace Foundation.Core
 
         private IServiceProvider Container { get; }
 
+        /// <inheritdoc cref="IDependencyResolver.GetService(Type)"/>
         public Object GetService(Type serviceType)
         {
             Object retVal = Container.GetService(serviceType);
@@ -33,22 +39,24 @@ namespace Foundation.Core
             return retVal;
         }
 
+        /// <inheritdoc cref="IDependencyResolver.GetServices(Type)"/>
         public IEnumerable<Object> GetServices(Type serviceType)
         {
             IEnumerable<Object> retVal = null;
 
-            try
-            {
+            //try
+            //{
                 retVal = Container.GetServices(serviceType);
-            }
-            catch (Exception)
-            {
-                retVal = new List<Object>();
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    retVal = new List<Object>();
+            //}
 
             return retVal;
         }
 
+        /// <inheritdoc cref="IDependencyResolver.BeginScope()"/>
         public IDependencyScope BeginScope()
         {
             IServiceScope child = Container.CreateScope();

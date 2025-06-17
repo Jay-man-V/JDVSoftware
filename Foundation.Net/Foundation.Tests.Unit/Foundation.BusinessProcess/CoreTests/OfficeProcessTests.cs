@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class OfficeProcessTests : CommonBusinessProcessTestBaseClass<IOffice, IOfficeProcess, IOfficeRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Offices";
         protected override String ExpectedStatusBarText => "Number of Offices:";
 

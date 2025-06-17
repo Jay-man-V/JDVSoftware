@@ -22,7 +22,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class ApplicationUserRoleProcessTests : CommonBusinessProcessTestBaseClass<IApplicationUserRole, IApplicationUserRoleProcess, IApplicationUserRoleRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Application/User/Roles";
         protected override String ExpectedStatusBarText => "Number of Application/User/Roles:";
 

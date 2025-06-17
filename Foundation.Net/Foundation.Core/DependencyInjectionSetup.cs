@@ -107,6 +107,7 @@ namespace Foundation.Core
         /// <returns></returns>
         public static void ResetDependencyInjection()
         {
+            ServiceCollection.Clear();
             ServiceCollection = null;
         }
 

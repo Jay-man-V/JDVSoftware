@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ScheduleIntervalProcessTests : CommonBusinessProcessTestBaseClass<IScheduleInterval, IScheduleIntervalProcess, IScheduleIntervalRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Scheduled Intervals";
         protected override String ExpectedStatusBarText => "Number of Schedule Intervals:";
 

@@ -39,6 +39,14 @@ namespace Foundation.Common.DataColumns
         // Application Tables
 
         /// <summary>
+        /// Gets the menu item.
+        /// </summary>
+        /// <value>
+        /// The menu item.
+        /// </value>
+        public static String MenuItem => "[app].[MenuItem]";
+
+        /// <summary>
         /// Gets the catalogue.
         /// </summary>
         /// <value>

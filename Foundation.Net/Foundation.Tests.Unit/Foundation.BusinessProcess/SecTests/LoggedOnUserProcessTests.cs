@@ -25,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class LoggedOnUserProcessTests : CommonBusinessProcessTestBaseClass<ILoggedOnUser, ILoggedOnUserProcess, ILoggedOnUserRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Logged On Users";
         protected override String ExpectedStatusBarText => "Number of Logged On Users:";
 

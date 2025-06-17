@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
     [TestFixture]
     public class EventLogApplicationProcessTests : CommonBusinessProcessTestBaseClass<IEventLogApplication, IEventLogApplicationProcess, IEventLogApplicationRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 10;
+        protected override Int32 ColumnDefinitionsCount => 10;
         protected override String ExpectedScreenTitle => "Event Log Applications";
         protected override String ExpectedStatusBarText => "Number of Event Log Applications:";
 

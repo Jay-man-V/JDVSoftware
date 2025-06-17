@@ -24,7 +24,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
     [TestFixture]
     public class EventLogAttachmentProcessTests : CommonBusinessProcessTestBaseClass<IEventLogAttachment, IEventLogAttachmentProcess, IEventLogAttachmentRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 7;
+        protected override Int32 ColumnDefinitionsCount => 7;
         protected override String ExpectedScreenTitle => "Event Log Attachments";
         protected override String ExpectedStatusBarText => "Number of Event Log Attachments:";
 

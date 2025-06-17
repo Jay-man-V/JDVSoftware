@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ImageTypeProcessTests : CommonBusinessProcessTestBaseClass<IImageType, IImageTypeProcess, IImageTypeRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Image Types";
         protected override String ExpectedStatusBarText => "Number of Image Types:";
 

@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
     [TestFixture]
     public class CommonBusinessProcessTests : CommonBusinessProcessTestBaseClass<IMockFoundationModel, IMockFoundationModelProcess, IMockFoundationModelRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 19;
+        protected override Int32 ColumnDefinitionsCount => 19;
         //protected override String ExpectedScreenTitle => "Mock Foundations";
         //protected override String ExpectedStatusBarText => "Number of Mock Foundation rows:";
 

@@ -55,6 +55,7 @@
     <Compile Include="DataColumns\.Base\FoundationEntity.cs" />
     <Compile Include="DataColumns\.Specialised\DbSchemaColumn.cs" />
     <Compile Include="DataColumns\.Specialised\DbSchemaTable.cs" />
+    <Compile Include="DataColumns\App\MenuItem.cs" />
     <Compile Include="DataColumns\Core\EnumModels\EntityStatus.cs" />
     <Compile Include="DataColumns\Core\Department.cs" />
     <Compile Include="DataColumns\Core\EnumModels\DataStatus.cs" />

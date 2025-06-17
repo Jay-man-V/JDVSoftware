@@ -32,7 +32,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ScheduledJobProcessTests : CommonBusinessProcessTestBaseClass<IScheduledJob, IScheduledJobProcess, IScheduledJobRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 18;
+        protected override Int32 ColumnDefinitionsCount => 18;
         protected override String ExpectedScreenTitle => "Scheduled Jobs";
         protected override String ExpectedStatusBarText => "Number of Scheduled Jobs:";
 

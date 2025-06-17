@@ -452,11 +452,10 @@ namespace Foundation.ViewModels
 
                     ViewController controller = menuItem.Controller;
                     ViewScreen view = menuItem.ViewScreen;
-                    Object[] parameters = { DateTimeService, DialogService, ThisWindow, this };
                     IViewModel viewModel;
                     try
                     {
-                        viewModel = Core.Container.Get<IViewModel>(controller.AssemblyName, controller.AssemblyType, parameters);
+                        viewModel = Core.Container.Get<IViewModel>(controller.AssemblyName, controller.AssemblyType);
 
                         if (menuItem.Parameters.Any())
                         {

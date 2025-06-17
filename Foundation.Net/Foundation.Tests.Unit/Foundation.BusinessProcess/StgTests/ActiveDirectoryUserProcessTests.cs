@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.StgTests
     [TestFixture]
     public class ActiveDirectoryUserProcessTests : CommonBusinessProcessTestBaseClass<IActiveDirectoryUser, IActiveDirectoryUserProcess, IActiveDirectoryUserRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 3;
+        protected override Int32 ColumnDefinitionsCount => 3;
         protected override String ExpectedScreenTitle => "Active Directory Users";
         protected override String ExpectedStatusBarText => "Number of Active Directory Users:";
 

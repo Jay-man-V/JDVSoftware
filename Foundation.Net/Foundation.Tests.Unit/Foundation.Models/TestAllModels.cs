@@ -90,6 +90,7 @@ namespace Foundation.Tests.Unit.Foundation.Models
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.Language)));
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.LoggedOnUser)));
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.LogSeverity)));
+            Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.MenuItem)));
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.NationalRegion)));
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.NonWorkingDay)));
             Assert.That(modelTypes[index++].Name, Is.EqualTo(nameof(FModels.Office)));

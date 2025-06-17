@@ -89,6 +89,7 @@
     <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\GetGroupTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\ApplicationConfigurationTests\SetValueTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\CalendarProcessTests.cs" />
+    <Compile Include="Foundation.BusinessProcess\App\MenuItemProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\DataStatusProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\CoreTests\EntityStatusProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\LogTests\EventLogAttachmentProcessTests.cs" />
@@ -103,6 +104,9 @@
     <Compile Include="Foundation.Common\HelpersTests\SerialisationHelpers.DeserialiseTests.cs" />
     <Compile Include="Foundation.Common\HelpersTests\SerialisationHelpers.SerialiseTests.cs" />
     <Compile Include="Foundation.Common\ReportsTests\HeartbeatResultTests.cs" />
+    <Compile Include="Foundation.Core\IoCTests.cs" />
+    <Compile Include="Foundation.Core\DependencyResolverTests.cs" />
+    <Compile Include="Foundation.Core\CurrentLoggedOnUserTests.cs" />
     <Compile Include="Foundation.Core\DependencyInjectionSetupTests.cs" />
     <Compile Include="Foundation.DataAccess.Csv\.Support\MyCsvRecord.cs" />
     <Compile Include="Foundation.DataAccess.Csv\CsvLoadTypedClassWithQuotesTests.cs" />
@@ -205,7 +209,7 @@
     <Compile Include="Foundation.BusinessProcess\SecTests\RoleProcessTests.cs" />
     <Compile Include="Foundation.Core\CoreTests.cs" />
     <Compile Include="Foundation.BusinessProcess\StgTests\ActiveDirectoryUserProcessTests.cs" />
-    <Compile Include="Foundation.Common\AssemblyHelpersTests\CreateInstanceTests.cs" />
+    <Compile Include="Foundation.Core\CreateInstanceTests.cs" />
     <Compile Include="Foundation.Common\AssemblyHelpersTests\FullyQualifiedTypeNameTests\FullyQualifiedTypeName.ConstructorTests.cs" />
     <Compile Include="Foundation.Common\AssemblyHelpersTests\FullyQualifiedTypeNameTests\FullyQualifiedTypeName.OperatorEqualsTests.cs" />
     <Compile Include="Foundation.Common\AttributesTests\AllAttributesTests.cs" />
@@ -217,6 +221,7 @@
     <Compile Include="Foundation.Resources\ConstantsTests\ReportParameterKeysTests.cs" />
     <Compile Include="Foundation.Resources\ConstantsTests\RegularExpressionsTests.cs" />
     <Compile Include="Foundation.Resources\ConstantsTests\StaticDataKeysTests.cs" />
+    <Compile Include="Foundation.ViewModels\App\MenuItemViewModelTests.cs" />
     <Compile Include="Foundation.ViewModels\CoreTests\ConfigurationScopeViewModelTests.cs" />
     <Compile Include="Foundation.ViewModels\CoreTests\ApplicationConfigurationViewModelTests.cs" />
     <Compile Include="Foundation.ViewModels\CoreTests\DataStatusViewModelTests.cs" />

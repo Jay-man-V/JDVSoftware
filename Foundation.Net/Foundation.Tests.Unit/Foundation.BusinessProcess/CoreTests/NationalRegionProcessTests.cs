@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class NationalRegionProcessTests : CommonBusinessProcessTestBaseClass<INationalRegion, INationalRegionProcess, INationalRegionRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "National Regions";
         protected override String ExpectedStatusBarText => "Number of National Regions:";
 

@@ -26,7 +26,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [DeploymentItem(@".Support\SampleDocuments\United Kingdom.png", @".Support\SampleDocuments\")]
     public class CountryProcessTests : CommonBusinessProcessTestBaseClass<ICountry, ICountryProcess, ICountryRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 18;
+        protected override Int32 ColumnDefinitionsCount => 18;
         protected override String ExpectedScreenTitle => "Countries";
         protected override String ExpectedStatusBarText => "Number of Countries:";
 

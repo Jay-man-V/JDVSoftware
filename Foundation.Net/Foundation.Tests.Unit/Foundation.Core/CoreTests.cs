@@ -18,7 +18,7 @@ using Foundation.Tests.Unit.Support;
 namespace Foundation.Tests.Unit.Foundation.Core
 {
     /// <summary>
-    /// Summary description for SecurityProcessTests
+    /// Summary description for CoreTests
     /// </summary>
     [TestFixture]
     public class CoreTests : UnitTestBase
@@ -42,7 +42,6 @@ namespace Foundation.Tests.Unit.Foundation.Core
             Assert.That(CoreInstance.CurrentLoggedOnUser.UserProfile.Id, Is.EqualTo(new EntityId(1)));
             Assert.That(CoreInstance.CurrentLoggedOnUser.UserProfile.DisplayName, Is.EqualTo(UserSecuritySupport.UnitTestAccountDisplayName));
             Assert.That(CoreInstance.CurrentLoggedOnUser.UserProfile.Username, Is.EqualTo($@"{UserSecuritySupport.UnitTestAccountDomain}\{UserSecuritySupport.UnitTestAccountUserName}"));
-
         }
 
         [TestCase]

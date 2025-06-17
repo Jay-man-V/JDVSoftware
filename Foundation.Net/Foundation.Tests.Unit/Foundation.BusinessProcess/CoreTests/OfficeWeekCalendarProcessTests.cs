@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class OfficeWeekCalendarProcessTests : CommonBusinessProcessTestBaseClass<IOfficeWeekCalendar, IOfficeWeekCalendarProcess, IOfficeWeekCalendarRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 16;
+        protected override Int32 ColumnDefinitionsCount => 16;
         protected override String ExpectedScreenTitle => "Office Week Calendars";
         protected override String ExpectedStatusBarText => "Number of Office Week Calendars:";
 

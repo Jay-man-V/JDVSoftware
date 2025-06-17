@@ -11,7 +11,7 @@ using NUnit.Framework;
 
 using Foundation.Tests.Unit.Support;
 
-namespace Foundation.Tests.Unit.Foundation.Common.AssemblyHelpersTests
+namespace Foundation.Tests.Unit.Foundation.Core
 {
     /// <summary>
     /// Create Instance tests

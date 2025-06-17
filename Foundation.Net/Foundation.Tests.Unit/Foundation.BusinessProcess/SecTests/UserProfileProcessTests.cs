@@ -25,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class UserProfileProcessTests : CommonBusinessProcessTestBaseClass<IUserProfile, IUserProfileProcess, IUserProfileRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "User Profiles";
         protected override String ExpectedStatusBarText => "Number of User Profiles:";
 

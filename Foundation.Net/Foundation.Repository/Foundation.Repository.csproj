@@ -55,6 +55,7 @@
     <Compile Include=".base\FoundationModelRepository.cs" />
     <Compile Include=".LocalModels\FirstAndLastWorkingDays.cs" />
     <Compile Include="Core\ApplicationConfigurationRepository.cs" />
+    <Compile Include="App\MenuItemRepository.cs" />
     <Compile Include="Core\EnumRepositories\ConfigurationScopeRepository.cs" />
     <Compile Include="Core\DepartmentRepository.cs" />
     <Compile Include="Core\EnumRepositories\DataStatusRepository.cs" />
@@ -135,6 +136,7 @@
       <Version>9.0.5</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\ExtraCleanup.targets" />
 </Project>

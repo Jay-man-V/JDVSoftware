@@ -25,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ContactDetailProcessTests : CommonBusinessProcessTestBaseClass<IContactDetail, IContactDetailProcess, IContactDetailRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 24;
+        protected override Int32 ColumnDefinitionsCount => 24;
         protected override String ExpectedScreenTitle => "Contacts";
         protected override String ExpectedStatusBarText => "Number of Contacts:";
 

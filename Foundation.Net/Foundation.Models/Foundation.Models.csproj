@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include=".Base\FoundationModel.cs" />
     <Compile Include="Core\ApplicationConfiguration.cs" />
+    <Compile Include="App\Menuitem.cs" />
     <Compile Include="Core\EnumModels\ConfigurationScope.cs" />
     <Compile Include="Core\Department.cs" />
     <Compile Include="Core\EnumModels\DataStatus.cs" />
@@ -99,6 +100,7 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\ExtraCleanup.targets" />
 </Project>

@@ -89,7 +89,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter();
 
-            List<IGridColumnDefinition> retVal = GetStandardEntityColumnDefinitions();
+            List<IGridColumnDefinition> retVal = GetStandardEntityColumnDefinitions(idColumnType: typeof(AppId));
             IGridColumnDefinition gridColumnDefinition;
 
             gridColumnDefinition = new GridColumnDefinition(150, FDC.Application.Name, "Name", typeof(String));

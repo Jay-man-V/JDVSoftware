@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class EntityStatusProcessTests : CommonBusinessProcessTestBaseClass<IEntityStatus, IEntityStatusProcess, IEntityStatusRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Entity Statuses";
         protected override String ExpectedStatusBarText => "Number of Entity Statuses:";
 

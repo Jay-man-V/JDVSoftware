@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class LanguageProcessTests : CommonBusinessProcessTestBaseClass<ILanguage, ILanguageProcess, ILanguageRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Languages";
         protected override String ExpectedStatusBarText => "Number of Languages:";
 

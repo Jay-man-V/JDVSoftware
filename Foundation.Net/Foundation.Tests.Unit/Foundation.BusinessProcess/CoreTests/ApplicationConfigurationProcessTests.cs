@@ -16,7 +16,6 @@ using Foundation.Common;
 using Foundation.Interfaces;
 
 using FDC = Foundation.Common.DataColumns;
-using FEnums = Foundation.Interfaces;
 
 namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 {
@@ -26,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ApplicationConfigurationProcessTests : CommonBusinessProcessTestBaseClass<IApplicationConfiguration, IApplicationConfigurationProcess, IApplicationConfigurationRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Application Configurations";
         protected override String ExpectedStatusBarText => "Number of Application Configurations:";
 

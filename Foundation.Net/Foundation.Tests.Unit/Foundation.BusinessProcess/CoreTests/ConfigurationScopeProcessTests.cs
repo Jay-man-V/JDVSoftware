@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ConfigurationScopeProcessTests : CommonBusinessProcessTestBaseClass<IConfigurationScope, IConfigurationScopeProcess, IConfigurationScopeRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 8;
+        protected override Int32 ColumnDefinitionsCount => 8;
         protected override String ExpectedScreenTitle => "Configuration Scopes";
         protected override String ExpectedStatusBarText => "Number of Configuration Scopes:";
 

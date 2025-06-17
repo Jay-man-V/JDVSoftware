@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
     [TestFixture]
     public class LogSeverityProcessTests : CommonBusinessProcessTestBaseClass<ILogSeverity, ILogSeverityProcess, ILogSeverityRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Log Severities";
         protected override String ExpectedStatusBarText => "Number of Log Severities:";
 

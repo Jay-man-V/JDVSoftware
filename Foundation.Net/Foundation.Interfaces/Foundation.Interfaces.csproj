@@ -79,6 +79,7 @@
     <Compile Include="BusinessProcess\Core\ICalendarProcess.cs" />
     <Compile Include="BusinessProcess\Core\IContactDetailProcess.cs" />
     <Compile Include="BusinessProcess\Core\EnumProcesses\IContactTypeProcess.cs" />
+    <Compile Include="BusinessProcess\App\IMenuItemProcess.cs" />
     <Compile Include="BusinessProcess\Core\IContractProcess.cs" />
     <Compile Include="BusinessProcess\Core\EnumProcesses\IContractTypeProcess.cs" />
     <Compile Include="BusinessProcess\Core\ICountryProcess.cs" />
@@ -147,11 +148,13 @@
     <Compile Include="Models\Core\EnumModels\IEntityStatus.cs" />
     <Compile Include="Models\Core\EnumModels\IDataStatus.cs" />
     <Compile Include="Models\Log\IEventLogAttachment.cs" />
+    <Compile Include="Models\App\IMenuItem.cs" />
     <Compile Include="Models\Workflow\IProcessApprover.cs" />
     <Compile Include="Models\Log\IImportExportControl.cs" />
     <Compile Include="Models\Log\IScheduledDataStatus.cs" />
     <Compile Include="Repository\Core\EnumRepositories\IEntityStatusRepository.cs" />
     <Compile Include="Repository\Core\EnumRepositories\IDataStatusRepository.cs" />
+    <Compile Include="Repository\App\IMenuItemRepository.cs" />
     <Compile Include="Repository\Core\ICalendarRepository.cs" />
     <Compile Include="Repository\DatabaseProvider\ISchemaDatabaseProvider.cs" />
     <Compile Include="Repository\DatabaseProvider\IStagingDatabaseProvider.cs" />
@@ -175,6 +178,7 @@
     <Compile Include="Support\IHeartbeatResult.cs" />
     <Compile Include="ViewModels\Core\EnumViewModels\IEntityStatusViewModel.cs" />
     <Compile Include="ViewModels\Core\EnumViewModels\IDataStatusViewModel.cs" />
+    <Compile Include="ViewModels\App\IMenuItemViewModel.cs" />
     <Compile Include="ViewModels\IAboutSplashScreenFormViewModel.cs" />
     <Compile Include="ViewModels\Log\IEventLogAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Log\IImportExportControlViewModel.cs" />

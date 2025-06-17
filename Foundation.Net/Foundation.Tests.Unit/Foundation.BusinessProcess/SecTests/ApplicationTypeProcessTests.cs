@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class ApplicationTypeProcessTests : CommonBusinessProcessTestBaseClass<IApplicationType, IApplicationTypeProcess, IApplicationTypeRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Application Types";
         protected override String ExpectedStatusBarText => "Number of Application Types:";
 

@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class TimeZoneProcessTests : CommonBusinessProcessTestBaseClass<ITimeZone, ITimeZoneProcess, ITimeZoneRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 11;
         protected override String ExpectedScreenTitle => "Time Zones";
         protected override String ExpectedStatusBarText => "Number of Time Zones:";
 

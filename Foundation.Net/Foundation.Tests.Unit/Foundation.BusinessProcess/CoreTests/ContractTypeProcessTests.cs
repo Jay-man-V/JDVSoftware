@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class ContractTypeProcessTests : CommonBusinessProcessTestBaseClass<IContractType, IContractTypeProcess, IContractTypeRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 9;
+        protected override Int32 ColumnDefinitionsCount => 9;
         protected override String ExpectedScreenTitle => "Contract Types";
         protected override String ExpectedStatusBarText => "Number of Contract Types:";
 

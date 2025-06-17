@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
     [TestFixture]
     public class ImportExportControlProcessTests : CommonBusinessProcessTestBaseClass<IImportExportControl, IImportExportControlProcess, IImportExportControlRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 7;
+        protected override Int32 ColumnDefinitionsCount => 7;
         protected override String ExpectedScreenTitle => "Import/Export Control";
         protected override String ExpectedStatusBarText => "Number of Import/Export Controls:";
 

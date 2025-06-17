@@ -48,6 +48,7 @@
     <Compile Include="Base\EntityViewModelBase.cs" />
     <Compile Include="Base\GenericDataGridViewModelBase.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="App\MenuItemViewModel.cs" />
     <Compile Include="Core\EnumViewModels\ConfigurationScopeViewModel.cs" />
     <Compile Include="Core\ApplicationConfigurationViewModel.cs" />
     <Compile Include="Core\OfficeWeekCalendarViewModel.cs" />
@@ -132,5 +133,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

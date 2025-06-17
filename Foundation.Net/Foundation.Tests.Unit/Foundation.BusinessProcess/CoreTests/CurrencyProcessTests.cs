@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class CurrencyProcessTests : CommonBusinessProcessTestBaseClass<ICurrency, ICurrencyProcess, ICurrencyRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 13;
+        protected override Int32 ColumnDefinitionsCount => 13;
         protected override String ExpectedScreenTitle => "Currencies";
         protected override String ExpectedStatusBarText => "Number of Currencies:";
 

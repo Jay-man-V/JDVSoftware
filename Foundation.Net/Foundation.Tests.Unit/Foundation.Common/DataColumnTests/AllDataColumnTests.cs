@@ -74,6 +74,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.DataColumnTests
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Core */ nameof(FDC.Language)));
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Sec  */ nameof(FDC.LoggedOnUser)));
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Log  */ nameof(FDC.LogSeverity)));
+            Assert.That(allTypes[index++].Name, Is.EqualTo( /* App  */ nameof(FDC.MenuItem)));
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Core */ nameof(FDC.NationalRegion)));
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Core */ nameof(FDC.NonWorkingDay)));
             Assert.That(allTypes[index++].Name, Is.EqualTo( /* Core */ nameof(FDC.Office)));
@@ -750,6 +751,33 @@ namespace Foundation.Tests.Unit.Foundation.Common.DataColumnTests
         ///
         /// </summary>
         [TestCase]
+        public void Test_MenuItem()
+        {
+            // This test exists to ensure all the Menu Item are tested/checked in the next test
+            PropertyInfo[] propertyInfos = GetStaticPropertyInfosForType(typeof(FDC.MenuItem));
+            Int32 index = 0;
+
+            index++; Assert.That(FDC.MenuItem.EntityName, Is.EqualTo(nameof(FDC.MenuItem)));
+            index++; Assert.That(FDC.MenuItem.ApplicationId, Is.EqualTo(nameof(FDC.MenuItem.ApplicationId)));
+            index++; Assert.That(FDC.MenuItem.ParentMenuItemId, Is.EqualTo(nameof(FDC.MenuItem.ParentMenuItemId)));
+            index++; Assert.That(FDC.MenuItem.Name, Is.EqualTo(nameof(FDC.MenuItem.Name)));
+            index++; Assert.That(FDC.MenuItem.Caption, Is.EqualTo(nameof(FDC.MenuItem.Caption)));
+            index++; Assert.That(FDC.MenuItem.ControllerAssembly, Is.EqualTo(nameof(FDC.MenuItem.ControllerAssembly)));
+            index++; Assert.That(FDC.MenuItem.ControllerType, Is.EqualTo(nameof(FDC.MenuItem.ControllerType)));
+            index++; Assert.That(FDC.MenuItem.ViewAssembly, Is.EqualTo(nameof(FDC.MenuItem.ViewAssembly)));
+            index++; Assert.That(FDC.MenuItem.ViewType, Is.EqualTo(nameof(FDC.MenuItem.ViewType)));
+            index++; Assert.That(FDC.MenuItem.HelpText, Is.EqualTo(nameof(FDC.MenuItem.HelpText)));
+            index++; Assert.That(FDC.MenuItem.MultiInstance, Is.EqualTo(nameof(FDC.MenuItem.MultiInstance)));
+            index++; Assert.That(FDC.MenuItem.ShowInTab, Is.EqualTo(nameof(FDC.MenuItem.ShowInTab)));
+            index++; Assert.That(FDC.MenuItem.Icon, Is.EqualTo(nameof(FDC.MenuItem.Icon)));
+
+            Assert.That(propertyInfos.Length, Is.EqualTo(index));
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [TestCase]
         public void Test_NationalRegion()
         {
             // This test exists to ensure all the National Region are tested/checked in the next test
@@ -972,6 +1000,8 @@ namespace Foundation.Tests.Unit.Foundation.Common.DataColumnTests
 
             index++; Assert.That(FDC.TableNames.Catalogue, Is.EqualTo($"[dbo].[{nameof(FDC.TableNames.Catalogue)}]"));
             index++; Assert.That(FDC.TableNames.CatalogueItem, Is.EqualTo($"[dbo].[{nameof(FDC.TableNames.CatalogueItem)}]"));
+
+            index++; Assert.That(FDC.TableNames.MenuItem, Is.EqualTo($"[app].[{nameof(FDC.TableNames.MenuItem)}]"));
 
             index++; Assert.That(FDC.TableNames.ApplicationConfiguration, Is.EqualTo($"[core].[{nameof(FDC.TableNames.ApplicationConfiguration)}]"));
             index++; Assert.That(FDC.TableNames.ApprovalStatus, Is.EqualTo($"[core].[{nameof(FDC.TableNames.ApprovalStatus)}]"));

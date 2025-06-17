@@ -6,13 +6,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+
 using NUnit.Framework;
 
 using NSubstitute;
 
-using Foundation.Common;
 using Foundation.Interfaces;
 using Foundation.ViewModels;
 

@@ -37,6 +37,21 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
         protected TDataAccess DataAccess { get; private set; }
         protected IEventLogProcess EventLogProcess { get; set; }
 
+        protected Int32 StandardColumnDefinitionsCount
+        {
+            get
+            {
+                if (DataAccess.HasValidityPeriodColumns)
+                {
+                    return 8;
+                }
+                else
+                {
+                    return 7;
+                }
+            }
+        }
+
         protected abstract TDataAccess CreateDataAccess();
         protected abstract TBusinessProcess CreateBusinessProcess();
         protected abstract TBusinessProcess CreateBusinessProcess(IDateTimeService dateTimeService);
@@ -48,7 +63,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
         protected abstract void CheckNoneEntry(TEntity entity);
         protected abstract void CompareEntityProperties(TEntity entity1, TEntity entity2);
 
-        protected abstract Int32 GetColumnDefinitionsCount { get; }
+        protected abstract Int32 ColumnDefinitionsCount { get; }
         protected abstract String ExpectedScreenTitle { get; }
         protected abstract String ExpectedStatusBarText { get; }
 
@@ -227,7 +242,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<IGridColumnDefinition> gridColumnDefinitions = process.GetColumnDefinitions();
 
-            Int32 columnDefinitionsCount = GetColumnDefinitionsCount;
+            Int32 columnDefinitionsCount = ColumnDefinitionsCount;
             Int32 actualColumnDefinitionsCount = gridColumnDefinitions.Count;
 
             Assert.That(actualColumnDefinitionsCount, Is.EqualTo(columnDefinitionsCount));

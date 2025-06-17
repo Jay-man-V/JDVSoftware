@@ -23,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class WorldRegionProcessTests : CommonBusinessProcessTestBaseClass<IWorldRegion, IWorldRegionProcess, IWorldRegionRepository>
     {
-        protected override Int32 GetColumnDefinitionsCount => 8;
+        protected override Int32 ColumnDefinitionsCount => 8;
         protected override String ExpectedScreenTitle => "World Regions";
         protected override String ExpectedStatusBarText => "Number of World Regions:";
 

@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.Office.ShortName;
 
-        protected override IOfficeRepository CreateDataAccess()
+        protected override IOfficeRepository CreateRepository()
         {
             IOfficeRepository dataAccess = Substitute.For<IOfficeRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IOfficeProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IOfficeProcess process = new OfficeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IOfficeProcess process = new OfficeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

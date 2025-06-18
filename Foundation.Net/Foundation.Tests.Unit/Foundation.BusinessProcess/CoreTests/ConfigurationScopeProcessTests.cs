@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.ConfigurationScope.Name;
 
-        protected override IConfigurationScopeRepository CreateDataAccess()
+        protected override IConfigurationScopeRepository CreateRepository()
         {
             IConfigurationScopeRepository dataAccess = Substitute.For<IConfigurationScopeRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IConfigurationScopeProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IConfigurationScopeProcess process = new ConfigurationScopeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IConfigurationScopeProcess process = new ConfigurationScopeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

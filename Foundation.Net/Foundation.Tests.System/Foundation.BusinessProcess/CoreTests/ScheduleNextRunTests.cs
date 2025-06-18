@@ -39,9 +39,9 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
 
             CalendarProcess = Core.Core.Instance.Container.Get<ICalendarProcess>();
             DataAccess = Core.Core.Instance.Container.Get<IScheduledJobRepository>();
-            //DataAccess = Substitute.For<IScheduledJobRepository>();
-            StatusDataAccess = Core.Core.Instance.Container.Get<IStatusRepository>();
-            UserProfileDataAccess = Core.Core.Instance.Container.Get<IUserProfileRepository>();
+            //Repository = Substitute.For<IScheduledJobRepository>();
+            StatusRepository = Core.Core.Instance.Container.Get<IStatusRepository>();
+            UserProfileRepository = Core.Core.Instance.Container.Get<IUserProfileRepository>();
             ScheduledIntervalProcess = Core.Core.Instance.Container.Get<IScheduleIntervalProcess>();
         }
 
@@ -70,7 +70,7 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
             TimeSpan endTime = new TimeSpan(17, 0, 0);
             DateTime currentDate = DateTimeService.SystemDateTimeNow.Date;
 
-            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
+            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusRepository, UserProfileRepository, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             scheduledJob.ScheduledTask = scheduledJobProcess.CreateScheduledTask(scheduledJob);
@@ -109,7 +109,7 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
             TimeSpan endTime = new TimeSpan(17, 0, 0);
             DateTime currentDate = DateTimeService.SystemDateTimeNow.Date;
 
-            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
+            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusRepository, UserProfileRepository, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             scheduledJob.ScheduledTask = scheduledJobProcess.CreateScheduledTask(scheduledJob);
@@ -148,7 +148,7 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
             TimeSpan endTime = new TimeSpan(17, 0, 0);
             DateTime currentDate = DateTimeService.SystemDateTimeNow.Date;
 
-            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
+            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusRepository, UserProfileRepository, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             scheduledJob.ScheduledTask = scheduledJobProcess.CreateScheduledTask(scheduledJob);
@@ -177,7 +177,7 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
             TimeSpan endTime = new TimeSpan(17, 0, 0);
             DateTime currentDate = DateTimeService.SystemDateTimeNow.Date;
 
-            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
+            IScheduledJobProcess scheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusRepository, UserProfileRepository, EventLogProcess, ScheduledIntervalProcess, CalendarProcess);
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJobWithError(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             scheduledJob.ScheduledTask = scheduledJobProcess.CreateScheduledTask(scheduledJob);

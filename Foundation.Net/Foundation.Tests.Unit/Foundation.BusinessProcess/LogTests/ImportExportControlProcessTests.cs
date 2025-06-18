@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.ImportExportControl.Name;
 
-        protected override IImportExportControlRepository CreateDataAccess()
+        protected override IImportExportControlRepository CreateRepository()
         {
             IImportExportControlRepository dataAccess = Substitute.For<IImportExportControlRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override IImportExportControlProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IImportExportControlProcess process = new ImportExportControlProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IImportExportControlProcess process = new ImportExportControlProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.NationalRegion.ShortName;
 
-        protected override INationalRegionRepository CreateDataAccess()
+        protected override INationalRegionRepository CreateRepository()
         {
             INationalRegionRepository dataAccess = Substitute.For<INationalRegionRepository>();
 
@@ -47,7 +47,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
         {
             ICountryProcess countryProcess = Substitute.For<ICountryProcess>();
 
-            INationalRegionProcess process = new NationalRegionProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, countryProcess);
+            INationalRegionProcess process = new NationalRegionProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, countryProcess);
 
             return process;
         }

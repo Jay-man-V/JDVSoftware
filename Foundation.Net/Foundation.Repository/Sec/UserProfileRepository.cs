@@ -100,9 +100,9 @@ namespace Foundation.Repository
             {
                 DataRow dr = dataTable.Rows[0];
                 retVal = base.PopulateEntity<IUserProfile>(dr);
-                IRoleRepository roleDataAccess = Core.Container.Get<IRoleRepository>();
+                IRoleRepository roleRepository = Core.Container.Get<IRoleRepository>();
                 EntityId roleId = DataHelpers.GetValue(dr[FDC.ApplicationUserRole.RoleId], new EntityId());
-                IRole role = roleDataAccess.Get(roleId);
+                IRole role = roleRepository.Get(roleId);
                 retVal.Roles.Add(role);
             }
 
@@ -146,9 +146,9 @@ namespace Foundation.Repository
             {
                 DataRow dr = dataTable.Rows[0];
                 retVal = base.PopulateEntity<IUserProfile>(dr);
-                IRoleRepository roleDataAccess = Core.Container.Get<IRoleRepository>();
+                IRoleRepository roleRepository = Core.Container.Get<IRoleRepository>();
                 EntityId roleId = DataHelpers.GetValue(dr[FDC.ApplicationUserRole.RoleId], new EntityId());
-                IRole role = roleDataAccess.Get(roleId);
+                IRole role = roleRepository.Get(roleId);
                 retVal.Roles.Add(role);
             }
 

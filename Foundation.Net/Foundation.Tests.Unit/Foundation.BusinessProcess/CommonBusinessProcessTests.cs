@@ -34,7 +34,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
         //protected override string ExpectedComboBoxDisplayMember => String.Empty;
 
-        protected override IMockFoundationModelRepository CreateDataAccess()
+        protected override IMockFoundationModelRepository CreateRepository()
         {
             IMockFoundationModelRepository repository = Substitute.For<IMockFoundationModelRepository>();
 
@@ -50,7 +50,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
         protected override IMockFoundationModelProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IMockFoundationModelProcess process = new MockFoundationModelProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IMockFoundationModelProcess process = new MockFoundationModelProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

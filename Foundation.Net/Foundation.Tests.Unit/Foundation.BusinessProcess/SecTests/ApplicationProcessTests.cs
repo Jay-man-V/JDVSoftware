@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.Application.Name;
 
-        protected override IApplicationRepository CreateDataAccess()
+        protected override IApplicationRepository CreateRepository()
         {
             IApplicationRepository dataAccess = Substitute.For<IApplicationRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override IApplicationProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IApplicationProcess process = new ApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IApplicationProcess process = new ApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

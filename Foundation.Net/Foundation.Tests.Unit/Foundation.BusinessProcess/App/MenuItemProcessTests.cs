@@ -39,7 +39,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.MenuItem.Name;
 
-        protected override IMenuItemRepository CreateDataAccess()
+        protected override IMenuItemRepository CreateRepository()
         {
             IMenuItemRepository dataAccess = Substitute.For<IMenuItemRepository>();
 
@@ -59,7 +59,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
             CopyProperties(applicationProcess, CoreInstance.Container.Get<IApplicationProcess>());
 
-            IMenuItemProcess process = new MenuItemProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess);
+            IMenuItemProcess process = new MenuItemProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess);
 
             return process;
         }

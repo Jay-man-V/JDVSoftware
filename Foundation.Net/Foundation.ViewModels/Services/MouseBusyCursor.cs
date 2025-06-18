@@ -57,7 +57,10 @@ namespace Foundation.ViewModels
             {
                 IsBusy = busy;
 
-                //Mouse.OverrideCursor = null;
+                if (Application.Current.IsNotNull())
+                {
+                    Mouse.OverrideCursor = null;
+                }
 
                 if (IsBusy &&
                     Application.Current.IsNotNull())
@@ -77,7 +80,7 @@ namespace Foundation.ViewModels
         /// Handles the Tick event of the dispatcherTimer control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void OnDispatcherTimer_Tick(Object sender, EventArgs e)
         {
             if (sender is DispatcherTimer dispatcherTimer)

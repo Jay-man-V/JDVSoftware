@@ -836,8 +836,8 @@ namespace Foundation.Repository
 
                 if (lastSavedEntity.IsNotNull())
                 {
-                    IUserProfileRepository userProfileDataAccess = Core.Container.Get<IUserProfileRepository>();
-                    IUserProfile lastSavedByUserProfile = userProfileDataAccess.Get(lastSavedEntity.LastUpdatedByUserProfileId);
+                    IUserProfileRepository userProfileRepository = Core.Container.Get<IUserProfileRepository>();
+                    IUserProfile lastSavedByUserProfile = userProfileRepository.Get(lastSavedEntity.LastUpdatedByUserProfileId);
                     throw new ApplicationConcurrencyException(entity.Id, EntityName, TableName, lastSavedByUserProfile.Username, lastSavedByUserProfile.LastUpdatedOn, lastSavedEntity);
                 }
 

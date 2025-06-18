@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.WorldRegion.Name;
 
-        protected override IWorldRegionRepository CreateDataAccess()
+        protected override IWorldRegionRepository CreateRepository()
         {
             IWorldRegionRepository dataAccess = Substitute.For<IWorldRegionRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IWorldRegionProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IWorldRegionProcess process = new WorldRegionProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IWorldRegionProcess process = new WorldRegionProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

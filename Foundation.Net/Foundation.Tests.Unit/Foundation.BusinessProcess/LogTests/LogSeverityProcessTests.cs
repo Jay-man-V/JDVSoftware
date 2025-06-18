@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.LogSeverity.Code;
 
-        protected override ILogSeverityRepository CreateDataAccess()
+        protected override ILogSeverityRepository CreateRepository()
         {
             ILogSeverityRepository dataAccess = Substitute.For<ILogSeverityRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override ILogSeverityProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            ILogSeverityProcess process = new LogSeverityProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            ILogSeverityProcess process = new LogSeverityProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

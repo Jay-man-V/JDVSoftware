@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="DataAccessTestSupport.cs" company="JDV Software Ltd">
+// <copyright file="TestEntitySupport.cs" company="JDV Software Ltd">
 //     Copyright (c) JDV Software Ltd. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -8,7 +8,6 @@ using System;
 
 using NUnit.Framework;
 
-using Foundation.Common;
 using Foundation.Interfaces;
 
 using Foundation.Tests.Unit.Mocks;

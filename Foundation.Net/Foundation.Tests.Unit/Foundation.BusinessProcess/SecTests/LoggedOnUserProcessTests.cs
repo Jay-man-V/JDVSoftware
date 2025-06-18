@@ -31,7 +31,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.LoggedOnUser.DisplayName;
 
-        protected override ILoggedOnUserRepository CreateDataAccess()
+        protected override ILoggedOnUserRepository CreateRepository()
         {
             ILoggedOnUserRepository dataAccess = Substitute.For<ILoggedOnUserRepository>();
 
@@ -51,7 +51,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             IRoleProcess roleProcess = Substitute.For<IRoleProcess>();
             IUserProfileProcess userProfileProcess = Substitute.For<IUserProfileProcess>();
 
-            ILoggedOnUserProcess process = new LoggedOnUserProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess, roleProcess, userProfileProcess);
+            ILoggedOnUserProcess process = new LoggedOnUserProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess, roleProcess, userProfileProcess);
 
             return process;
         }
@@ -205,7 +205,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
                 CoreInstance.Container.Get<ILoggedOnUser>(),
             };
 
-            DataAccess.GetLoggedOnUsers(Arg.Any<AppId>()).Returns(expectedLoggedOnUsers);
+            Repository.GetLoggedOnUsers(Arg.Any<AppId>()).Returns(expectedLoggedOnUsers);
 
             IEnumerable<ILoggedOnUser> actualLoggedOnUsers = process.GetLoggedOnUsers(applicationId);
 

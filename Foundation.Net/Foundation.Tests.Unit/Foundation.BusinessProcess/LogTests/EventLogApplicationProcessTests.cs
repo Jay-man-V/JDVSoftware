@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.EventLogApplication.ShortName;
 
-        protected override IEventLogApplicationRepository CreateDataAccess()
+        protected override IEventLogApplicationRepository CreateRepository()
         {
             IEventLogApplicationRepository dataAccess = Substitute.For<IEventLogApplicationRepository>();
 
@@ -45,10 +45,10 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override IEventLogApplicationProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IApplicationRepository applicationDataAccess = Substitute.For<IApplicationRepository>();
-            IApplicationProcess applicationProcess = new ApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, applicationDataAccess, StatusDataAccess, UserProfileDataAccess);
+            IApplicationRepository applicationRepository = Substitute.For<IApplicationRepository>();
+            IApplicationProcess applicationProcess = new ApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, applicationRepository, StatusRepository, UserProfileRepository);
 
-            IEventLogApplicationProcess process = new EventLogApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess);
+            IEventLogApplicationProcess process = new EventLogApplicationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess);
 
             return process;
         }

@@ -45,8 +45,8 @@ namespace Foundation.Tests.Unit.Support
         protected ICore CoreInstance { get; set; }
         protected IRunTimeEnvironmentSettings RunTimeEnvironmentSettings { get; set; }
         protected IDateTimeService DateTimeService { get; set; }
-        protected IStatusRepository StatusDataAccess { get; set; }
-        protected IUserProfileRepository UserProfileDataAccess { get; set; }
+        protected IStatusRepository StatusRepository { get; set; }
+        protected IUserProfileRepository UserProfileRepository { get; set; }
         protected IStatusProcess StatusProcess { get; set; }
         protected IUserProfileProcess UserProfileProcess { get; set; }
         protected ILoggedOnUserProcess LoggedOnUserProcess { get; set; }
@@ -270,14 +270,14 @@ namespace Foundation.Tests.Unit.Support
             UserProfileList = GetListOfUserProfiles();
             LoggedOnUsersList = GetListOfLoggedOnUsers();
 
-            StatusDataAccess = Substitute.For<IStatusRepository>();
-            StatusDataAccess.GetAllActive().Returns(StatusesList);
+            StatusRepository = Substitute.For<IStatusRepository>();
+            StatusRepository.GetAllActive().Returns(StatusesList);
 
             StatusProcess = Substitute.For<IStatusProcess>();
             StatusProcess.GetAll(Arg.Any<Boolean>()).Returns(StatusesList);
 
-            UserProfileDataAccess = Substitute.For<IUserProfileRepository>();
-            UserProfileDataAccess.GetAllActive().Returns(UserProfileList);
+            UserProfileRepository = Substitute.For<IUserProfileRepository>();
+            UserProfileRepository.GetAllActive().Returns(UserProfileList);
 
             UserProfileProcess = Substitute.For<IUserProfileProcess>();
             UserProfileProcess.GetAll(Arg.Any<Boolean>()).Returns(UserProfileList);

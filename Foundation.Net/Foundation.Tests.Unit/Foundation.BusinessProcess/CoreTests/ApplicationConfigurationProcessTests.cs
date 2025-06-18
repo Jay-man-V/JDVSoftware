@@ -46,7 +46,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.ApplicationConfiguration.Key;
 
-        protected override IApplicationConfigurationRepository CreateDataAccess()
+        protected override IApplicationConfigurationRepository CreateRepository()
         {
             IApplicationConfigurationRepository dataAccess = Substitute.For<IApplicationConfigurationRepository>();
 
@@ -70,7 +70,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             CopyProperties(applicationProcess, CoreInstance.Container.Get<IApplicationProcess>());
             CopyProperties(userProfileProcess, CoreInstance.Container.Get<IUserProfileProcess>());
 
-            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, configurationScopeProcess, applicationProcess, userProfileProcess);
+            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, configurationScopeProcess, applicationProcess, userProfileProcess);
 
             return process;
         }

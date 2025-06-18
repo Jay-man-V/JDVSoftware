@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.TimeZone.Code;
 
-        protected override ITimeZoneRepository CreateDataAccess()
+        protected override ITimeZoneRepository CreateRepository()
         {
             ITimeZoneRepository dataAccess = Substitute.For<ITimeZoneRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override ITimeZoneProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            ITimeZoneProcess process = new TimeZoneProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            ITimeZoneProcess process = new TimeZoneProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

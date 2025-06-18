@@ -17,17 +17,17 @@ namespace Foundation.BusinessProcess
         /// Initialises a new instance of the <see cref="AuthenticationProcess"/> class.
         /// </summary>
         /// <param name="core">The Foundation Core service</param>
-        /// <param name="dataAccess">The data access</param>
+        /// <param name="repository">The data access</param>
         public AuthenticationProcess
         (
             ICore core,
-            IAuthenticationRepository dataAccess
+            IAuthenticationRepository repository
         )
         {
-            LoggingHelpers.TraceCallEnter(core, dataAccess);
+            LoggingHelpers.TraceCallEnter(core, repository);
 
             Core = core;
-            DataAccess = dataAccess;
+            Repository = repository;
 
             LoggingHelpers.TraceCallReturn();
         }
@@ -40,7 +40,7 @@ namespace Foundation.BusinessProcess
         /// <summary>
         /// Gets the data access
         /// </summary>
-        private IAuthenticationRepository DataAccess { get; }
+        private IAuthenticationRepository Repository { get; }
 
         /// <inheritdoc cref="IAuthenticationProcess.AuthenticateUser(AppId)"/>
         public AuthenticationToken AuthenticateUser(AppId applicationId)
@@ -60,7 +60,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(applicationId, userProfile);
 
-            AuthenticationToken retVal = DataAccess.AuthenticateUser(applicationId, userProfile);
+            AuthenticationToken retVal = Repository.AuthenticateUser(applicationId, userProfile);
 
             LoggingHelpers.TraceCallReturn(retVal);
 
@@ -72,7 +72,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(authenticationToken);
 
-            DataAccess.ValidateAuthenticationToken(ref authenticationToken);
+            Repository.ValidateAuthenticationToken(ref authenticationToken);
 
             LoggingHelpers.TraceCallReturn();
         }
@@ -82,7 +82,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(authenticationToken);
 
-            DataAccess.ExpireAuthenticationToken(ref authenticationToken);
+            Repository.ExpireAuthenticationToken(ref authenticationToken);
 
             LoggingHelpers.TraceCallReturn();
         }

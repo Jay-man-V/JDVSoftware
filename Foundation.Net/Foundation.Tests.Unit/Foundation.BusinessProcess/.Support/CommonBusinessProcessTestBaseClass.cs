@@ -29,19 +29,19 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
     /// Summary description for CommonBusinessProcessUnitTests
     /// </summary>
     [TestFixture]
-    public abstract class CommonBusinessProcessTestBaseClass<TEntity, TBusinessProcess, TDataAccess> : UnitTestBase
+    public abstract class CommonBusinessProcessTestBaseClass<TEntity, TBusinessProcess, TRepository> : UnitTestBase
         where TEntity : IFoundationModel
         where TBusinessProcess : ICommonBusinessProcess<TEntity>
-        where TDataAccess : IFoundationModelRepository<TEntity>
+        where TRepository : IFoundationModelRepository<TEntity>
     {
-        protected TDataAccess DataAccess { get; private set; }
+        protected TRepository Repository { get; private set; }
         protected IEventLogProcess EventLogProcess { get; set; }
 
         protected Int32 StandardColumnDefinitionsCount
         {
             get
             {
-                if (DataAccess.HasValidityPeriodColumns)
+                if (Repository.HasValidityPeriodColumns)
                 {
                     return 8;
                 }
@@ -52,7 +52,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             }
         }
 
-        protected abstract TDataAccess CreateDataAccess();
+        protected abstract TRepository CreateRepository();
         protected abstract TBusinessProcess CreateBusinessProcess();
         protected abstract TBusinessProcess CreateBusinessProcess(IDateTimeService dateTimeService);
         protected abstract TEntity CreateBlankEntity(TBusinessProcess process);
@@ -128,7 +128,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             Assert.That(actualEntity.Id, Is.EqualTo(expectedEntity.Id));
         }
 
-        private void CompareEntityBaseProperties(TDataAccess dataAccess, TEntity expectedEntity, TEntity actualEntity)
+        private void CompareEntityBaseProperties(TRepository repository, TEntity expectedEntity, TEntity actualEntity)
         {
             CompareEntityBaseProperties_Id(expectedEntity, actualEntity);
             Assert.That(actualEntity.CreatedByUserProfileId, Is.EqualTo(expectedEntity.CreatedByUserProfileId));
@@ -141,18 +141,18 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             Assert.That(actualEntity.StatusId, Is.EqualTo(expectedEntity.StatusId));
             Assert.That(actualEntity.Timestamp, Is.EquivalentTo(expectedEntity.Timestamp));
 
-            if (dataAccess.HasValidityPeriodColumns)
+            if (repository.HasValidityPeriodColumns)
             {
                 Assert.That(actualEntity.ValidFrom, Is.EqualTo(expectedEntity.ValidFrom));
                 Assert.That(actualEntity.ValidTo, Is.EqualTo(expectedEntity.ValidTo));
             }
         }
 
-        protected void SetDataAccessProperties(TDataAccess dataAccess)
+        protected void SetRepositoryProperties(TRepository repository)
         {
-            TDataAccess tempDataAccess = CoreInstance.Container.Get<TDataAccess>();
+            TRepository tempRepository = CoreInstance.Container.Get<TRepository>();
 
-            dataAccess.HasValidityPeriodColumns.Returns(tempDataAccess.HasValidityPeriodColumns);
+            repository.HasValidityPeriodColumns.Returns(tempRepository.HasValidityPeriodColumns);
         }
 
         protected override void StartTest()
@@ -160,8 +160,8 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             base.StartTest();
             EventLogProcess = Substitute.For<IEventLogProcess>();
 
-            DataAccess = CreateDataAccess();
-            SetDataAccessProperties(DataAccess);
+            Repository = CreateRepository();
+            SetRepositoryProperties(Repository);
         }
 
         protected virtual void Test_NullId(TBusinessProcess process)
@@ -740,7 +740,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
         {
             TBusinessProcess process = CreateBusinessProcess();
 
-            DataAccess.Save(Arg.Any<TEntity>()).Returns(args =>
+            Repository.Save(Arg.Any<TEntity>()).Returns(args =>
             {
                 TEntity retVal = (TEntity)args[0];
                 retVal.Id = new EntityId(1);
@@ -760,7 +760,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
         public virtual void Test_Update_Entity()
         {
             TBusinessProcess process = CreateBusinessProcess();
-            DataAccess.Save(Arg.Any<TEntity>()).Returns(args =>
+            Repository.Save(Arg.Any<TEntity>()).Returns(args =>
             {
                 TEntity retVal = (TEntity)args[0];
                 retVal.Id = new EntityId(1);
@@ -786,7 +786,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
         {
             TBusinessProcess process = CreateBusinessProcess();
 
-            DataAccess.Save(Arg.Any<List<TEntity>>()).Returns(args =>
+            Repository.Save(Arg.Any<List<TEntity>>()).Returns(args =>
             {
                 Int32 idCounter = 1;
                 List<TEntity> retVal = (List<TEntity>)args[0];
@@ -819,7 +819,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             TEntity entity1 = CreateEntity(process);
 
-            DataAccess.Save(Arg.Is(entity1)).Returns(args =>
+            Repository.Save(Arg.Is(entity1)).Returns(args =>
             {
                 TEntity retVal = (TEntity)args[0];
                 retVal.Id = new EntityId(1);
@@ -829,7 +829,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             TEntity savedEntity = process.Save(entity1);
 
-            DataAccess.Get(Arg.Is(savedEntity.Id)).Returns(args =>
+            Repository.Get(Arg.Is(savedEntity.Id)).Returns(args =>
             {
                 TEntity retVal = (TEntity)savedEntity.Clone();
                 retVal.Id = new EntityId(1);
@@ -857,7 +857,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             TEntity entity1 = CreateEntity(process);
 
-            DataAccess.Save(Arg.Is(entity1)).Returns(args =>
+            Repository.Save(Arg.Is(entity1)).Returns(args =>
             {
                 TEntity retVal = (TEntity)args[0];
                 retVal.Id = new EntityId(1);
@@ -867,7 +867,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             TEntity savedEntity = process.Save(entity1);
 
-            DataAccess.Get(Arg.Is(savedEntity.Id)).Returns(args =>
+            Repository.Get(Arg.Is(savedEntity.Id)).Returns(args =>
             {
                 TEntity retVal = (TEntity)savedEntity.Clone();
                 retVal.Id = new EntityId(1);
@@ -899,7 +899,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<TEntity> entitiesToDelete = new List<TEntity> { entity1, entity2, entity3 };
 
-            DataAccess.Delete(Arg.Any<List<TEntity>>()).Returns(args =>
+            Repository.Delete(Arg.Any<List<TEntity>>()).Returns(args =>
             {
                 List<TEntity> entities = (List<TEntity>)args[0];
 
@@ -932,7 +932,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             TEntity loadedEntity = process.Get(savedEntityId);
 
-            CompareEntityBaseProperties(DataAccess, savedEntity, loadedEntity);
+            CompareEntityBaseProperties(Repository, savedEntity, loadedEntity);
         }
 
         [TestCase]
@@ -944,7 +944,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             TEntity newEntity3 = CreateEntity(process);
 
             Int32 entityCounter = 0;
-            DataAccess.Save(Arg.Any<TEntity>()).Returns(args =>
+            Repository.Save(Arg.Any<TEntity>()).Returns(args =>
             {
                 TEntity retVal = (TEntity)((TEntity)args[0]).Clone();
 
@@ -959,7 +959,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<EntityId> savedEntityIds = new List<EntityId> { savedEntity1.Id, savedEntity2.Id, savedEntity3.Id };
 
-            DataAccess.Get(Arg.Any<List<EntityId>>()).Returns(args =>
+            Repository.Get(Arg.Any<List<EntityId>>()).Returns(args =>
             {
                 List<TEntity> retVal = new List<TEntity>
                 {
@@ -974,9 +974,9 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             List<TEntity> loadedEntities = process.Get(savedEntityIds).ToList();
 
             Assert.That(loadedEntities.Count, Is.EqualTo(savedEntityIds.Count));
-            CompareEntityBaseProperties(DataAccess, savedEntity1, loadedEntities[0]);
-            CompareEntityBaseProperties(DataAccess, savedEntity2, loadedEntities[1]);
-            CompareEntityBaseProperties(DataAccess, savedEntity3, loadedEntities[2]);
+            CompareEntityBaseProperties(Repository, savedEntity1, loadedEntities[0]);
+            CompareEntityBaseProperties(Repository, savedEntity2, loadedEntities[1]);
+            CompareEntityBaseProperties(Repository, savedEntity3, loadedEntities[2]);
         }
 
         [TestCase]
@@ -988,7 +988,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             TEntity newEntity3 = CreateEntity(process);
 
             Int32 entityCounter = 0;
-            DataAccess.Save(Arg.Any<TEntity>()).Returns(args =>
+            Repository.Save(Arg.Any<TEntity>()).Returns(args =>
             {
                 TEntity retVal = (TEntity)((TEntity)args[0]).Clone();
 
@@ -1003,7 +1003,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<EntityId> savedEntityIds = new List<EntityId> { savedEntity1.Id, savedEntity2.Id, savedEntity3.Id };
 
-            DataAccess.GetAllActive().Returns(args =>
+            Repository.GetAllActive().Returns(args =>
             {
                 List<TEntity> retVal = new List<TEntity>
                 {
@@ -1018,9 +1018,9 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
             List<TEntity> loadedEntities = process.GetAll();
 
             Assert.That(loadedEntities.Count, Is.EqualTo(savedEntityIds.Count));
-            CompareEntityBaseProperties(DataAccess, savedEntity1, loadedEntities[0]);
-            CompareEntityBaseProperties(DataAccess, savedEntity2, loadedEntities[1]);
-            CompareEntityBaseProperties(DataAccess, savedEntity3, loadedEntities[2]);
+            CompareEntityBaseProperties(Repository, savedEntity1, loadedEntities[0]);
+            CompareEntityBaseProperties(Repository, savedEntity2, loadedEntities[1]);
+            CompareEntityBaseProperties(Repository, savedEntity3, loadedEntities[2]);
         }
 
         [TestCase]
@@ -1039,14 +1039,14 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<TEntity> entities = new List<TEntity> { entity2, entity3, entity4 };
 
-            DataAccess.GetAll(Arg.Is(excludeDeleted), Arg.Is(activeOnly)).Returns(entities);
+            Repository.GetAll(Arg.Is(excludeDeleted), Arg.Is(activeOnly)).Returns(entities);
 
             List<TEntity> loadedEntities = process.GetAll(excludeDeleted);
 
             Assert.That(loadedEntities.Count, Is.EqualTo(entities.Count));
-            CompareEntityBaseProperties(DataAccess, entity2, loadedEntities[0]);
-            CompareEntityBaseProperties(DataAccess, entity3, loadedEntities[1]);
-            CompareEntityBaseProperties(DataAccess, entity4, loadedEntities[2]);
+            CompareEntityBaseProperties(Repository, entity2, loadedEntities[0]);
+            CompareEntityBaseProperties(Repository, entity3, loadedEntities[1]);
+            CompareEntityBaseProperties(Repository, entity4, loadedEntities[2]);
         }
 
         [TestCase]
@@ -1065,15 +1065,15 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess
 
             List<TEntity> entities = new List<TEntity> { entity1, entity2, entity3, entity4 };
 
-            DataAccess.GetAll(Arg.Is(excludeDeleted), Arg.Is(activeOnly)).Returns(entities);
+            Repository.GetAll(Arg.Is(excludeDeleted), Arg.Is(activeOnly)).Returns(entities);
 
             List<TEntity> loadedEntities = process.GetAll(excludeDeleted);
 
             Assert.That(loadedEntities.Count, Is.EqualTo(entities.Count));
-            CompareEntityBaseProperties(DataAccess, entity1, loadedEntities[0]);
-            CompareEntityBaseProperties(DataAccess, entity2, loadedEntities[1]);
-            CompareEntityBaseProperties(DataAccess, entity3, loadedEntities[2]);
-            CompareEntityBaseProperties(DataAccess, entity4, loadedEntities[3]);
+            CompareEntityBaseProperties(Repository, entity1, loadedEntities[0]);
+            CompareEntityBaseProperties(Repository, entity2, loadedEntities[1]);
+            CompareEntityBaseProperties(Repository, entity3, loadedEntities[2]);
+            CompareEntityBaseProperties(Repository, entity4, loadedEntities[3]);
         }
 
 

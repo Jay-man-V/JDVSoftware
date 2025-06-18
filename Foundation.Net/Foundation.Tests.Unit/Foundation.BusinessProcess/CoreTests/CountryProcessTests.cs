@@ -32,7 +32,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.Country.AbbreviatedName;
 
-        protected override ICountryRepository CreateDataAccess()
+        protected override ICountryRepository CreateRepository()
         {
             ICountryRepository dataAccess = Substitute.For<ICountryRepository>();
 
@@ -53,7 +53,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             ITimeZoneProcess timeZoneProcess = Substitute.For<ITimeZoneProcess>();
             IWorldRegionProcess worldRegionProcess = Substitute.For<IWorldRegionProcess>();
 
-            ICountryProcess process = new CountryProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, currencyProcess, languageProcess, timeZoneProcess, worldRegionProcess);
+            ICountryProcess process = new CountryProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, currencyProcess, languageProcess, timeZoneProcess, worldRegionProcess);
 
             return process;
         }

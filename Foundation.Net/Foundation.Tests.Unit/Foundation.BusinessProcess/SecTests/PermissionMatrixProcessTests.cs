@@ -26,7 +26,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
         protected override String ExpectedScreenTitle => "Permissions Matrix";
         protected override String ExpectedStatusBarText => "Number of Permission Matrices:";
 
-        protected override IPermissionMatrixRepository CreateDataAccess()
+        protected override IPermissionMatrixRepository CreateRepository()
         {
             IPermissionMatrixRepository dataAccess = Substitute.For<IPermissionMatrixRepository>();
 
@@ -46,7 +46,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             IRoleProcess roleProcess = Substitute.For<IRoleProcess>();
             IUserProfileProcess userProfileProcess = Substitute.For<IUserProfileProcess>();
 
-            IPermissionMatrixProcess process = new PermissionMatrixProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess, roleProcess, userProfileProcess);
+            IPermissionMatrixProcess process = new PermissionMatrixProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess, roleProcess, userProfileProcess);
 
             return process;
         }

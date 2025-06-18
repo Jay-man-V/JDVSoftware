@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.ContactType.Name;
 
-        protected override IContactTypeRepository CreateDataAccess()
+        protected override IContactTypeRepository CreateRepository()
         {
             IContactTypeRepository dataAccess = Substitute.For<IContactTypeRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IContactTypeProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IContactTypeProcess process = new ContactTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IContactTypeProcess process = new ContactTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

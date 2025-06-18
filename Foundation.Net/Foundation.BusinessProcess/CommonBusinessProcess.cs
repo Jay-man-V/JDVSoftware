@@ -328,8 +328,8 @@ namespace Foundation.BusinessProcess
         /// </summary>
         /// <param name="entity">The entity to set the values on</param>
         /// <param name="displayText">The value to be set</param>
-        /// <exception cref="ArgumentNullException">Raised when the <see cref="CommonBusinessProcess{TEntity, TDataAccess}.ComboBoxDisplayMember"/> has not been set</exception>
-        /// <exception cref="MissingMemberException">Raised when the <paramref name="entity"/> does not have the member designated by <see cref="CommonBusinessProcess{TEntity, TDataAccess}.ComboBoxDisplayMember"/></exception>
+        /// <exception cref="ArgumentNullException">Raised when the <see cref="CommonBusinessProcess{TEntity, TRepository}.ComboBoxDisplayMember"/> has not been set</exception>
+        /// <exception cref="MissingMemberException">Raised when the <paramref name="entity"/> does not have the member designated by <see cref="CommonBusinessProcess{TEntity, TRepository}.ComboBoxDisplayMember"/></exception>
         protected virtual void SetFilterItemProperties(TEntity entity, String displayText)
         {
             LoggingHelpers.TraceCallEnter(entity, displayText);

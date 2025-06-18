@@ -26,7 +26,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
         protected override String ExpectedScreenTitle => "Application Roles";
         protected override String ExpectedStatusBarText => "Number of Application Roles:";
 
-        protected override IApplicationRoleRepository CreateDataAccess()
+        protected override IApplicationRoleRepository CreateRepository()
         {
             IApplicationRoleRepository dataAccess = Substitute.For<IApplicationRoleRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             IApplicationProcess applicationProcess = Substitute.For<IApplicationProcess>();
             IRoleProcess roleProcess = Substitute.For<IRoleProcess>();
 
-            IApplicationRoleProcess process = new ApplicationRoleProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess, roleProcess);
+            IApplicationRoleProcess process = new ApplicationRoleProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess, roleProcess);
 
             return process;
         }

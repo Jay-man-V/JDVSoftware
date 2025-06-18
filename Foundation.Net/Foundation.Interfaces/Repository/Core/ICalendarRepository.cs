@@ -11,7 +11,7 @@ namespace Foundation.Interfaces
     /// <summary>
     /// The Non-Working Day Data Access interface
     /// </summary>
-    public interface ICalendarRepository : IFoundationDataAccess
+    public interface ICalendarRepository
     {
         /// <summary>Determines whether [is non-working day] [the specified country code].</summary>
         /// <param name="countryCode">The country code.</param>

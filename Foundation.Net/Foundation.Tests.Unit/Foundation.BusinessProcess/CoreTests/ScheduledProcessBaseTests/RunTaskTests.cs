@@ -44,7 +44,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.ScheduledPr
 
             IScheduledJobRepository dataAccess = Substitute.For<IScheduledJobRepository>();
             IScheduleIntervalProcess scheduleIntervalProcess = Substitute.For<IScheduleIntervalProcess>();
-            ScheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, dataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, scheduleIntervalProcess, CalendarProcess);
+            ScheduledJobProcess = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, dataAccess, StatusRepository, UserProfileRepository, EventLogProcess, scheduleIntervalProcess, CalendarProcess);
 
             SchedulerSupport.Core = CoreInstance;
             SchedulerSupport.RunTimeEnvironmentSettings = RunTimeEnvironmentSettings;

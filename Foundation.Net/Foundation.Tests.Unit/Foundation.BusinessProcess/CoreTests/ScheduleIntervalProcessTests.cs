@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.ScheduleInterval.Name;
 
-        protected override IScheduleIntervalRepository CreateDataAccess()
+        protected override IScheduleIntervalRepository CreateRepository()
         {
             IScheduleIntervalRepository dataAccess = Substitute.For<IScheduleIntervalRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IScheduleIntervalProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IScheduleIntervalProcess process = new ScheduleIntervalProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IScheduleIntervalProcess process = new ScheduleIntervalProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

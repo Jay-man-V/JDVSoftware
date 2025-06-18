@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.Language.EnglishName;
 
-        protected override ILanguageRepository CreateDataAccess()
+        protected override ILanguageRepository CreateRepository()
         {
             ILanguageRepository dataAccess = Substitute.For<ILanguageRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override ILanguageProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            ILanguageProcess process = new LanguageProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            ILanguageProcess process = new LanguageProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

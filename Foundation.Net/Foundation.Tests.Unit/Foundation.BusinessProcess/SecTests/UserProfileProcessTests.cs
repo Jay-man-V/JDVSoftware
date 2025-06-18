@@ -31,7 +31,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.UserProfile.DisplayName;
 
-        protected override IUserProfileRepository CreateDataAccess()
+        protected override IUserProfileRepository CreateRepository()
         {
             IUserProfileRepository dataAccess = Substitute.For<IUserProfileRepository>();
 
@@ -47,7 +47,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override IUserProfileProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IUserProfileProcess process = new UserProfileProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess);
+            IUserProfileProcess process = new UserProfileProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository);
 
             return process;
         }
@@ -120,7 +120,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             expectedUserProfile.ExternalKeyId = Guid.NewGuid().ToString();
             expectedUserProfile.IsSystemSupport = false;
 
-            DataAccess.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
+            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
 
             IUserProfile actualUserProfile = process.GetLoggedOnUserProfile(appId);
 
@@ -143,7 +143,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             expectedUserProfile.ExternalKeyId = Guid.NewGuid().ToString();
             expectedUserProfile.IsSystemSupport = false;
 
-            DataAccess.Get(Arg.Any<AppId>(), Arg.Any<EntityId>()).Returns(expectedUserProfile);
+            Repository.Get(Arg.Any<AppId>(), Arg.Any<EntityId>()).Returns(expectedUserProfile);
 
             IUserProfile actualUserProfile = process.GetUserProfile(appId, userProfileId);
 
@@ -166,7 +166,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             expectedUserProfile.ExternalKeyId = Guid.NewGuid().ToString();
             expectedUserProfile.IsSystemSupport = false;
 
-            DataAccess.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
+            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
 
             IUserProfile actualUserProfile = process.GetUserProfile(appId, username);
 
@@ -181,7 +181,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
         {
             IUserProfileProcess process = CreateBusinessProcess();
 
-            DataAccess.SyncActiveDirectoryUserDataFromStaging(Arg.Any<IUserProfile>());
+            Repository.SyncActiveDirectoryUserDataFromStaging(Arg.Any<IUserProfile>());
 
             process.SyncActiveDirectoryUserDataFromStaging();
         }

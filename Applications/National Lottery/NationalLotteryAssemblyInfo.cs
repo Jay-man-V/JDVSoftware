@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: InternalsVisibleTo("NationalLottery.BusinessProcess")]
-[assembly: InternalsVisibleTo("NationalLottery.DataAccess")]
+[assembly: InternalsVisibleTo("NationalLottery.Repository")]
 [assembly: InternalsVisibleTo("NationalLottery.WPF.ViewModels")]
 
 // Version information for an assembly consists of the following four values:

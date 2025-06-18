@@ -59,18 +59,18 @@ namespace Foundation.Repository
         {
             LoggingHelpers.TraceCallEnter(core, databaseProvider);
 
-            DbSchemaColumnDataAccess = new DbSchemaColumnRepository(core, databaseProvider);
+            DbSchemaColumnRepository = new DbSchemaColumnRepository(core, databaseProvider);
 
             LoggingHelpers.TraceCallReturn();
         }
 
         /// <summary>
-        /// Gets the database schema column data access.
+        /// Gets the database schema column repository.
         /// </summary>
         /// <value>
-        /// The database schema column data access.
+        /// The database schema column repository.
         /// </value>
-        private IDbSchemaColumnRepository DbSchemaColumnDataAccess { get; }
+        private IDbSchemaColumnRepository DbSchemaColumnRepository { get; }
 
         /// <inheritdoc cref="IDbSchemaTableRepository.GetAllTables()"/>
         public List<IDbSchemaTable> GetAllTables()
@@ -119,7 +119,7 @@ namespace Foundation.Repository
             retVal.TableName = Convert.ToString(dataRecord[FDC.Specialised.DbSchemaTable.TableName]);
             retVal.TableType = Convert.ToString(dataRecord[FDC.Specialised.DbSchemaTable.TableType]);
 
-            IEnumerable<IDbSchemaColumn> dbSchemaColumns = DbSchemaColumnDataAccess.GetAllColumns(retVal);
+            IEnumerable<IDbSchemaColumn> dbSchemaColumns = DbSchemaColumnRepository.GetAllColumns(retVal);
             retVal.SchemaColumns.ToList().AddRange(dbSchemaColumns);
 
             LoggingHelpers.TraceCallReturn(retVal);

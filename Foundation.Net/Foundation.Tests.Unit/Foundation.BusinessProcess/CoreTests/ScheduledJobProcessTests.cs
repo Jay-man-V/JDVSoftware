@@ -38,7 +38,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.ScheduledJob.Name;
 
-        protected override IScheduledJobRepository CreateDataAccess()
+        protected override IScheduledJobRepository CreateRepository()
         {
             IScheduledJobRepository dataAccess = Substitute.For<IScheduledJobRepository>();
 
@@ -62,7 +62,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduleIntervalProcess scheduleIntervalProcess = Substitute.For<IScheduleIntervalProcess>();
             ICalendarProcess calendarProcess = Substitute.For<ICalendarProcess>();
 
-            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, EventLogProcess, scheduleIntervalProcess, calendarProcess);
+            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, EventLogProcess, scheduleIntervalProcess, calendarProcess);
 
             process.AlternateCreateScheduledTaskCalled -= SchedulerSupport.OnAlternateCreateScheduledTaskCalled;
             process.AlternateCreateScheduledTaskCalled += SchedulerSupport.OnAlternateCreateScheduledTaskCalled;
@@ -141,7 +141,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -166,7 +166,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -207,7 +207,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -250,7 +250,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJobWithError(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -293,7 +293,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJobWithError(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -335,7 +335,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -378,7 +378,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledDemoJob(CoreInstance, false, currentDate, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -408,7 +408,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             scheduledJob.IsEnabled = false;
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -453,7 +453,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -520,7 +520,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
@@ -579,7 +579,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             ScheduledJobProcess scheduledJobProcess = process as ScheduledJobProcess;
             process.InitialiseJobs(new LogId(0));
@@ -649,7 +649,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
 
@@ -686,7 +686,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob2 = SchedulerSupport.CreateScheduledJobWithError(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob1 };
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -723,7 +723,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob>();
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -753,7 +753,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             {
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob>();
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -786,7 +786,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
             List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
 
             IScheduledJobProcess process = CreateBusinessProcess();
             process.InitialiseJobs(new LogId(0));
@@ -894,7 +894,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob };
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
 
@@ -931,7 +931,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob2 = SchedulerSupport.CreateScheduledJobWithError(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob> { scheduledJob1 };
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -968,7 +968,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, startTime, endTime, scheduleInterval, interval);
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob>();
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -998,7 +998,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             {
                 List<IScheduledJob> scheduleTasks = new List<IScheduledJob>();
 
-                DataAccess.GetAllActive().Returns(scheduleTasks);
+                Repository.GetAllActive().Returns(scheduleTasks);
 
                 IScheduledJobProcess process = CreateBusinessProcess();
                 process.InitialiseJobs(new LogId(0));
@@ -1034,7 +1034,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 scheduledJob
             };
 
-            DataAccess.GetAllActive().Returns(scheduleTasks);
+            Repository.GetAllActive().Returns(scheduleTasks);
             EventLogProcess.GetLatest(isFinished: true, Arg.Any<EntityId>()).Returns
             (
                 new EventLog

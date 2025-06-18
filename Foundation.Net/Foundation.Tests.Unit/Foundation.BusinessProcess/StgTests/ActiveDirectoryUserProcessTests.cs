@@ -33,7 +33,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.StgTests
         protected override String ExpectedAction2Name => "Sync User Profiles";
         protected override String ExpectedComboBoxDisplayMember => FDC.ActiveDirectoryUser.FullName;
 
-        protected override IActiveDirectoryUserRepository CreateDataAccess()
+        protected override IActiveDirectoryUserRepository CreateRepository()
         {
             IActiveDirectoryUserRepository dataAccess = Substitute.For<IActiveDirectoryUserRepository>();
 
@@ -49,7 +49,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.StgTests
 
         protected override IActiveDirectoryUserProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IActiveDirectoryUserProcess process = new ActiveDirectoryUserProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IActiveDirectoryUserProcess process = new ActiveDirectoryUserProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

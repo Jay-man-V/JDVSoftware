@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.ContractType.Description;
 
-        protected override IContractTypeRepository CreateDataAccess()
+        protected override IContractTypeRepository CreateRepository()
         {
             IContractTypeRepository dataAccess = Substitute.For<IContractTypeRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IContractTypeProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IContractTypeProcess process = new ContractTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IContractTypeProcess process = new ContractTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

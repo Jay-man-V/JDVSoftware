@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.Role.Name;
 
-        protected override IRoleRepository CreateDataAccess()
+        protected override IRoleRepository CreateRepository()
         {
             IRoleRepository dataAccess = Substitute.For<IRoleRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
         protected override IRoleProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IRoleProcess process = new RoleProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IRoleProcess process = new RoleProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

@@ -39,7 +39,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.ScheduledJo
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, ScheduleInterval.Seconds, 30);
 
-            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, dataAccess, StatusDataAccess, UserProfileDataAccess, eventLogProcess, scheduleIntervalProcess, calendarProcess);
+            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, dataAccess, StatusRepository, UserProfileRepository, eventLogProcess, scheduleIntervalProcess, calendarProcess);
             SchedulerSupport.Core = CoreInstance;
             SchedulerSupport.RunTimeEnvironmentSettings = RunTimeEnvironmentSettings;
             SchedulerSupport.DateTimeService = DateTimeService;

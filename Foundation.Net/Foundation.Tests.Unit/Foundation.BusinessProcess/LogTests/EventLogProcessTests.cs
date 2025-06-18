@@ -31,7 +31,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.EventLog.BatchName;
 
-        protected override IEventLogRepository CreateDataAccess()
+        protected override IEventLogRepository CreateRepository()
         {
             IEventLogRepository dataAccess = Substitute.For<IEventLogRepository>();
 
@@ -50,7 +50,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             ILogSeverityProcess logSeverityProcess = Substitute.For<ILogSeverityProcess>();
             ITaskStatusProcess taskStatusProcess = Substitute.For<ITaskStatusProcess>();
 
-            IEventLogProcess process = new EventLogProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, logSeverityProcess, taskStatusProcess);
+            IEventLogProcess process = new EventLogProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, logSeverityProcess, taskStatusProcess);
 
             return process;
         }
@@ -140,7 +140,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         {
             IEventLogProcess process = CreateBusinessProcess();
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<EntityId>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 
@@ -163,7 +163,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         {
             IEventLogProcess process = CreateBusinessProcess();
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<IEventLog>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 
@@ -193,7 +193,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 CoreInstance.Container.Get<IEventLog>(),
             };
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<List<IEventLog>>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 
@@ -242,7 +242,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String processName = LocationUtils.GetClassName();
             String taskName = LocationUtils.GetFunctionName();
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -251,7 +251,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -291,7 +291,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String taskName = LocationUtils.GetFunctionName();
             LogSeverity logSeverity = LogSeverity.Warning;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -299,7 +299,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -348,7 +348,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String message = $"{batchName} - {processName} - {taskName}";
             LogSeverity logSeverity = LogSeverity.Warning;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -356,7 +356,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -399,7 +399,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String message = $"{batchName} - {processName} - {taskName}";
             LogSeverity logSeverity = LogSeverity.Warning;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -407,7 +407,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -451,7 +451,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String taskName = LocationUtils.GetFunctionName();
             LogSeverity logSeverity = LogSeverity.Warning;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -459,7 +459,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -509,7 +509,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String message = $"{batchName} - {processName} - {taskName}";
             LogSeverity logSeverity = LogSeverity.Trace;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -517,7 +517,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -562,7 +562,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             String message = $"{batchName} - {processName} - {taskName}";
             LogSeverity logSeverity = LogSeverity.Information;
 
-            DataAccess.Save(Arg.Any<IEventLog>()).Returns(args =>
+            Repository.Save(Arg.Any<IEventLog>()).Returns(args =>
             {
                 IEventLog entity = (IEventLog)args[0];
                 entity.Id = new LogId(1);
@@ -570,7 +570,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            DataAccess.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);

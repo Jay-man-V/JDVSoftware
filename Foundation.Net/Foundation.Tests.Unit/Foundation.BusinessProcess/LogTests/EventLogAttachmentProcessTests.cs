@@ -30,7 +30,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.EventLogAttachment.AttachmentFileName;
 
-        protected override IEventLogAttachmentRepository CreateDataAccess()
+        protected override IEventLogAttachmentRepository CreateRepository()
         {
             IEventLogAttachmentRepository dataAccess = Substitute.For<IEventLogAttachmentRepository>();
 
@@ -46,7 +46,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
         protected override IEventLogAttachmentProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IEventLogAttachmentProcess process = new EventLogAttachmentProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IEventLogAttachmentProcess process = new EventLogAttachmentProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }
@@ -112,7 +112,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         {
             IEventLogAttachmentProcess process = CreateBusinessProcess();
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<EntityId>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 
@@ -135,7 +135,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         {
             IEventLogAttachmentProcess process = CreateBusinessProcess();
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<IEventLogAttachment>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 
@@ -165,7 +165,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 CoreInstance.Container.Get<IEventLogAttachment>(),
             };
 
-            DataAccess
+            Repository
                 .When(da => da.Delete(Arg.Any<List<IEventLogAttachment>>()))
                 .Do(x => throw new NotImplementedException("Event Log Entries cannot be deleted"));
 

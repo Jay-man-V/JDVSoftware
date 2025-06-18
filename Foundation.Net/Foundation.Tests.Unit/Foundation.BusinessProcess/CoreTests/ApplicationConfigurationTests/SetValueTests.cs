@@ -23,17 +23,17 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
     [TestFixture]
     public class SetValueTests : UnitTestBase
     {
-        private IApplicationConfigurationRepository EntityDataAccess { get; set; }
+        private IApplicationConfigurationRepository EntityRepository { get; set; }
 
         private IApplicationConfigurationProcess CreateBusinessProcess()
         {
             IDateTimeService dateTimeService = Substitute.For<IDateTimeService>();
-            EntityDataAccess = Substitute.For<IApplicationConfigurationRepository>();
+            EntityRepository = Substitute.For<IApplicationConfigurationRepository>();
             IConfigurationScopeProcess configurationScopeProcess = Substitute.For<IConfigurationScopeProcess>();
             IApplicationProcess applicationProcess = Substitute.For<IApplicationProcess>();
             IUserProfileProcess userProfileProcess = Substitute.For<IUserProfileProcess>();
 
-            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, EntityDataAccess, StatusDataAccess, UserProfileDataAccess, configurationScopeProcess, applicationProcess, userProfileProcess);
+            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, EntityRepository, StatusRepository, UserProfileRepository, configurationScopeProcess, applicationProcess, userProfileProcess);
 
             return process;
         }
@@ -49,7 +49,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -63,7 +63,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -77,7 +77,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -91,7 +91,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
         }
 
         [TestCase]
@@ -105,7 +105,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -119,7 +119,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -133,7 +133,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -147,7 +147,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -161,7 +161,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -175,7 +175,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -189,7 +189,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -203,7 +203,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -217,7 +217,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -231,7 +231,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -245,7 +245,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -259,7 +259,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value.ToString());
         }
 
         [TestCase]
@@ -274,7 +274,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
         }
 
         [TestCase]
@@ -289,7 +289,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
         }
 
         [TestCase]
@@ -304,7 +304,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             IApplicationConfigurationProcess process = CreateBusinessProcess();
             process.SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, value);
 
-            EntityDataAccess.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
+            EntityRepository.Received().SetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, configurationScope, key, expected);
         }
     }
 }

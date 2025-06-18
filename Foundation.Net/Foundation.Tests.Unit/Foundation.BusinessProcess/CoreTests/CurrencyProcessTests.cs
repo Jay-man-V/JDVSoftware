@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.Currency.IsoCode;
 
-        protected override ICurrencyRepository CreateDataAccess()
+        protected override ICurrencyRepository CreateRepository()
         {
             ICurrencyRepository dataAccess = Substitute.For<ICurrencyRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override ICurrencyProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            ICurrencyProcess process = new CurrencyProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            ICurrencyProcess process = new CurrencyProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

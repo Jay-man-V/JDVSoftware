@@ -11,7 +11,6 @@ using NUnit.Framework;
 using NSubstitute;
 
 using Foundation.BusinessProcess;
-using Foundation.Common;
 using Foundation.Interfaces;
 
 using Foundation.Tests.Unit.Support;
@@ -24,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class AuthenticationProcessTests : UnitTestBase
     {
-        private IAuthenticationRepository DataAccess { get; set; }
+        private IAuthenticationRepository Repository { get; set; }
         private IIdService IdService { get; set; }
 
         private IAuthenticationProcess CreateBusinessProcess()
@@ -35,9 +34,9 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             DateTimeService.SystemDateTimeNow.Returns(SystemDateTimeMs);
             DateTimeService.SystemDateTimeNowWithoutMilliseconds.Returns(SystemDateTime);
 
-            DataAccess = Substitute.For<IAuthenticationRepository>();
+            Repository = Substitute.For<IAuthenticationRepository>();
 
-            IAuthenticationProcess process = new AuthenticationProcess(CoreInstance, DataAccess);
+            IAuthenticationProcess process = new AuthenticationProcess(CoreInstance, Repository);
 
             return process;
         }
@@ -57,7 +56,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
             AuthenticationToken expectedAuthenticationToken = new AuthenticationToken(authenticationTokenId, applicationId, userProfileId, acquired, token, lastRefreshed);
 
-            DataAccess.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
+            Repository.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
 
             AuthenticationToken authenticationToken = process.AuthenticateUser(applicationId);
 
@@ -86,7 +85,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
 
             AuthenticationToken expectedAuthenticationToken = new AuthenticationToken(authenticationTokenId, applicationId, userProfileId, acquired, token, lastRefreshed);
 
-            DataAccess.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
+            Repository.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
 
             AuthenticationToken authenticationToken = process.AuthenticateUser(applicationId, userProfile);
 
@@ -119,13 +118,13 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             DateTime lastRefreshed = DateTimeService.SystemDateTimeNow.AddMinutes(-10);
 
             AuthenticationToken expectedAuthenticationToken = new AuthenticationToken(authenticationTokenId, applicationId, userProfileId, acquired, token, lastRefreshed);
-            DataAccess.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
+            Repository.AuthenticateUser(Arg.Any<AppId>(), Arg.Any<IUserProfile>()).Returns(expectedAuthenticationToken);
 
             DateTime newLastRefreshed = DateTimeService.SystemDateTimeNow;
             AuthenticationToken newAuthenticationToken = new AuthenticationToken(expectedAuthenticationToken, newLastRefreshed);
-            DataAccess.ValidateAuthenticationToken(ref newAuthenticationToken);
+            Repository.ValidateAuthenticationToken(ref newAuthenticationToken);
 
-            DataAccess.WhenForAnyArgs(x => x.ValidateAuthenticationToken(ref newAuthenticationToken))
+            Repository.WhenForAnyArgs(x => x.ValidateAuthenticationToken(ref newAuthenticationToken))
                 .Do(x =>
                 {
                     x[0] = newAuthenticationToken;

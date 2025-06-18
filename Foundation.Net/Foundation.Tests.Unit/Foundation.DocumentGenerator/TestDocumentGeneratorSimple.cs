@@ -30,7 +30,7 @@ namespace Foundation.Tests.Unit.Foundation.DocumentGenerator
             IDateTimeService dateTimeService = Substitute.For<IDateTimeService>();
             IMockFoundationModelRepository repository = Substitute.For<IMockFoundationModelRepository>();
 
-            IMockFoundationModelProcess process = new MockFoundationModelProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, repository, StatusDataAccess, UserProfileDataAccess);
+            IMockFoundationModelProcess process = new MockFoundationModelProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

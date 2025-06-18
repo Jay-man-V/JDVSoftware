@@ -49,7 +49,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override String ExpectedComboBoxDisplayMember => FDC.NonWorkingDay.Description;
 
-        protected override INonWorkingDayRepository CreateDataAccess()
+        protected override INonWorkingDayRepository CreateRepository()
         {
             INonWorkingDayRepository dataAccess = Substitute.For<INonWorkingDayRepository>();
 
@@ -71,7 +71,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
             CopyProperties(countryProcess, CoreInstance.Container.Get<ICountryProcess>());
 
-            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationConfigurationProcess, countryProcess, httpWebApi);
+            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationConfigurationProcess, countryProcess, httpWebApi);
 
             return process;
         }
@@ -276,7 +276,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             ICountryProcess countryProcess = Substitute.For<ICountryProcess>();
             IHttpApi httpWebApi = Substitute.For<IHttpApi>();
 
-            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationConfigurationProcess, countryProcess, httpWebApi);
+            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, Repository, StatusRepository, UserProfileRepository, applicationConfigurationProcess, countryProcess, httpWebApi);
 
             List<ICountry> countriesToReturn = new List<ICountry>
             {
@@ -377,17 +377,17 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             ICountry country = CoreInstance.Container.Get<ICountry>();
 
             const INonWorkingDay nonWorkingDay = null;
-            DataAccess.Get(Arg.Any<EntityId>(), Arg.Any<DateTime>()).Returns(nonWorkingDay);
+            Repository.Get(Arg.Any<EntityId>(), Arg.Any<DateTime>()).Returns(nonWorkingDay);
 
             applicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), Arg.Any<String>()).Returns("Configuration Value");
             httpWebApi.DownloadString(Arg.Any<IFileTransferSettings>()).Returns(inputJsonData);
 
-            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationConfigurationProcess, countryProcess, httpWebApi);
+            INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, Repository, StatusRepository, UserProfileRepository, applicationConfigurationProcess, countryProcess, httpWebApi);
 
             process.UpdateBankHolidayCalendarFromGovernmentSource(country);
 
-            DataAccess.Get(Arg.Any<EntityId>(), Arg.Any<DateTime>()).Received(1);
-            DataAccess.Save(Arg.Any<INonWorkingDay>()).Received(1);
+            Repository.Get(Arg.Any<EntityId>(), Arg.Any<DateTime>()).Received(1);
+            Repository.Save(Arg.Any<INonWorkingDay>()).Received(1);
         }
     }
 }

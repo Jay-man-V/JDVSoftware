@@ -14,7 +14,7 @@ using FDC = Foundation.Common.DataColumns;
 namespace Foundation.Repository
 {
     /// <summary>
-    /// Defines the ApplicationRoleDataAccess Data Access class
+    /// Defines the ApplicationRoleRepository Data Access class
     /// </summary>
     /// <see cref="IApplicationRole" />
     [DependencyInjectionTransient]

@@ -46,15 +46,15 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.ComponentsTests
             CalendarProcess.CheckIsWorkingDayOrGetNextWorkingDay(RunTimeEnvironmentSettings.StandardCountryCode, currentDate + startTime).Returns(currentDate + startTime);
             CalendarProcess.CheckIsWorkingDayOrGetNextWorkingDay(RunTimeEnvironmentSettings.StandardCountryCode, currentDate + endTime).Returns(currentDate + endTime);
 
-            IScheduledJobRepository dataAccess = Substitute.For<IScheduledJobRepository>();
-            IStatusRepository statusDataAccess = Substitute.For<IStatusRepository>();
-            IUserProfileRepository userProfileDataAccess = Substitute.For<IUserProfileRepository>();
+            IScheduledJobRepository repository = Substitute.For<IScheduledJobRepository>();
+            IStatusRepository statusRepository = Substitute.For<IStatusRepository>();
+            IUserProfileRepository userProfileRepository = Substitute.For<IUserProfileRepository>();
             IEventLogProcess eventLogProcess = Substitute.For<IEventLogProcess>();
             IScheduleIntervalProcess scheduleIntervalProcess = Substitute.For<IScheduleIntervalProcess>();
             ICalendarProcess calendarProcess = Substitute.For<ICalendarProcess>();
 
             IScheduledJob scheduledJob = SchedulerSupport.CreateScheduledJob(CoreInstance, false, currentDate, ScheduleInterval.Seconds, 30);
-            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, dataAccess, statusDataAccess, userProfileDataAccess, eventLogProcess, scheduleIntervalProcess, calendarProcess);
+            IScheduledJobProcess process = new ScheduledJobProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, repository, statusRepository, userProfileRepository, eventLogProcess, scheduleIntervalProcess, calendarProcess);
             SchedulerSupport.Core = CoreInstance;
             SchedulerSupport.RunTimeEnvironmentSettings = RunTimeEnvironmentSettings;
             SchedulerSupport.DateTimeService = dateTimeService;

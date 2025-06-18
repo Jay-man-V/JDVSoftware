@@ -37,7 +37,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
         private readonly DateTime _contractStartDate = new DateTime(2022, 01, 01, 0, 0, 0);
         private readonly DateTime _contractEndDate = new DateTime(2022, 12, 31, 23, 59, 59);
 
-        protected override IContractRepository CreateDataAccess()
+        protected override IContractRepository CreateRepository()
         {
             IContractRepository dataAccess = Substitute.For<IContractRepository>();
 
@@ -57,7 +57,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
             CopyProperties(contractTypeProcess, CoreInstance.Container.Get<IContractTypeProcess>());
 
-            IContractProcess process = new ContractProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, contractTypeProcess);
+            IContractProcess process = new ContractProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, contractTypeProcess);
 
             return process;
         }

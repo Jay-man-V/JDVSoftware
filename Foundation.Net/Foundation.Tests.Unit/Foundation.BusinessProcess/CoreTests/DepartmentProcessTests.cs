@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override string ExpectedComboBoxDisplayMember => FDC.Department.Code;
 
-        protected override IDepartmentRepository CreateDataAccess()
+        protected override IDepartmentRepository CreateRepository()
         {
             IDepartmentRepository dataAccess = Substitute.For<IDepartmentRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override IDepartmentProcess CreateBusinessProcess(IDateTimeService dateTimeService)
         {
-            IDepartmentProcess process = new DepartmentProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess);
+            IDepartmentProcess process = new DepartmentProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository);
 
             return process;
         }

@@ -26,7 +26,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
         protected override String ExpectedScreenTitle => "Application/Application Types";
         protected override String ExpectedStatusBarText => "Number of Application/Application Types:";
 
-        protected override IApplicationApplicationTypeRepository CreateDataAccess()
+        protected override IApplicationApplicationTypeRepository CreateRepository()
         {
             IApplicationApplicationTypeRepository dataAccess = Substitute.For<IApplicationApplicationTypeRepository>();
 
@@ -45,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             IApplicationProcess applicationProcess = Substitute.For<IApplicationProcess>();
             IApplicationTypeProcess applicationTypeProcess = Substitute.For<IApplicationTypeProcess>();
 
-            IApplicationApplicationTypeProcess process = new ApplicationApplicationTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DataAccess, StatusDataAccess, UserProfileDataAccess, applicationProcess, applicationTypeProcess);
+            IApplicationApplicationTypeProcess process = new ApplicationApplicationTypeProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, Repository, StatusRepository, UserProfileRepository, applicationProcess, applicationTypeProcess);
 
             return process;
         }

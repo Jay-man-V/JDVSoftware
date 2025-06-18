@@ -23,17 +23,17 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
     [TestFixture]
     public class GetDefaultValueTests : UnitTestBase
     {
-        private IApplicationConfigurationRepository EntityDataAccess { get; set; }
+        private IApplicationConfigurationRepository EntityRepository { get; set; }
 
         private IApplicationConfigurationProcess CreateBusinessProcess()
         {
             IDateTimeService dateTimeService = Substitute.For<IDateTimeService>();
-            EntityDataAccess = Substitute.For<IApplicationConfigurationRepository>();
+            EntityRepository = Substitute.For<IApplicationConfigurationRepository>();
             IConfigurationScopeProcess configurationScopeProcess = Substitute.For<IConfigurationScopeProcess>();
             IApplicationProcess applicationProcess = Substitute.For<IApplicationProcess>();
             IUserProfileProcess userProfileProcess = Substitute.For<IUserProfileProcess>();
 
-            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, EntityDataAccess, StatusDataAccess, UserProfileDataAccess, configurationScopeProcess, applicationProcess, userProfileProcess);
+            IApplicationConfigurationProcess process = new ApplicationConfigurationProcess(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, EntityRepository, StatusRepository, UserProfileRepository, configurationScopeProcess, applicationProcess, userProfileProcess);
 
             return process;
         }
@@ -46,7 +46,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Boolean expectedValue = true;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -61,7 +61,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Boolean expectedValue = true;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -76,7 +76,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Char expectedValue = 'Z';
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -91,7 +91,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             String expectedValue = Guid.NewGuid().ToString();
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -106,7 +106,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const SByte expectedValue = SByte.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -121,7 +121,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Byte expectedValue = Byte.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -136,7 +136,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Int16 expectedValue = Int16.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -151,7 +151,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const UInt16 expectedValue = UInt16.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -166,7 +166,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Int32 expectedValue = Int32.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -181,7 +181,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const UInt32 expectedValue = UInt32.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -196,7 +196,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Int64 expectedValue = Int64.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -211,7 +211,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const UInt64 expectedValue = UInt64.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Object actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -226,7 +226,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             TimeSpan expectedValue = new TimeSpan(10, 5, 0);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             TimeSpan actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -241,7 +241,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             DateTime expectedValue = new DateTime(2023, 09, 08);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             DateTime actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -256,7 +256,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             DateTime expectedValue = new DateTime(2023, 09, 08, 21, 38, 45);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             DateTime actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -271,7 +271,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             DateTime expectedValue = new DateTime(2023, 09, 08, 21, 38, 45, 123);
             
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             DateTime actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -286,7 +286,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             Guid expectedValue = new Guid("{0B368339-E43E-4AFF-9FBC-C9F0074FD068}");
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Guid actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -301,7 +301,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Decimal expectedValue = Decimal.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Decimal actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 
@@ -316,7 +316,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             const Double expectedValue = 1.79769313486232d;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityDataAccess.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
+            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(default(String));
 
             Double actualValue = process.GetValue(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key, expectedValue);
 

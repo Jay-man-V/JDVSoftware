@@ -4,6 +4,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using NUnit.Framework;
@@ -39,6 +40,17 @@ namespace Foundation.Tests.System.Foundation.BusinessProcess.CoreTests
             List<IApplicationConfiguration> groupValues = TheProcess.GetAll();
 
             Assert.That(groupValues, Is.Not.Null);
+        }
+
+        [TestCase]
+        public void Test_GetValue()
+        {
+            String expected = "*@datalore.me.uk";
+            String key = "email.smtp.host.username";
+
+            String actualValue = TheProcess.Get<String>(CoreSystemApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+
+            Assert.That(actualValue, Is.EqualTo(expected));
         }
 
         [TestCase]

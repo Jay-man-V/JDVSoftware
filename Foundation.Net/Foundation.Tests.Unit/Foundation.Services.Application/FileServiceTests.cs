@@ -93,7 +93,7 @@ namespace Foundation.Tests.Unit.Foundation.Services.Application
             String userDataPath = @".\UserData\";
 
             IFileApi fileApi = CreateBusinessProcess();
-            ApplicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.UserDataPath).Returns(userDataPath);
+            ApplicationConfigurationProcess.Get<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.UserDataPath).Returns(userDataPath);
 
             String expected = @".\UserData\";
             String actual = fileApi.UserDataPath;
@@ -110,7 +110,7 @@ namespace Foundation.Tests.Unit.Foundation.Services.Application
             String systemDataPath = @"\SystemData\";
 
             IFileApi fileApi = CreateBusinessProcess();
-            ApplicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.SystemDataPath).Returns(systemDataPath);
+            ApplicationConfigurationProcess.Get<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.SystemDataPath).Returns(systemDataPath);
 
             String expected = @"\SystemData\";
             String actual = fileApi.SystemDataPath;

@@ -53,7 +53,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.FileManagementTests
             String expectedFilePath = @".\UserData\";
 
             IFileApi fileApi = CreateBusinessProcess();
-            ApplicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.UserDataPath).Returns(expectedFilePath);
+            ApplicationConfigurationProcess.Get<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.UserDataPath).Returns(expectedFilePath);
 
             String actualFilePath = fileApi.UserDataPath;
 
@@ -69,7 +69,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.FileManagementTests
             String expectedFilePath = @"\SystemData\";
 
             IFileApi fileApi = CreateBusinessProcess();
-            ApplicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.SystemDataPath).Returns(expectedFilePath);
+            ApplicationConfigurationProcess.Get<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), ApplicationConfigurationKeys.SystemDataPath).Returns(expectedFilePath);
 
             String actualFilePath = fileApi.SystemDataPath;
 

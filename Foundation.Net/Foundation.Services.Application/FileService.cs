@@ -51,7 +51,7 @@ namespace Foundation.Services.Application
         {
             get
             {
-                String configuredUserDataPath = ApplicationConfigurationProcess.GetValue<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.UserDataPath);
+                String configuredUserDataPath = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.UserDataPath);
                 String retVal = MakeDataPath(configuredUserDataPath, String.Empty);
 
                 return retVal;
@@ -63,7 +63,7 @@ namespace Foundation.Services.Application
         {
             get
             {
-                String configuredSystemDataPath = ApplicationConfigurationProcess.GetValue<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.SystemDataPath);
+                String configuredSystemDataPath = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.SystemDataPath);
                 String retVal = MakeDataPath(configuredSystemDataPath, String.Empty);
 
                 return retVal;

@@ -231,18 +231,20 @@ namespace Foundation.BusinessProcess
             LoggingHelpers.TraceCallReturn();
         }
 
-        /// <inheritdoc cref="IApplicationConfigurationProcess.GetValue{TValue}(AppId, IUserProfile, String)"/>
-        public TValue GetValue<TValue>(AppId applicationId, IUserProfile userProfile, String key)
+        /// <inheritdoc cref="IApplicationConfigurationProcess.Get{TValue}(AppId, IUserProfile, String)"/>
+        public TValue Get<TValue>(AppId applicationId, IUserProfile userProfile, String key)
         {
             LoggingHelpers.TraceCallEnter(applicationId, userProfile, key);
 
-            String loadedValue = EntityRepository.GetValue(applicationId, userProfile, key);
+            IApplicationConfiguration applicationConfiguration = EntityRepository.Get(applicationId, userProfile, key);
 
-            if (String.IsNullOrEmpty(loadedValue))
+            if (applicationConfiguration.IsNull())
             {
                 String errorMessage = $"Configuration value with Key '{key}' for application id '{applicationId.TheAppId}' not found. Null value retrieved from database.";
                 throw new NullValueException(errorMessage);
             }
+
+            Object loadedValue = applicationConfiguration.Value;
 
             TValue retVal = SerialisationHelpers.Deserialise<TValue>(loadedValue);
 
@@ -251,22 +253,24 @@ namespace Foundation.BusinessProcess
             return retVal;
         }
 
-        /// <inheritdoc cref="IApplicationConfigurationProcess.GetValue{TValue}(AppId, IUserProfile, String, TValue)"/>
-        public TValue GetValue<TValue>(AppId applicationId, IUserProfile userProfile, String key, TValue defaultValue)
+        /// <inheritdoc cref="IApplicationConfigurationProcess.Get{TValue}(AppId, IUserProfile, String, TValue)"/>
+        public TValue Get<TValue>(AppId applicationId, IUserProfile userProfile, String key, TValue defaultValue)
         {
             LoggingHelpers.TraceCallEnter(applicationId, userProfile, key, defaultValue);
 
-            Object obj = EntityRepository.GetValue(applicationId, userProfile, key);
+            IApplicationConfiguration applicationConfiguration = EntityRepository.Get(applicationId, userProfile, key);
 
             TValue retVal = defaultValue;
 
-            if (obj.IsNull())
+            if (applicationConfiguration.IsNull())
             {
                 String message = $"Configuration value with Key '{key}' for application id '{applicationId.TheAppId}' not found, using default value '{defaultValue}'";
                 LoggingHelpers.LogWarningMessage(message);
             }
             else
             {
+                Object obj = applicationConfiguration.Value;
+
                 retVal = SerialisationHelpers.Deserialise<TValue>(obj);
             }
 

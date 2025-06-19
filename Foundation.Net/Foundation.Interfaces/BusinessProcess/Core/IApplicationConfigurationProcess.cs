@@ -44,7 +44,7 @@ namespace Foundation.Interfaces
         /// <param name="key">Name of the key.</param>
         /// <returns>
         /// </returns>
-        TValue GetValue<TValue>(AppId applicationId, IUserProfile userProfile, String key);
+        TValue Get<TValue>(AppId applicationId, IUserProfile userProfile, String key);
 
         /// <summary>
         /// Gets the value.
@@ -56,7 +56,7 @@ namespace Foundation.Interfaces
         /// <returns>
         ///   <br />
         /// </returns>
-        TValue GetValue<TValue>(AppId applicationId, IUserProfile userProfile, String key, TValue defaultValue);
+        TValue Get<TValue>(AppId applicationId, IUserProfile userProfile, String key, TValue defaultValue);
 
         /// <summary>
         /// Gets the group of values.

@@ -83,9 +83,9 @@ namespace Foundation.Services.Application
 
             // https://random-word-api.herokuapp.com/home
 
-            String passwordLengthValue = ApplicationConfigurationProcess.GetValue(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordRuleLengthKey, RandomPasswordRuleLengthDefaultValue);
-            String passwordCountValue = ApplicationConfigurationProcess.GetValue(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordRuleCountKey, RandomPasswordRuleCountDefaultValue);
-            String passwordGeneratorUrl = ApplicationConfigurationProcess.GetValue<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordGenerateUrlKey);
+            String passwordLengthValue = ApplicationConfigurationProcess.Get(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordRuleLengthKey, RandomPasswordRuleLengthDefaultValue);
+            String passwordCountValue = ApplicationConfigurationProcess.Get(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordRuleCountKey, RandomPasswordRuleCountDefaultValue);
+            String passwordGeneratorUrl = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, RandomPasswordGenerateUrlKey);
             passwordGeneratorUrl = String.Format(passwordGeneratorUrl, passwordLengthValue, passwordCountValue);
 
             IFileTransferSettings fileTransferSettings = new FileTransferSettings();

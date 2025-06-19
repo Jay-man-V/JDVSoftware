@@ -70,12 +70,12 @@ namespace Foundation.Repository
             LoggingHelpers.TraceCallReturn();
         }
 
-        /// <inheritdoc cref="IApplicationConfigurationRepository.GetValue(AppId, IUserProfile, String)"/>
-        public String GetValue(AppId applicationId, IUserProfile userProfile, String key)
+        /// <inheritdoc cref="IApplicationConfigurationRepository.Get(AppId, IUserProfile, String)"/>
+        public IApplicationConfiguration Get(AppId applicationId, IUserProfile userProfile, String key)
         {
             LoggingHelpers.TraceCallEnter(applicationId, userProfile, key);
 
-            String retVal = default;
+            IApplicationConfiguration retVal = default;
 
             StringBuilder sql = new StringBuilder();
 
@@ -109,11 +109,14 @@ namespace Foundation.Repository
                 FoundationDataAccess.CreateParameter($"{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedByUserProfileId}", userProfile.Id),
             };
 
-            Object result = FoundationDataAccess.ExecuteScalar(sql.ToString(), CommandType.Text, databaseParameters);
-
-            if (result.IsNotNull())
+            using (IDataReader dataReader = FoundationDataAccess.ExecuteReader(sql.ToString(), CommandType.Text, databaseParameters))
             {
-                retVal = Convert.ToString(result);
+                while (dataReader.Read())
+                {
+                    retVal = PopulateEntity<IApplicationConfiguration>(dataReader);
+                }
+
+                dataReader.Close();
             }
 
             LoggingHelpers.TraceCallReturn(retVal);

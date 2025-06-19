@@ -379,7 +379,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             const INonWorkingDay nonWorkingDay = null;
             Repository.Get(Arg.Any<EntityId>(), Arg.Any<DateTime>()).Returns(nonWorkingDay);
 
-            applicationConfigurationProcess.GetValue<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), Arg.Any<String>()).Returns("Configuration Value");
+            applicationConfigurationProcess.Get<String>(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), Arg.Any<String>()).Returns("Configuration Value");
             httpWebApi.DownloadString(Arg.Any<IFileTransferSettings>()).Returns(inputJsonData);
 
             INonWorkingDayProcess process = new NonWorkingDayProcess(CoreInstance, RunTimeEnvironmentSettings, DateTimeService, Repository, StatusRepository, UserProfileRepository, applicationConfigurationProcess, countryProcess, httpWebApi);

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="GetValueTests.cs" company="JDV Software Ltd">
+// <copyright file="GetTests.cs" company="JDV Software Ltd">
 //     Copyright (c) JDV Software Ltd. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,6 +12,7 @@ using NSubstitute;
 
 using Foundation.BusinessProcess;
 using Foundation.Interfaces;
+using Foundation.Models;
 using Foundation.Resources;
 
 using Foundation.Tests.Unit.Support;
@@ -22,7 +23,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
     /// Summary description for ApplicationConfigurationProcessTests
     /// </summary>
     [TestFixture]
-    public class GetValueTests : UnitTestBase
+    public class GetTests : UnitTestBase
     {
         private IApplicationConfigurationRepository EntityRepository { get; set; }
 
@@ -44,7 +45,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = null;
+            const IApplicationConfiguration expectedValueFromDatabase = null;
 
             String errorMessage = $"Configuration value with Key '{key}' for application id '{applicationId.TheAppId}' not found. Null value retrieved from database.";
             NullValueException actualException = null;
@@ -52,8 +53,8 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
             try
             {
                 IApplicationConfigurationProcess process = CreateBusinessProcess();
-                EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
-                process.GetValue<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+                EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+                process.Get<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
             }
             catch (NullValueException e)
             {
@@ -66,7 +67,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
         }
 
         [TestCase]
-        public void Test_GetValue_StandardKeys()
+        public void Test_Get_StandardKeys()
         {
             String[] standardKeys =
             {
@@ -91,317 +92,317 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests.Application
 
             foreach (String key in standardKeys)
             {
-                String expectedValueFromDatabase = Guid.NewGuid().ToString();
+                IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration{ Value = Guid.NewGuid().ToString() };
 
                 IApplicationConfigurationProcess process = CreateBusinessProcess();
-                EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+                EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-                String actualValue = process.GetValue<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+                String actualValue = process.Get<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
-                Assert.That(actualValue, Is.EqualTo(expectedValueFromDatabase));
+                Assert.That(actualValue, Is.EqualTo(expectedValueFromDatabase.Value));
             }
         }
 
         [TestCase]
-        public void Test_GetValue_Boolean_True()
+        public void Test_Get_Boolean_True()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "true";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "true" };
             const Boolean expectedValue = true;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Boolean actualValue = process.GetValue<Boolean>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Boolean actualValue = process.Get<Boolean>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Boolean_False()
+        public void Test_Get_Boolean_False()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "false";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "false" };
             const Boolean expectedValue = false;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Boolean actualValue = process.GetValue<Boolean>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Boolean actualValue = process.Get<Boolean>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_TimeSpan()
+        public void Test_Get_TimeSpan()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "10:05:00";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "10:05:00" };
             TimeSpan expectedValue = new TimeSpan(10, 5, 0);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            TimeSpan actualValue = process.GetValue<TimeSpan>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            TimeSpan actualValue = process.Get<TimeSpan>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Date()
+        public void Test_Get_Date()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "2023-09-08";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "2023-09-08" };
             DateTime expectedValue = new DateTime(2023, 09, 08);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            DateTime actualValue = process.GetValue<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            DateTime actualValue = process.Get<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_DateTime()
+        public void Test_Get_DateTime()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "2023-09-08 21:38:45";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "2023-09-08 21:38:45" };
             DateTime expectedValue = new DateTime(2023, 09, 08, 21, 38, 45);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            DateTime actualValue = process.GetValue<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            DateTime actualValue = process.Get<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_DateTimeMilliseconds()
+        public void Test_Get_DateTimeMilliseconds()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "2023-09-08 21:38:45.123";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "2023-09-08 21:38:45.123" };
             DateTime expectedValue = new DateTime(2023, 09, 08, 21, 38, 45, 123);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            DateTime actualValue = process.GetValue<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            DateTime actualValue = process.Get<DateTime>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Guid()
+        public void Test_Get_Guid()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            Guid expectedValueFromDatabase = new Guid("{0B368339-E43E-4AFF-9FBC-C9F0074FD068}");
-            Guid expectedValue = expectedValueFromDatabase;
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = new Guid("{0B368339-E43E-4AFF-9FBC-C9F0074FD068}") };
+            Guid expectedValue = new Guid("{0B368339-E43E-4AFF-9FBC-C9F0074FD068}");
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase.ToString());
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Guid actualValue = process.GetValue<Guid>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Guid actualValue = process.Get<Guid>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Char()
+        public void Test_Get_Char()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const Char expectedValueFromDatabase = 'Z';
-            Char expectedValue = expectedValueFromDatabase;
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = 'Z' };
+            Char expectedValue = Convert.ToChar(expectedValueFromDatabase.Value);
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase.ToString());
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Char actualValue = process.GetValue<Char>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Char actualValue = process.Get<Char>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_String()
+        public void Test_Get_String()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "{0B368339-E43E-4AFF-9FBC-C9F0074FD068}";
-            String expectedValue = expectedValueFromDatabase;
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "{0B368339-E43E-4AFF-9FBC-C9F0074FD068}" };
+            String expectedValue = expectedValueFromDatabase.Value.ToString();
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            String actualValue = process.GetValue<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            String actualValue = process.Get<String>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Int16()
+        public void Test_Get_Int16()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "32767";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "32767" };
             const Int16 expectedValue = Int16.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Int16 actualValue = process.GetValue<Int16>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Int16 actualValue = process.Get<Int16>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_UInt16()
+        public void Test_Get_UInt16()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "65535";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "65535" };
             const UInt16 expectedValue = UInt16.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            UInt16 actualValue = process.GetValue<UInt16>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            UInt16 actualValue = process.Get<UInt16>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Int32()
+        public void Test_Get_Int32()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "2147483647";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "2147483647" };
             const Int32 expectedValue = Int32.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Int32 actualValue = process.GetValue<Int32>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Int32 actualValue = process.Get<Int32>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_UInt32()
+        public void Test_Get_UInt32()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "4294967295";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "4294967295" };
             const UInt32 expectedValue = UInt32.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            UInt32 actualValue = process.GetValue<UInt32>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            UInt32 actualValue = process.Get<UInt32>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Int64()
+        public void Test_Get_Int64()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "9223372036854775807";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "9223372036854775807" };
             const Int64 expectedValue = Int64.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Int64 actualValue = process.GetValue<Int64>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Int64 actualValue = process.Get<Int64>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_UInt64()
+        public void Test_Get_UInt64()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "18446744073709551615";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "18446744073709551615" };
             const UInt64 expectedValue = UInt64.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            UInt64 actualValue = process.GetValue<UInt64>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            UInt64 actualValue = process.Get<UInt64>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Decimal()
+        public void Test_Get_Decimal()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "79228162514264337593543950335";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "79228162514264337593543950335" };
             const Decimal expectedValue = Decimal.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Decimal actualValue = process.GetValue<Decimal>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Decimal actualValue = process.Get<Decimal>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Double()
+        public void Test_Get_Double()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "1.79769313486232";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "1.79769313486232" };
             const Double expectedValue = 1.79769313486232d;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Double actualValue = process.GetValue<Double>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Double actualValue = process.Get<Double>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_Byte()
+        public void Test_Get_Byte()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "255";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "255" };
             const Byte expectedValue = Byte.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            Byte actualValue = process.GetValue<Byte>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            Byte actualValue = process.Get<Byte>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
         [TestCase]
-        public void Test_GetValue_SByte()
+        public void Test_Get_SByte()
         {
             AppId applicationId = new AppId(0);
             const String key = "value";
-            const String expectedValueFromDatabase = "127";
+            IApplicationConfiguration expectedValueFromDatabase = new ApplicationConfiguration { Value = "127" };
             const SByte expectedValue = SByte.MaxValue;
 
             IApplicationConfigurationProcess process = CreateBusinessProcess();
-            EntityRepository.GetValue(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
+            EntityRepository.Get(Arg.Any<AppId>(), Arg.Any<IUserProfile>(), key).Returns(expectedValueFromDatabase);
 
-            SByte actualValue = process.GetValue<SByte>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
+            SByte actualValue = process.Get<SByte>(applicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, key);
 
             Assert.That(actualValue, Is.EqualTo(expectedValue));
         }

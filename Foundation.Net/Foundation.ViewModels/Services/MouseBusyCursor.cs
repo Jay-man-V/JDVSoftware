@@ -23,10 +23,13 @@ namespace Foundation.ViewModels
         /// <summary>
         /// Initialises a new instance of the <see cref="MouseBusyCursor" /> class.
         /// </summary>
-        public MouseBusyCursor()
+        public MouseBusyCursor(IDispatcherTimerWrapper dispatcherTimerWrapper = null)
         {
+            DispatcherTimerWrapper = dispatcherTimerWrapper;
             SetBusyState();
         }
+
+        private IDispatcherTimerWrapper DispatcherTimerWrapper { get; }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -67,10 +70,10 @@ namespace Foundation.ViewModels
                 {
                     Mouse.OverrideCursor = busy ? Cursors.Wait : null;
 
-                    Dispatcher currentDispatcher = Application.Current.Dispatcher;
                     TimeSpan interval = TimeSpan.FromSeconds(0);
                     DispatcherPriority dispatcherPriority = DispatcherPriority.ApplicationIdle;
-                    DispatcherTimer timer = new DispatcherTimer(interval, dispatcherPriority, OnDispatcherTimer_Tick, currentDispatcher);
+                    Dispatcher currentDispatcher = Application.Current.Dispatcher;
+                    IDispatcherTimerWrapper timer = DispatcherTimerWrapper.NewTimer(interval, dispatcherPriority, OnDispatcherTimer_Tick, currentDispatcher);
                     timer.Start();
                 }
             }

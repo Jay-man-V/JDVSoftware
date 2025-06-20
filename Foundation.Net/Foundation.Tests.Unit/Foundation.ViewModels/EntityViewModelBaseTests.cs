@@ -10,7 +10,6 @@ using NUnit.Framework;
 
 using NSubstitute;
 
-using Foundation.Common;
 using Foundation.Interfaces;
 using Foundation.ViewModels;
 
@@ -29,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels
 
         protected override IMockModelViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IMockModelViewModel entityViewModel = new MockModelViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DialogService, ClipBoardWrapper);
+            IMockModelViewModel entityViewModel = new MockModelViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects);
             EntityViewModelBase<IMockFoundationModel> entityViewModelBase = (EntityViewModelBase<IMockFoundationModel>)entityViewModel;
 
             entityViewModelBase.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

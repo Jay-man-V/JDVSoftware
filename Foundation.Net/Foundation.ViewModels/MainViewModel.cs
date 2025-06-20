@@ -36,8 +36,7 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="targetWindow">The target window.</param>
         /// <param name="applicationDefinition">The application definition.</param>
@@ -47,8 +46,7 @@ namespace Foundation.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             IWindow targetWindow,
             ApplicationDefinition applicationDefinition,
@@ -59,12 +57,11 @@ namespace Foundation.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 applicationDefinition.Name
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, targetWindow, applicationDefinition, loggedOnUserProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, targetWindow, applicationDefinition, loggedOnUserProcess);
 
             FileApi = fileApi;
             ApplicationDefinition = applicationDefinition;
@@ -82,7 +79,7 @@ namespace Foundation.ViewModels
                 UserRole += role.Name;
             }
 
-            LoggedOnUsersViewModel = new LoggedOnUserViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, DialogService, ClipBoardWrapper, FileApi, loggedOnUserProcess);
+            LoggedOnUsersViewModel = new LoggedOnUserViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, wpfApplicationObjects, FileApi, loggedOnUserProcess);
             LoggedOnUsersViewModel.Initialise(targetWindow, this, "Logged on Users");
 
             InitialiseMenuItems();
@@ -363,7 +360,7 @@ namespace Foundation.ViewModels
         {
             Visibility continueVisibility = Visibility.Visible;
             MessageDialogForm theForm = new MessageDialogForm();
-            ErrorDialogViewModel errorDialogViewModel = new ErrorDialogViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, DialogService, ClipBoardWrapper, theForm, this, exception, continueVisibility);
+            ErrorDialogViewModel errorDialogViewModel = new ErrorDialogViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, WpfApplicationObjects, theForm, this, exception, continueVisibility);
 
             // Show a message before closing application
             theForm.DataContext = errorDialogViewModel;
@@ -619,7 +616,7 @@ namespace Foundation.ViewModels
                 LoggingHelpers.TraceMessage("Opening About dialog");
                 IViewModel parentViewModel = this;
                 AboutSplashScreenForm theForm = new AboutSplashScreenForm();
-                AboutSplashScreenFormViewModel viewModel = new AboutSplashScreenFormViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, DialogService, ClipBoardWrapper, false);
+                AboutSplashScreenFormViewModel viewModel = new AboutSplashScreenFormViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, WpfApplicationObjects, false);
                 theForm.DataContext = viewModel;
                 theForm.Show();
             }
@@ -672,7 +669,7 @@ namespace Foundation.ViewModels
                 FEnums.MessageBoxImage messageBoxImage = (FEnums.MessageBoxImage)iconIds[randomService.NextInt32(1, 9)];
 
                 MessageDialogForm theForm = new MessageDialogForm();
-                MessageDialogViewModel messageDialogViewModel = new MessageDialogViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, DialogService, ClipBoardWrapper, theForm, this);
+                MessageDialogViewModel messageDialogViewModel = new MessageDialogViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, WpfApplicationObjects, theForm, this);
 
                 messageDialogViewModel.MessageBoxImage = messageBoxImage;
                 messageDialogViewModel.FormTitle = $"Form Title - {messageDialogViewModel.MessageBoxImage}";

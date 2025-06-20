@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.LogTests
 
         protected override IImportExportControlViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IImportExportControlViewModel viewModel = new ImportExportControlViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IImportExportControlViewModel viewModel = new ImportExportControlViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IImportExportControl> genericDataGridViewModel = (GenericDataGridViewModelBase<IImportExportControl>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IWorldRegionViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IWorldRegionViewModel viewModel = new WorldRegionViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IWorldRegionViewModel viewModel = new WorldRegionViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IWorldRegion> genericDataGridViewModel = (GenericDataGridViewModelBase<IWorldRegion>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

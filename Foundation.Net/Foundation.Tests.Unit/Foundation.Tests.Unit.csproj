@@ -66,6 +66,10 @@
     </Compile>
     <Compile Include=".Mocks\CancelEventArgs.cs" />
     <Compile Include=".Mocks\MockApplication.cs" />
+    <Compile Include=".Mocks\MockWindowWrapper.cs" />
+    <Compile Include=".Mocks\MockApplicationWrapper.cs" />
+    <Compile Include=".Mocks\MockDispatcherWrapper.cs" />
+    <Compile Include=".Mocks\MockDispatcherTimerWrapper.cs" />
     <Compile Include=".Mocks\MockClipBoardWrapper.cs" />
     <Compile Include=".Mocks\ViewModels\MockGenericDataGridViewModel.cs" />
     <Compile Include=".Mocks\ViewModels\MockModelViewModel.cs" />

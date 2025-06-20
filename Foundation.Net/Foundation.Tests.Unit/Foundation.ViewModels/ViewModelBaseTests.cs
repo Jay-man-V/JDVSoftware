@@ -27,7 +27,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels
 
         protected override IMockViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IMockViewModel viewModel = new MockViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DialogService, ClipBoardWrapper);
+            IMockViewModel viewModel = new MockViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects);
             ViewModelBase viewModelBase = (ViewModelBase)viewModel;
 
             viewModelBase.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

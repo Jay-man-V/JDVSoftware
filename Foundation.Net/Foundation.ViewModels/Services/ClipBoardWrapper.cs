@@ -13,7 +13,7 @@ namespace Foundation.ViewModels
 {
     /// <summary>
     /// </summary>
-    [DependencyInjectionTransient]
+    [DependencyInjectionSingleton]
     public class ClipBoardWrapper : IClipBoardWrapper
     {
         /// <inheritdoc cref="SetText(String)"/>

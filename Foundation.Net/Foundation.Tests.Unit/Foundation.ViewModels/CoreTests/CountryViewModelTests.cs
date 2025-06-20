@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override ICountryViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            ICountryViewModel viewModel = new CountryViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            ICountryViewModel viewModel = new CountryViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<ICountry> genericDataGridViewModel = (GenericDataGridViewModelBase<ICountry>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

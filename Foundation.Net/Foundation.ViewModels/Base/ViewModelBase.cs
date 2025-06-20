@@ -9,9 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 using Foundation.Common;
 using Foundation.Interfaces;
@@ -134,20 +132,18 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="formTitle">The form title</param>
         protected ViewModelBase
         (
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             String formTitle
         )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, formTitle);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, formTitle);
 
             MessageBoxImage = FEnums.MessageBoxImage.None;
 
@@ -156,8 +152,11 @@ namespace Foundation.ViewModels
             Core = core;
             RunTimeEnvironmentSettings = runTimeEnvironmentSettings;
             DateTimeService = dateTimeService;
-            DialogService = dialogService;
-            ClipBoardWrapper = clipBoardWrapper;
+            WpfApplicationObjects = wpfApplicationObjects;
+            DialogService = WpfApplicationObjects.DialogService;
+            ApplicationWrapper = WpfApplicationObjects.ApplicationWrapper;
+            ClipBoardWrapper = WpfApplicationObjects.ClipBoardWrapper;
+            DispatchTimerWrapper = WpfApplicationObjects.DispatcherTimerWrapper;
 
             Parameters = new Dictionary<String, Object>();
 
@@ -176,32 +175,6 @@ namespace Foundation.ViewModels
                 return retVal;
             }
             internal set => _mouseBusyCursor = value;
-        }
-
-        private Application _currentApplication;
-        /// <inheritdoc cref="CurrentApplication"/>
-        public Application CurrentApplication
-        {
-            get
-            {
-                Application retVal = _currentApplication ?? Application.Current;
-
-                return retVal;
-            }
-            internal set => _currentApplication = value;
-        }
-
-        private Dispatcher _currentDispatcher;
-        /// <inheritdoc cref="CurrentDispatcher"/>
-        public Dispatcher CurrentDispatcher
-        {
-            get
-            {
-                Dispatcher retVal = _currentDispatcher ?? CurrentApplication.Dispatcher;
-
-                return retVal;
-            }
-            internal set => _currentDispatcher = value;
         }
 
         /// <summary>
@@ -274,16 +247,34 @@ namespace Foundation.ViewModels
         protected internal IDateTimeService DateTimeService { get; }
 
         /// <summary>
+        /// Gets the Wpf Application Objects
+        /// </summary>
+        /// <value>The Wpf Application Objects.</value>
+        protected IWpfApplicationObjects WpfApplicationObjects { get; }
+
+        /// <summary>
         /// Gets the dialog service.
         /// </summary>
         /// <value>The dialog service.</value>
         protected IDialogService DialogService { get; }
 
         /// <summary>
+        /// Gets the application wrapper.
+        /// </summary>
+        /// <value>The application wrapper.</value>
+        protected IApplicationWrapper ApplicationWrapper { get; }
+
+        /// <summary>
         /// Gets the clip board wrapper.
         /// </summary>
         /// <value>The clip board wrapper.</value>
         protected IClipBoardWrapper ClipBoardWrapper { get; }
+
+        /// <summary>
+        /// Gets the dispatch timer wrapper.
+        /// </summary>
+        /// <value>The dispatch timer wrapper.</value>
+        protected IDispatcherTimerWrapper DispatchTimerWrapper { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance has previous notification message.
@@ -402,7 +393,7 @@ namespace Foundation.ViewModels
 
             using (MouseBusyCursor)
             {
-                CurrentApplication?.MainWindow?.Close();
+                ApplicationWrapper.MainWindow.Close();
             }
 
             LoggingHelpers.TraceCallReturn();

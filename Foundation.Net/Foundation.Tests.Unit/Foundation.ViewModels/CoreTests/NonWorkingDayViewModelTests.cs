@@ -51,7 +51,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         {
             ICountryProcess countryProcess = Substitute.For<ICountryProcess>();
 
-            INonWorkingDayViewModel viewModel = new NonWorkingDayViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess, countryProcess);
+            INonWorkingDayViewModel viewModel = new NonWorkingDayViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess, countryProcess);
             GenericDataGridViewModelBase<INonWorkingDay> genericDataGridViewModel = (GenericDataGridViewModelBase<INonWorkingDay>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -183,8 +183,13 @@
     <Compile Include="ViewModels\Log\IEventLogAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Log\IImportExportControlViewModel.cs" />
     <Compile Include="ViewModels\Log\IScheduledDataStatusViewModel.cs" />
-    <Compile Include="ViewModels\IClipBoardWrapper.cs" />
-    <Compile Include="ViewModels\IMouseBusyCursor.cs" />
+    <Compile Include="ViewModels\Services\IWindowWrapper.cs" />
+    <Compile Include="ViewModels\Services\IApplicationWrapper.cs" />
+    <Compile Include="ViewModels\Services\IWpfApplicationObjects.cs" />
+    <Compile Include="ViewModels\Services\IDispatcherTimerWrapper.cs" />
+    <Compile Include="ViewModels\Services\IDispatcherWrapper.cs" />
+    <Compile Include="ViewModels\Services\IClipBoardWrapper.cs" />
+    <Compile Include="ViewModels\Services\IMouseBusyCursor.cs" />
     <Compile Include="Utils\IExecuteWithObject.cs" />
     <Compile Include="ViewModels\IMainMenuitem.cs" />
     <Compile Include="ViewModels\IBasicControlsViewModel.cs" />

@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IContractTypeViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IContractTypeViewModel viewModel = new ContractTypeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IContractTypeViewModel viewModel = new ContractTypeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IContractType> genericDataGridViewModel = (GenericDataGridViewModelBase<IContractType>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

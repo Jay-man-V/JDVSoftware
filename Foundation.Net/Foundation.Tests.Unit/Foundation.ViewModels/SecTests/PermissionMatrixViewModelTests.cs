@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
 
         protected override IPermissionMatrixViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IPermissionMatrixViewModel viewModel = new PermissionMatrixViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IPermissionMatrixViewModel viewModel = new PermissionMatrixViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IPermissionMatrix> genericDataGridViewModel = (GenericDataGridViewModelBase<IPermissionMatrix>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -28,8 +28,7 @@ namespace NationalLottery.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="lottoNumbersProcess">The lotto numbers process.</param>
         public LottoNumbersViewModel
@@ -37,8 +36,7 @@ namespace NationalLottery.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             ILottoNumbersProcess lottoNumbersProcess
         )
@@ -47,13 +45,12 @@ namespace NationalLottery.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 fileApi,
                 lottoNumbersProcess
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, lottoNumbersProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, lottoNumbersProcess);
 
             LottoNumbersProcess = lottoNumbersProcess;
 

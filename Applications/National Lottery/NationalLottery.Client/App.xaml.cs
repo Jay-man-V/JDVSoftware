@@ -85,14 +85,13 @@ namespace NationalLottery
             // Initialize the splash screen and set it as the application main window
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings = Core.Container.Get<IRunTimeEnvironmentSettings>();
             IDateTimeService dateTimeService = Core.Container.Get<IDateTimeService>();
-            IDialogService dialogService = Core.Container.Get<IDialogService>();
-            IClipBoardWrapper clipBoardWrapper = Core.Container.Get<IClipBoardWrapper>();
+            IWpfApplicationObjects wpfApplicationObjects = Core.Container.Get<IWpfApplicationObjects>();
             IFileApi fileApi = Core.Container.Get<IFileApi>();
 
             AboutSplashScreenForm splashScreen = new AboutSplashScreenForm();
             this.MainWindow = splashScreen;
             const Boolean isSplashScreen = true;
-            AboutSplashScreenFormViewModel splashScreenViewModel = new AboutSplashScreenFormViewModel(Core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, isSplashScreen);
+            AboutSplashScreenFormViewModel splashScreenViewModel = new AboutSplashScreenFormViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, isSplashScreen);
             splashScreen.DataContext = splashScreenViewModel;
             splashScreen.Show();
 
@@ -112,7 +111,7 @@ namespace NationalLottery
 
                     ThisApplication = new MainWindowForm();
                     MainWindow = ThisApplication;
-                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, ThisApplication, applicationDefinition, loggedOnUserProcess);
+                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, applicationDefinition, loggedOnUserProcess);
                     ThisApplication.DataContext = ViewModel;
                     ThisApplication.Show();
 

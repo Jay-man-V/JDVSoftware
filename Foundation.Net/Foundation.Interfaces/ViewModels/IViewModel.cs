@@ -41,16 +41,6 @@ namespace Foundation.Interfaces
         IMouseBusyCursor MouseBusyCursor { get; }
 
         /// <summary>
-        /// Gets the Current Application object
-        /// </summary>
-        Application CurrentApplication { get; }
-
-        /// <summary>
-        /// Gets the Current Dispatcher object
-        /// </summary>
-        Dispatcher CurrentDispatcher { get; }
-
-        /// <summary>
         /// Initialises the View Model
         /// </summary>
 //        void Initialise();

@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IApprovalStatusViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IApprovalStatusViewModel viewModel = new ApprovalStatusViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IApprovalStatusViewModel viewModel = new ApprovalStatusViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IApprovalStatus> genericDataGridViewModel = (GenericDataGridViewModelBase<IApprovalStatus>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

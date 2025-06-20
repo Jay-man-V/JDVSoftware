@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IOfficeWeekCalendarViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IOfficeWeekCalendarViewModel viewModel = new OfficeWeekCalendarViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IOfficeWeekCalendarViewModel viewModel = new OfficeWeekCalendarViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IOfficeWeekCalendar> genericDataGridViewModel = (GenericDataGridViewModelBase<IOfficeWeekCalendar>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -4,12 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using Foundation.BusinessProcess;
-using Foundation.Common;
-using Foundation.Interfaces;
-
 using System;
 using System.Collections.Generic;
+
+using Foundation.Common;
+using Foundation.Interfaces;
 
 namespace Foundation.ViewModels
 {
@@ -26,8 +25,7 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings.</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="menuItemProcess">The MenuItem process.</param>
         /// <param name="applicationProcess">The Application process.</param>
@@ -36,8 +34,7 @@ namespace Foundation.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             IMenuItemProcess menuItemProcess,
             IApplicationProcess applicationProcess
@@ -47,13 +44,12 @@ namespace Foundation.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 fileApi,
                 menuItemProcess
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, menuItemProcess, applicationProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, menuItemProcess, applicationProcess);
 
             MenuItemProcess = menuItemProcess;
             ApplicationProcess = applicationProcess;

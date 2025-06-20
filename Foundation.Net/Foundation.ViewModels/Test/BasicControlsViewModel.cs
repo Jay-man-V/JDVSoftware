@@ -15,7 +15,6 @@ using Foundation.Common;
 using Foundation.Interfaces;
 
 using FModels = Foundation.Models;
-using MenuItem = Foundation.Interfaces;
 
 namespace Foundation.ViewModels
 {
@@ -32,27 +31,24 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         public BasicControlsViewModel
         (
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper
+            IWpfApplicationObjects wpfApplicationObjects
         ) :
             this
             (
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 new FModels.Application()
             ) 
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects);
 
             ButtonStatus = true;
 
@@ -65,8 +61,7 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService">The date time service</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="application">The application.</param>
 
         public BasicControlsViewModel
@@ -74,8 +69,7 @@ namespace Foundation.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IApplication application
         ) :
             base
@@ -83,12 +77,11 @@ namespace Foundation.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 "Basic Controls Test Form"
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, application);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, application);
 
             SomeStringProperty = "String property binding";
 

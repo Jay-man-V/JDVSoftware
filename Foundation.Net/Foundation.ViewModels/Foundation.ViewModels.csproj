@@ -94,6 +94,11 @@
     <Compile Include="Sec\PermissionMatrixViewModel.cs" />
     <Compile Include="Sec\RoleViewModel.cs" />
     <Compile Include="Sec\UserProfileViewModel.cs" />
+    <Compile Include="Services\ApplicationWrapper.cs" />
+    <Compile Include="Services\DispatcherTimerWrapper.cs" />
+    <Compile Include="Services\WpfApplicationObjects.cs" />
+    <Compile Include="Services\WindowWrapper.cs" />
+    <Compile Include="Services\DispatcherWrapper.cs" />
     <Compile Include="Services\ClipBoardWrapper.cs" />
     <Compile Include="Services\MouseBusyCursor.cs" />
     <Compile Include="Stg\ActiveDirectoryUserViewModel.cs" />

@@ -23,8 +23,7 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings.</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="targetWindow">The target window.</param>
         /// <param name="parentViewModel">The parent view model.</param>
         /// <param name="exception">The exception.</param>
@@ -34,8 +33,7 @@ namespace Foundation.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IWindow targetWindow,
             IViewModel parentViewModel,
             Exception exception,
@@ -46,8 +44,7 @@ namespace Foundation.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 targetWindow,
                 parentViewModel,
                 FEnums.MessageBoxImage.Error,
@@ -55,7 +52,7 @@ namespace Foundation.ViewModels
                 "Application Error"
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, targetWindow, parentViewModel, exception, continueVisibility);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, targetWindow, parentViewModel, exception, continueVisibility);
 
             ContinueVisibility = continueVisibility;
 

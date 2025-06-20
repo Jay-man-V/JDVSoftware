@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IScheduleIntervalViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IScheduleIntervalViewModel viewModel = new ScheduleIntervalViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IScheduleIntervalViewModel viewModel = new ScheduleIntervalViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IScheduleInterval> genericDataGridViewModel = (GenericDataGridViewModelBase<IScheduleInterval>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

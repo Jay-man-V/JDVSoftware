@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IDataStatusViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IDataStatusViewModel viewModel = new DataStatusViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IDataStatusViewModel viewModel = new DataStatusViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IDataStatus> genericDataGridViewModel = (GenericDataGridViewModelBase<IDataStatus>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

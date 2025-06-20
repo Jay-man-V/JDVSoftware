@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+
 using NUnit.Framework;
 
 using NSubstitute;
@@ -31,8 +31,12 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Support
     {
         //protected static System.Windows.Application CurrentApplication { get; set; }
 
-        protected IDialogService DialogService { get; set; }
+        protected IWpfApplicationObjects WpfApplicationObjects { get; set; }
+        protected IApplicationWrapper ApplicationWrapper { get; set; }
         protected IClipBoardWrapper ClipBoardWrapper { get; set; }
+        protected IDialogService DialogService { get; set; }
+        protected IDispatcherTimerWrapper DispatcherTimerWrapper { get; set; }
+        protected IDispatcherWrapper DispatcherWrapper { get; set; }
         protected IFileApi FileApi { get; set; }
         protected abstract String ExpectedScreenTitle { get; set; }
 
@@ -60,8 +64,20 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Support
         {
             base.StartTest();
 
-            DialogService = Substitute.For<IDialogService>();
+            ApplicationWrapper = new ApplicationWrapper(new MockWindowWrapper());
             ClipBoardWrapper = new MockClipBoardWrapper();
+            DialogService = Substitute.For<IDialogService>();
+            DispatcherTimerWrapper = new MockDispatcherTimerWrapper();
+            DispatcherWrapper = new MockDispatcherWrapper();
+
+            WpfApplicationObjects = Substitute.For<IWpfApplicationObjects>();
+            WpfApplicationObjects.ApplicationWrapper.Returns(ApplicationWrapper);
+            WpfApplicationObjects.ClipBoardWrapper.Returns(ClipBoardWrapper);
+            WpfApplicationObjects.DialogService.Returns(DialogService);
+            WpfApplicationObjects.DispatcherTimerWrapper.Returns(DispatcherTimerWrapper);
+            WpfApplicationObjects.DispatcherWrapper.Returns(DispatcherWrapper);
+
+
             FileApi = Substitute.For<IFileApi>();
 
             ViewModelBase.StatusProcess = StatusProcess;

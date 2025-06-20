@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override ICurrencyViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            ICurrencyViewModel viewModel = new CurrencyViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            ICurrencyViewModel viewModel = new CurrencyViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<ICurrency> genericDataGridViewModel = (GenericDataGridViewModelBase<ICurrency>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

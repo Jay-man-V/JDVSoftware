@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IConfigurationScopeViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IConfigurationScopeViewModel viewModel = new ConfigurationScopeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IConfigurationScopeViewModel viewModel = new ConfigurationScopeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IConfigurationScope> genericDataGridViewModel = (GenericDataGridViewModelBase<IConfigurationScope>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

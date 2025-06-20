@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override IImageTypeViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IImageTypeViewModel viewModel = new ImageTypeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IImageTypeViewModel viewModel = new ImageTypeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IImageType> genericDataGridViewModel = (GenericDataGridViewModelBase<IImageType>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

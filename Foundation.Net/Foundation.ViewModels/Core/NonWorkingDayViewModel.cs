@@ -25,8 +25,7 @@ namespace Foundation.ViewModels
         /// <param name="core">The Foundation Core service.</param>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings.</param>
         /// <param name="dateTimeService">The date time service.</param>
-        /// <param name="dialogService">The dialog service.</param>
-        /// <param name="clipBoardWrapper">The clip board wrapper</param>
+        /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="nonWorkingDayProcess">The nonworking day process.</param>
         /// <param name="countryProcess">The country process.</param>
@@ -35,8 +34,7 @@ namespace Foundation.ViewModels
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             INonWorkingDayProcess nonWorkingDayProcess,
             ICountryProcess countryProcess
@@ -46,13 +44,12 @@ namespace Foundation.ViewModels
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 fileApi,
                 nonWorkingDayProcess
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, dialogService, clipBoardWrapper, fileApi, nonWorkingDayProcess, countryProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, nonWorkingDayProcess, countryProcess);
 
             CountryProcess = countryProcess;
 

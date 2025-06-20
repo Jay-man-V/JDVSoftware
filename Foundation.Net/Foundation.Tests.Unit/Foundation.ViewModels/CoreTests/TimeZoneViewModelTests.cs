@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override ITimeZoneViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            ITimeZoneViewModel viewModel = new TimeZoneViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            ITimeZoneViewModel viewModel = new TimeZoneViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<ITimeZone> genericDataGridViewModel = (GenericDataGridViewModelBase<ITimeZone>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -23,16 +23,14 @@ namespace Foundation.Tests.Unit.Mocks
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper
+            IWpfApplicationObjects wpfApplicationObjects
         )
             : base
             (
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 "Mock View Model"
             )
         {

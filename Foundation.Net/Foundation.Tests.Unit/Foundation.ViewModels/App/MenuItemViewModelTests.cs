@@ -43,7 +43,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         {
             ApplicationProcess = Substitute.For<IApplicationProcess>();
 
-            IMenuItemViewModel viewModel = new MenuItemViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DialogService, ClipBoardWrapper, FileApi, BusinessProcess, ApplicationProcess);
+            IMenuItemViewModel viewModel = new MenuItemViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess, ApplicationProcess);
             GenericDataGridViewModelBase<IMenuItem> genericDataGridViewModel = (GenericDataGridViewModelBase<IMenuItem>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

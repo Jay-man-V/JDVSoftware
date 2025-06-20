@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override ILanguageViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            ILanguageViewModel viewModel = new LanguageViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            ILanguageViewModel viewModel = new LanguageViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<ILanguage> genericDataGridViewModel = (GenericDataGridViewModelBase<ILanguage>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -28,7 +28,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels
 
         protected override IMockFoundationModelViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IMockFoundationModelViewModel viewModel = new MockFoundationModelViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IMockFoundationModelViewModel viewModel = new MockFoundationModelViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IMockFoundationModel> genericDataGridViewModelBase = (GenericDataGridViewModelBase<IMockFoundationModel>)viewModel;
 
             genericDataGridViewModelBase.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

@@ -23,8 +23,7 @@ namespace Foundation.Tests.Unit.Mocks
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IDialogService dialogService,
-            IClipBoardWrapper clipBoardWrapper,
+            IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             IMockFoundationModelProcess commonBusinessProcess
         )
@@ -33,8 +32,7 @@ namespace Foundation.Tests.Unit.Mocks
                 core,
                 runTimeEnvironmentSettings,
                 dateTimeService,
-                dialogService,
-                clipBoardWrapper,
+                wpfApplicationObjects,
                 fileApi,
                 commonBusinessProcess
             )

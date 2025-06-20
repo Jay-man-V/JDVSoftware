@@ -29,7 +29,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
 
         protected override IRoleViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
-            IRoleViewModel viewModel = new RoleViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService,DialogService, ClipBoardWrapper, FileApi, BusinessProcess);
+            IRoleViewModel viewModel = new RoleViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
             GenericDataGridViewModelBase<IRole> genericDataGridViewModel = (GenericDataGridViewModelBase<IRole>)viewModel;
 
             genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();

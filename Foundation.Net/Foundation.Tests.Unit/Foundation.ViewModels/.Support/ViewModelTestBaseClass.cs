@@ -133,10 +133,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Support
             IViewModel viewModel = CreateViewModel();
             ViewModelBase viewModelBase = (ViewModelBase)viewModel;
 
-            Assert.That(viewModel.MouseBusyCursor, Is.Not.Null);
-
-            viewModelBase.MouseBusyCursor = null;
-            Assert.That(viewModel.MouseBusyCursor, Is.Not.Null);
+            Assert.That(viewModelBase.MouseCursor, Is.Not.Null);
         }
 
         [TestCase]

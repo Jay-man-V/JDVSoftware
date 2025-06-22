@@ -176,6 +176,7 @@
     <Compile Include="Repository\Sec\IPermissionMatrixRepository.cs" />
     <Compile Include="Models\Sec\IPermissionMatrix.cs" />
     <Compile Include="Support\IHeartbeatResult.cs" />
+    <Compile Include="ViewModels\.Specialised\IDemoViewModel.cs" />
     <Compile Include="ViewModels\Core\EnumViewModels\IEntityStatusViewModel.cs" />
     <Compile Include="ViewModels\Core\EnumViewModels\IDataStatusViewModel.cs" />
     <Compile Include="ViewModels\App\IMenuItemViewModel.cs" />
@@ -183,13 +184,14 @@
     <Compile Include="ViewModels\Log\IEventLogAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Log\IImportExportControlViewModel.cs" />
     <Compile Include="ViewModels\Log\IScheduledDataStatusViewModel.cs" />
+    <Compile Include="ViewModels\Services\IMouseWrapper.cs" />
     <Compile Include="ViewModels\Services\IWindowWrapper.cs" />
     <Compile Include="ViewModels\Services\IApplicationWrapper.cs" />
     <Compile Include="ViewModels\Services\IWpfApplicationObjects.cs" />
     <Compile Include="ViewModels\Services\IDispatcherTimerWrapper.cs" />
     <Compile Include="ViewModels\Services\IDispatcherWrapper.cs" />
     <Compile Include="ViewModels\Services\IClipBoardWrapper.cs" />
-    <Compile Include="ViewModels\Services\IMouseBusyCursor.cs" />
+    <Compile Include="ViewModels\Services\IMouseCursor.cs" />
     <Compile Include="Utils\IExecuteWithObject.cs" />
     <Compile Include="ViewModels\IMainMenuitem.cs" />
     <Compile Include="ViewModels\IBasicControlsViewModel.cs" />

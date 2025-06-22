@@ -11,7 +11,6 @@ using NUnit.Framework;
 using NSubstitute;
 
 using Foundation.Interfaces;
-using Foundation.ViewModels;
 
 using Foundation.Tests.Unit.Foundation.ViewModels.Support;
 using Foundation.Tests.Unit.Mocks;
@@ -29,9 +28,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels
         protected override IMockFoundationModelViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IMockFoundationModelViewModel viewModel = new MockFoundationModelViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IMockFoundationModel> genericDataGridViewModelBase = (GenericDataGridViewModelBase<IMockFoundationModel>)viewModel;
-
-            genericDataGridViewModelBase.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

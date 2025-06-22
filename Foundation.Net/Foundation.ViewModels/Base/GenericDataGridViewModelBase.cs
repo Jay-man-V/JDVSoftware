@@ -551,7 +551,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ExecuteAction1();
             }
@@ -566,7 +566,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ExecuteAction2();
             }
@@ -581,7 +581,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ExecuteAction3();
             }
@@ -596,7 +596,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ExecuteAction4();
             }
@@ -612,7 +612,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(selectedFilter);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ApplyFilter1(selectedFilter);
             }
@@ -628,7 +628,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(selectedFilter);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ApplyFilter2(selectedFilter);
             }
@@ -644,7 +644,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(selectedFilter);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ApplyFilter3(selectedFilter);
             }
@@ -660,7 +660,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(selectedFilter);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ApplyFilter4(selectedFilter);
             }
@@ -676,7 +676,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(selectedEntity);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 Boolean canView = CommonBusinessProcess.CanViewRecord(Core.CurrentLoggedOnUser.UserProfile, selectedEntity);
                 Boolean canAdd = CommonBusinessProcess.CanAddRecord(Core.CurrentLoggedOnUser.UserProfile);
@@ -701,7 +701,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(sourceData);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 CommonBusinessProcess.ExportToExcel(GridExportColumns, sourceData);
             }
@@ -717,7 +717,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(sourceData);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 if (sourceData.HasItems())
                 {
@@ -759,7 +759,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(sourceData);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 if (sourceData.HasItems())
                 {
@@ -779,7 +779,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(entity);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 if (entity.IsNotNull())
                 {
@@ -801,7 +801,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(value);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 if (value.IsNotNull())
                 {
@@ -882,7 +882,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 RefreshData();
 
@@ -905,7 +905,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(entity);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 Boolean canViewRecord = CommonBusinessProcess.CanViewRecord(Core.CurrentLoggedOnUser.UserProfile, entity);
 
@@ -927,7 +927,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 Boolean canAddRecord = CommonBusinessProcess.CanAddRecord(Core.CurrentLoggedOnUser.UserProfile);
 
@@ -950,7 +950,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(entity);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 Boolean canEditRecord = CommonBusinessProcess.CanEditRecord(Core.CurrentLoggedOnUser.UserProfile, entity);
 
@@ -974,7 +974,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(entity);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 Boolean canDeleteRecord = CommonBusinessProcess.CanDeleteRecord(Core.CurrentLoggedOnUser.UserProfile, entity);
 

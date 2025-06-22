@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Windows;
 using System.Windows.Threading;
 
 using Foundation.Interfaces;
@@ -14,7 +15,7 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class DispatcherTimerWrapper : IDispatcherTimerWrapper
+    internal class DispatcherTimerWrapper : IDispatcherTimerWrapper
     {
         /// <summary>
         /// 
@@ -33,10 +34,12 @@ namespace Foundation.ViewModels
 
         private DispatcherTimer DispatcherTimer  {  get; }
 
-        /// <inheritdoc cref="IDispatcherTimerWrapper.NewTimer(TimeSpan, DispatcherPriority, EventHandler, Dispatcher)"/>
-        public IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback, Dispatcher dispatcher)
+        /// <inheritdoc cref="IDispatcherTimerWrapper.NewTimer(TimeSpan, DispatcherPriority, EventHandler)"/>
+        public IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback)
         {
-            IDispatcherTimerWrapper retVal = new DispatcherTimerWrapper(interval, priority, callback, dispatcher);
+            Dispatcher currentDispatcher = Application.Current.Dispatcher;
+
+            IDispatcherTimerWrapper retVal = new DispatcherTimerWrapper(interval, priority, callback, currentDispatcher);
 
             return retVal;
         }

@@ -169,7 +169,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(window);
 
-            using (new MouseBusyCursor())
+            using (new MouseBusyCursor(WpfApplicationObjects))
             {
                 if (HasChanges)
                 {

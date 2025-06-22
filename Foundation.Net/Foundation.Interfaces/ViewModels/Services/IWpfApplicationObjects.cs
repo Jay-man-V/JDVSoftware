@@ -35,5 +35,10 @@ namespace Foundation.Interfaces
         /// 
         /// </summary>
         IDispatcherWrapper DispatcherWrapper { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IMouseWrapper MouseWrapper { get; }
     }
 }

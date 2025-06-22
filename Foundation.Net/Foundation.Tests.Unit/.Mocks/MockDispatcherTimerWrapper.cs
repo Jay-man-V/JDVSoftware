@@ -15,23 +15,23 @@ namespace Foundation.Tests.Unit.Mocks
     {
         public MockDispatcherTimerWrapper() { }
 
-        private MockDispatcherTimerWrapper(TimeSpan interval, DispatcherPriority priority, EventHandler callback, Dispatcher dispatcher)
+        private MockDispatcherTimerWrapper(TimeSpan interval, DispatcherPriority priority, EventHandler callback)
         {
             DispatcherTimer = new MockDispatcherTimerWrapper();
         }
 
         private MockDispatcherTimerWrapper DispatcherTimer { get; }
 
-        public IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback, Dispatcher dispatcher)
+        public IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback)
         {
-            IDispatcherTimerWrapper retVal = new MockDispatcherTimerWrapper(interval, priority, callback, dispatcher);
+            IDispatcherTimerWrapper retVal = new MockDispatcherTimerWrapper(interval, priority, callback);
 
             return retVal;
         }
 
         public void Start()
         {
-            DispatcherTimer.Start();
+            //DispatcherTimer.Start();
         }
     }
 }

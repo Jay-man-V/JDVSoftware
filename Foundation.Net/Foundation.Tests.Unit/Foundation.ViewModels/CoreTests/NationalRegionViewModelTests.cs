@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         protected override INationalRegionViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             INationalRegionViewModel viewModel = new NationalRegionViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<INationalRegion> genericDataGridViewModel = (GenericDataGridViewModelBase<INationalRegion>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

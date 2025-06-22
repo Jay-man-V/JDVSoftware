@@ -42,9 +42,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         protected override IContactDetailViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IContactDetailViewModel viewModel = new ContactDetailViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess, ContactTypeProcess);
-            GenericDataGridViewModelBase<IContactDetail> genericDataGridViewModel = (GenericDataGridViewModelBase<IContactDetail>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

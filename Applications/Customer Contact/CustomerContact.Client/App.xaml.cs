@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 using Foundation.Common;
@@ -116,6 +117,8 @@ namespace CustomerContact
 
                     Thread.Sleep(750);
                     splashScreen.Close();
+
+                    Mouse.OverrideCursor = null;
                 });
             });
 

@@ -33,9 +33,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
         protected override ILoggedOnUserViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             ILoggedOnUserViewModel viewModel = new LoggedOnUserViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<ILoggedOnUser> genericDataGridViewModel = (GenericDataGridViewModelBase<ILoggedOnUser>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

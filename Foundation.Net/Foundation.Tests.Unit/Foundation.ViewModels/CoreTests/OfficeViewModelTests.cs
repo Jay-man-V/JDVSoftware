@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         protected override IOfficeViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IOfficeViewModel viewModel = new OfficeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IOffice> genericDataGridViewModel = (GenericDataGridViewModelBase<IOffice>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

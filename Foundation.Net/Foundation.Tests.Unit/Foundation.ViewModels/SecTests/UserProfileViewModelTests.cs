@@ -5,7 +5,6 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Windows;
 
 using NUnit.Framework;
 
@@ -30,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
         protected override IUserProfileViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IUserProfileViewModel viewModel = new UserProfileViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IUserProfile> genericDataGridViewModel = (GenericDataGridViewModelBase<IUserProfile>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

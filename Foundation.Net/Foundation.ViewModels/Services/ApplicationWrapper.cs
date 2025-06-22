@@ -13,7 +13,7 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class ApplicationWrapper : IApplicationWrapper
+    internal class ApplicationWrapper : IApplicationWrapper
     {
         /// <summary>
         /// 

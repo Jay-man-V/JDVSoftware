@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
         protected override IApplicationTypeViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IApplicationTypeViewModel viewModel = new ApplicationTypeViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IApplicationType> genericDataGridViewModel = (GenericDataGridViewModelBase<IApplicationType>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

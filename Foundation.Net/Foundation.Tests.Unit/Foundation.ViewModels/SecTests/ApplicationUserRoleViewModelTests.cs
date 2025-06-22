@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.SecTests
         protected override IApplicationUserRoleViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IApplicationUserRoleViewModel viewModel = new ApplicationUserRoleViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IApplicationUserRole> genericDataGridViewModel = (GenericDataGridViewModelBase<IApplicationUserRole>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

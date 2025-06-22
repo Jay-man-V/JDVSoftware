@@ -163,20 +163,6 @@ namespace Foundation.ViewModels
             LoggingHelpers.TraceCallReturn();
         }
 
-        private IMouseBusyCursor _mouseBusyCursor;
-
-        /// <inheritdoc cref="MouseBusyCursor"/>
-        public IMouseBusyCursor MouseBusyCursor
-        {
-            get
-            {
-                IMouseBusyCursor retVal = _mouseBusyCursor ?? Core.Container.Get<IMouseBusyCursor>();
-
-                return retVal;
-            }
-            internal set => _mouseBusyCursor = value;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -203,7 +189,7 @@ namespace Foundation.ViewModels
 
         /// <summary>Gets the message box image.</summary>
         /// <value>The message box image.</value>
-        public FEnums.MessageBoxImage MessageBoxImage { get; set; }
+        public MessageBoxImage MessageBoxImage { get; set; }
 
         /// <summary>
         /// Gets This window.
@@ -253,12 +239,6 @@ namespace Foundation.ViewModels
         protected IWpfApplicationObjects WpfApplicationObjects { get; }
 
         /// <summary>
-        /// Gets the dialog service.
-        /// </summary>
-        /// <value>The dialog service.</value>
-        protected IDialogService DialogService { get; }
-
-        /// <summary>
         /// Gets the application wrapper.
         /// </summary>
         /// <value>The application wrapper.</value>
@@ -271,10 +251,22 @@ namespace Foundation.ViewModels
         protected IClipBoardWrapper ClipBoardWrapper { get; }
 
         /// <summary>
+        /// Gets the dialog service.
+        /// </summary>
+        /// <value>The dialog service.</value>
+        protected IDialogService DialogService { get; }
+
+        /// <summary>
         /// Gets the dispatch timer wrapper.
         /// </summary>
         /// <value>The dispatch timer wrapper.</value>
         protected IDispatcherTimerWrapper DispatchTimerWrapper { get; }
+
+        /// <summary>
+        /// Gets the Mouse Cursor
+        /// </summary>
+        /// <value>The mouse busy wrapper.</value>
+        protected internal IMouseWrapper MouseCursor => WpfApplicationObjects.MouseWrapper.New();
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance has previous notification message.
@@ -357,7 +349,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 ReShowNotificationMessage();
             }
@@ -373,7 +365,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(window);
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 if (window.IsNotNull())
                 {
@@ -391,7 +383,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (MouseBusyCursor)
+            using (MouseCursor)
             {
                 ApplicationWrapper.MainWindow.Close();
             }

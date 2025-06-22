@@ -11,7 +11,6 @@ using NUnit.Framework;
 
 using NSubstitute;
 
-using Foundation.Common;
 using Foundation.Interfaces;
 using Foundation.ViewModels;
 
@@ -53,10 +52,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
         protected override IApplicationConfigurationViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IApplicationConfigurationViewModel viewModel = new ApplicationConfigurationViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess, ConfigurationScopeProcess, ApplicationProcess);
-
-            GenericDataGridViewModelBase<IApplicationConfiguration> genericDataGridViewModel = (GenericDataGridViewModelBase<IApplicationConfiguration>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

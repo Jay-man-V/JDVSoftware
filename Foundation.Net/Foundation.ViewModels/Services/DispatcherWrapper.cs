@@ -14,7 +14,7 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class DispatcherWrapper : IDispatcherWrapper
+    internal class DispatcherWrapper : IDispatcherWrapper
     {
         /// <summary>
         /// 

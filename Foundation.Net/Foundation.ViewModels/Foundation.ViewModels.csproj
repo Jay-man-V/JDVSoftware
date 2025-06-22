@@ -96,6 +96,7 @@
     <Compile Include="Sec\UserProfileViewModel.cs" />
     <Compile Include="Services\ApplicationWrapper.cs" />
     <Compile Include="Services\DispatcherTimerWrapper.cs" />
+    <Compile Include="Services\MouseWrapper.cs" />
     <Compile Include="Services\WpfApplicationObjects.cs" />
     <Compile Include="Services\WindowWrapper.cs" />
     <Compile Include="Services\DispatcherWrapper.cs" />

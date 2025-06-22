@@ -309,7 +309,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(loggedOnUser);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 LoggedOnUserProcess.SendQuitCommand(ApplicationSettings.ApplicationId, loggedOnUser);
             }
@@ -325,7 +325,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(loggedOnUser);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 LoggedOnUserProcess.SendAbortCommand(ApplicationSettings.ApplicationId, loggedOnUser);
             }
@@ -341,7 +341,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(loggedOnUser);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 String message = "<enter message here>";
 

@@ -1,15 +1,17 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="IDbSchemaColumnViewModel.cs" company="JDV Software Ltd">
+// <copyright file="IMouseCursor.cs" company="JDV Software Ltd">
 //     Copyright (c) JDV Software Ltd. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+
 namespace Foundation.Interfaces
 {
     /// <summary>
-    /// The Database Schema Column view model interface
+    /// The interface Mouse Cursor
     /// </summary>
-    public interface IDbSchemaColumnViewModel : IViewModel
+    public interface IMouseCursor : IDisposable
     {
     }
 }

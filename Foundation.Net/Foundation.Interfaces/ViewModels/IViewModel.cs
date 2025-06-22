@@ -36,11 +36,6 @@ namespace Foundation.Interfaces
         Dictionary<String, Object> Parameters { get; }
 
         /// <summary>
-        /// Gets the Mouse Busy Cursor
-        /// </summary>
-        IMouseBusyCursor MouseBusyCursor { get; }
-
-        /// <summary>
         /// Initialises the View Model
         /// </summary>
 //        void Initialise();

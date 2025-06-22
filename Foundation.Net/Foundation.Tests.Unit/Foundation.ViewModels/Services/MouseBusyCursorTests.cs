@@ -4,11 +4,14 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using NSubstitute;
 
 using NUnit.Framework;
 
+using Foundation.Interfaces;
 using Foundation.ViewModels;
 
+using Foundation.Tests.Unit.Mocks;
 using Foundation.Tests.Unit.Support;
 
 namespace Foundation.Tests.Unit.Foundation.ViewModels.Services
@@ -19,10 +22,18 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Services
     [TestFixture]
     public class MouseBusyCursorTests : UnitTestBase
     {
+        private IMouseCursor CreateProcess()
+        {
+            IWpfApplicationObjects wpfApplicationObjects = Substitute.For<IWpfApplicationObjects>();
+            IMouseCursor retVal = new MouseBusyCursor(wpfApplicationObjects);
+
+            return retVal;
+        }
+
         [TestCase]
         public void Test_Constructor()
         {
-            MouseBusyCursor mouseBusyCursor = new MouseBusyCursor();
+            MouseBusyCursor mouseBusyCursor = CreateProcess() as MouseBusyCursor;
             Assert.That(mouseBusyCursor.IsBusy, Is.EqualTo(true));
         }
 
@@ -30,7 +41,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Services
         public void Test_Constructor_And_Disposed()
         {
             MouseBusyCursor mouseBusyCursor = null;
-            using (mouseBusyCursor = new MouseBusyCursor())
+            using (mouseBusyCursor = CreateProcess() as MouseBusyCursor)
             {
                 Assert.That(mouseBusyCursor.IsBusy, Is.EqualTo(true));
             }
@@ -42,7 +53,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Services
         [TestCase]
         public void Test_Constructor_And_UsingBlock()
         {
-            using (MouseBusyCursor mouseBusyCursor = new MouseBusyCursor())
+            using (MouseBusyCursor mouseBusyCursor = CreateProcess() as MouseBusyCursor)
             {
                 Assert.That(mouseBusyCursor.IsBusy, Is.EqualTo(true));
             }

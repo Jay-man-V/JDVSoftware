@@ -20,14 +20,12 @@ namespace Foundation.Interfaces
         /// <param name="interval">The period of time between ticks.</param>
         /// <param name="priority">The priority at which to invoke the timer.</param>
         /// <param name="callback">The event handler to call when the <see cref="E:DispatcherTimer.Tick" /> event occurs.</param>
-        /// <param name="dispatcher">The dispatcher the timer is associated with.</param>
-        /// <exception cref="T:ArgumentNullException">
-        /// <paramref name="dispatcher" /> is <see langword="null" />.</exception>
         /// <exception cref="T:ArgumentNullException">
         /// <paramref name="callback" /> is <see langword="null" />.</exception>
         /// <exception cref="T:ArgumentOutOfRangeException">
-        /// <paramref name="interval" /> is less than 0 or greater than <see cref="F:Int32.MaxValue" />.</exception>
-        IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback, Dispatcher dispatcher);
+        /// <paramref name="interval" /> is less than 0 or greater than <see cref="F:Int32.MaxValue" />.
+        /// </exception>
+        IDispatcherTimerWrapper NewTimer(TimeSpan interval, DispatcherPriority priority, EventHandler callback);
 
         /// <summary>
         /// Starts the <see cref="T:System.Windows.Threading.DispatcherTimer" />.

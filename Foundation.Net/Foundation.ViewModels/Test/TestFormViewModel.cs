@@ -5,7 +5,8 @@
 //-----------------------------------------------------------------------
 
 using System;
-
+using System.Diagnostics;
+using System.Windows.Input;
 using Foundation.Common;
 using Foundation.Interfaces;
 
@@ -24,12 +25,14 @@ namespace Foundation.ViewModels
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings.</param>
         /// <param name="dateTimeService">The date time service.</param>
         /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
+        /// <param name="testSupportService"></param>
         public TestFormViewModel
         (
             ICore core,
             IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
             IDateTimeService dateTimeService,
-            IWpfApplicationObjects wpfApplicationObjects
+            IWpfApplicationObjects wpfApplicationObjects,
+            ITestSupportService testSupportService
         ) :
             base
             (
@@ -42,7 +45,23 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects);
 
+            TestSupportService = testSupportService;
+
             LoggingHelpers.TraceCallReturn();
+        }
+
+        private ITestSupportService TestSupportService { get; }
+
+        public ICommand DemoCommand => RelayCommandFactory.New(DemoCommand_Click);
+
+        private void DemoCommand_Click()
+        {
+            using (MouseCursor)
+            {
+                Debug.WriteLine($"{DateTimeService.SystemDateTimeNow}");
+                TestSupportService.SimulateLongTask();
+                Debug.WriteLine($"{DateTimeService.SystemDateTimeNow}");
+            }
         }
 
         private void DeleteCommand(Object obj)

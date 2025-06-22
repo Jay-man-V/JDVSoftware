@@ -423,7 +423,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 Debug.Print($"{LocationUtils.GetFunctionName()} - {menuItem.Caption}");
             }
@@ -439,7 +439,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 if (menuItem.IsNotNull() &&
                     menuItem.Controller.IsNotNull() &&
@@ -562,7 +562,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 Debug.Print($"{LocationUtils.GetFunctionName()} - {menuItem.Caption}");
             }
@@ -577,7 +577,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 if (LastException.IsNotNull())
                 {
@@ -596,7 +596,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(obj);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 // TODO
             }
@@ -611,7 +611,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 LoggingHelpers.TraceMessage("Opening About dialog");
                 IViewModel parentViewModel = this;
@@ -631,7 +631,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 IRandomService randomService = Core.Container.Get<IRandomService>();
                 FEnums.MessageType messageType = (FEnums.MessageType)randomService.NextInt32(1, 6);
@@ -650,7 +650,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 //TestForm theForm = new TestForm();
                 //theForm.DataContext = new TestFormViewModel();
@@ -690,7 +690,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 _enabled = !_enabled;
 

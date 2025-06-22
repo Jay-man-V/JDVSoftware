@@ -6,6 +6,7 @@
 
 using System.Windows;
 
+using Foundation.Common;
 using Foundation.Interfaces;
 
 namespace Foundation.ViewModels
@@ -13,7 +14,7 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class WindowWrapper : IWindowWrapper
+    internal class WindowWrapper : IWindowWrapper
     {
         /// <summary>
         /// 
@@ -28,7 +29,10 @@ namespace Foundation.ViewModels
         /// <inheritdoc cref="IWindowWrapper.Close()"/>
         public void Close()
         {
-            Window.Close();
+            if (Window.IsNotNull())
+            {
+                Window.Close();
+            }
         }
     }
 }

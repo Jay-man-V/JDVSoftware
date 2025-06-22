@@ -266,7 +266,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(o);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 Expanded = !Expanded;
                 ExpanderCaption = Expanded ? "Less Information" : "More Information";
@@ -283,7 +283,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(o);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 ClipBoardWrapper.SetText(Detail);
             }
@@ -299,7 +299,7 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter(window);
 
-            using (new MouseBusyCursor())
+            using (MouseCursor)
             {
                 switch (buttonText.ToUpper())
                 {

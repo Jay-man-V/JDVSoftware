@@ -1,11 +1,10 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MouseBusyCursor.cs" company="JDV Software Ltd">
+// <copyright file="MouseCursor.cs" company="JDV Software Ltd">
 //     Copyright (c) JDV Software Ltd. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 
 using System;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -18,18 +17,31 @@ namespace Foundation.ViewModels
     ///  Contains helper methods for UI, so far just one for showing a wait cursor
     /// </summary>
     [DependencyInjectionTransient]
-    public class MouseBusyCursor : IMouseBusyCursor
+    internal class MouseBusyCursor : IMouseCursor
     {
         /// <summary>
         /// Initialises a new instance of the <see cref="MouseBusyCursor" /> class.
         /// </summary>
-        public MouseBusyCursor(IDispatcherTimerWrapper dispatcherTimerWrapper = null)
+        public MouseBusyCursor
+        (
+            IWpfApplicationObjects wpfApplicationObjects
+        )
         {
-            DispatcherTimerWrapper = dispatcherTimerWrapper;
-            SetBusyState();
+            ApplicationWrapper = wpfApplicationObjects.ApplicationWrapper;
+            DispatcherTimerWrapper = wpfApplicationObjects.DispatcherTimerWrapper;
+            MouseWrapper = wpfApplicationObjects.MouseWrapper;
+
+            SetBusyState(true);
         }
 
+        private IApplicationWrapper ApplicationWrapper { get; }
         private IDispatcherTimerWrapper DispatcherTimerWrapper { get; }
+        private IMouseWrapper MouseWrapper { get; }
+
+        /// <summary>
+        /// A value indicating whether the UI is currently busy
+        /// </summary>
+        internal Boolean IsBusy { get; set; }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -37,17 +49,6 @@ namespace Foundation.ViewModels
         public void Dispose()
         {
             SetBusyState(false);
-        }
-
-        /// <summary>
-        /// A value indicating whether the UI is currently busy
-        /// </summary>
-        internal Boolean IsBusy { get; set; }
-
-        /// <inheritdoc cref="SetBusyState()"/>
-        public void SetBusyState()
-        {
-            SetBusyState(true);
         }
 
         /// <summary>
@@ -60,20 +61,18 @@ namespace Foundation.ViewModels
             {
                 IsBusy = busy;
 
-                if (Application.Current.IsNotNull())
+                if (ApplicationWrapper.IsNotNull())
                 {
-                    Mouse.OverrideCursor = null;
+                    MouseWrapper.OverrideCursor = null;
                 }
 
-                if (IsBusy &&
-                    Application.Current.IsNotNull())
+                if (IsBusy)
                 {
-                    Mouse.OverrideCursor = busy ? Cursors.Wait : null;
+                    MouseWrapper.OverrideCursor = busy ? Cursors.Wait : null;
 
                     TimeSpan interval = TimeSpan.FromSeconds(0);
-                    DispatcherPriority dispatcherPriority = DispatcherPriority.ApplicationIdle;
-                    Dispatcher currentDispatcher = Application.Current.Dispatcher;
-                    IDispatcherTimerWrapper timer = DispatcherTimerWrapper.NewTimer(interval, dispatcherPriority, OnDispatcherTimer_Tick, currentDispatcher);
+                    DispatcherPriority dispatcherPriority = DispatcherPriority.Send;
+                    IDispatcherTimerWrapper timer = DispatcherTimerWrapper.NewTimer(interval, dispatcherPriority, OnDispatcherTimer_Tick);
                     timer.Start();
                 }
             }
@@ -88,7 +87,7 @@ namespace Foundation.ViewModels
         {
             if (sender is DispatcherTimer dispatcherTimer)
             {
-                SetBusyState(false);
+                SetBusyState(IsBusy);
                 dispatcherTimer.Stop();
             }
         }

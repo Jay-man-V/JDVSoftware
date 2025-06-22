@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.LogTests
         protected override ILogSeverityViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             ILogSeverityViewModel viewModel = new LogSeverityViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<ILogSeverity> genericDataGridViewModel = (GenericDataGridViewModelBase<ILogSeverity>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

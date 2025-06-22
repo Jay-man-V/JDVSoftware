@@ -104,21 +104,24 @@
             <ComboBox />
         </controls:StdWindowPanel.Filter>-->
 
-        <!--<controls:StdWindowPanel.Workspace>
+        <controls:StdWindowPanel.Workspace>
             <StackPanel>
                 <controls:ReportTitleControl Title="Hello World" />
 
-                <controls:ReportSubTitleControl Title="Logged on Users"/>
+                <!--<controls:ReportSubTitleControl Title="Logged on Users"/>
                 <controls:LoggedOnUsersControl DataContext="{Binding LoggedOnUsersViewModel}" DataSource="{Binding GridDataSource}" />
 
                 <controls:ReportSubTitleControl Title="Entity Details" SubTitle="Name of Entity" />
                 <controls:EntityDetailsControl />
 
-                <controls:ReportSubTitleControl Title="Something interesting is below"/>
-                <controls:GridViewControl />
+                <controls:ReportSubTitleControl Title="Something interesting is below"/>-->
+                <controls:ButtonControl
+                    Content="Testing"
+                    Command="{Binding Path=DemoCommand}"
+                />
             </StackPanel>
         </controls:StdWindowPanel.Workspace>
-        <controls:StdWindowPanel.StatusBar>
+        <!--<controls:StdWindowPanel.StatusBar>
             <StatusBar>
                 <StatusBarItem>
                     <TextBlock Text="123" />

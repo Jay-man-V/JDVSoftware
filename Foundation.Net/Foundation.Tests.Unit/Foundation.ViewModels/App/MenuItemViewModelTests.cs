@@ -4,17 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using Foundation.BusinessProcess;
-using Foundation.Interfaces;
-using Foundation.Tests.Unit.Foundation.ViewModels.Support;
-using Foundation.ViewModels;
+using System;
+using System.Collections.Generic;
 
 using NSubstitute;
 
 using NUnit.Framework;
 
-using System;
-using System.Collections.Generic;
+using Foundation.Interfaces;
+using Foundation.Tests.Unit.Foundation.ViewModels.Support;
+using Foundation.ViewModels;
 
 using FDC = Foundation.Common.DataColumns;
 
@@ -44,9 +43,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
             ApplicationProcess = Substitute.For<IApplicationProcess>();
 
             IMenuItemViewModel viewModel = new MenuItemViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess, ApplicationProcess);
-            GenericDataGridViewModelBase<IMenuItem> genericDataGridViewModel = (GenericDataGridViewModelBase<IMenuItem>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

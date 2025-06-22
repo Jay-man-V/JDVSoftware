@@ -36,9 +36,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.StgTests
         protected override IActiveDirectoryUserViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IActiveDirectoryUserViewModel viewModel = new ActiveDirectoryUserViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IActiveDirectoryUser> genericDataGridViewModel = (GenericDataGridViewModelBase<IActiveDirectoryUser>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

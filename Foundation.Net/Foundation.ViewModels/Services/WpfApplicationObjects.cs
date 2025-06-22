@@ -11,8 +11,36 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class WpfApplicationObjects : IWpfApplicationObjects
+    internal class WpfApplicationObjects : IWpfApplicationObjects
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="applicationWrapper"></param>
+        /// <param name="clipBoardWrapper"></param>
+        /// <param name="dialogService"></param>
+        /// <param name="dispatcherTimerWrapper"></param>
+        /// <param name="dispatcherWrapper"></param>
+        /// <param name="mouseWrapper"></param>
+        public WpfApplicationObjects
+        (
+            IApplicationWrapper applicationWrapper,
+            IClipBoardWrapper clipBoardWrapper,
+            IDialogService dialogService,
+            IDispatcherTimerWrapper dispatcherTimerWrapper,
+            IDispatcherWrapper dispatcherWrapper,
+            IMouseWrapper mouseWrapper
+        )
+        {
+            ApplicationWrapper = applicationWrapper;
+            ClipBoardWrapper = clipBoardWrapper;
+            DialogService = dialogService;
+            DispatcherTimerWrapper = dispatcherTimerWrapper;
+            DispatcherWrapper = dispatcherWrapper;
+            MouseWrapper = mouseWrapper;
+        }
+
+
         /// <inheritdoc cref="IWpfApplicationObjects.ApplicationWrapper"/>
         public IApplicationWrapper ApplicationWrapper { get; }
 
@@ -27,5 +55,8 @@ namespace Foundation.ViewModels
 
         /// <inheritdoc cref="IWpfApplicationObjects.DispatcherWrapper"/>
         public IDispatcherWrapper DispatcherWrapper { get; }
+
+        /// <inheritdoc cref="IWpfApplicationObjects.MouseWrapper"/>
+        public IMouseWrapper MouseWrapper { get; }
     }
 }

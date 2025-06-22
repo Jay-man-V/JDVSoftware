@@ -29,9 +29,6 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.LogTests
         protected override IEventLogViewModel CreateViewModel(IDateTimeService dateTimeService)
         {
             IEventLogViewModel viewModel = new EventLogViewModel(CoreInstance, RunTimeEnvironmentSettings, dateTimeService, WpfApplicationObjects, FileApi, BusinessProcess);
-            GenericDataGridViewModelBase<IEventLog> genericDataGridViewModel = (GenericDataGridViewModelBase<IEventLog>)viewModel;
-
-            genericDataGridViewModel.MouseBusyCursor = Substitute.For<IMouseBusyCursor>();
 
             return viewModel;
         }

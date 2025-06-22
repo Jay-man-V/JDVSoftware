@@ -14,7 +14,7 @@ namespace Foundation.ViewModels
     /// <summary>
     /// </summary>
     [DependencyInjectionSingleton]
-    public class ClipBoardWrapper : IClipBoardWrapper
+    internal class ClipBoardWrapper : IClipBoardWrapper
     {
         /// <inheritdoc cref="SetText(String)"/>
         public void SetText(String text)

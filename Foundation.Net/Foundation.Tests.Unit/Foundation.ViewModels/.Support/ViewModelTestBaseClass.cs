@@ -64,7 +64,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.Support
         {
             base.StartTest();
 
-            ApplicationWrapper = new ApplicationWrapper(new MockWindowWrapper());
+            ApplicationWrapper = Substitute.For<IApplicationWrapper>();
             ClipBoardWrapper = new MockClipBoardWrapper();
             DialogService = Substitute.For<IDialogService>();
             DispatcherTimerWrapper = new MockDispatcherTimerWrapper();

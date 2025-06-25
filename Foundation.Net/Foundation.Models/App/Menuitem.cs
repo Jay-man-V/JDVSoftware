@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -37,6 +38,7 @@ namespace Foundation.Models
         private Boolean _multiInstance;
         private Boolean _showInTa;
         private Byte[] _icon;
+        private Int32 _depth;
 
         /// <inheritdoc cref="IMenuItem.ApplicationId"/>
         [Column(nameof(FDC.MenuItem.ApplicationId))]
@@ -143,6 +145,15 @@ namespace Foundation.Models
             set => this.SetPropertyValue(ref _icon, value);
         }
 
+        /// <inheritdoc cref="IMenuItem.Depth"/>
+        [Column(nameof(FDC.MenuItem.Depth))]
+        [ReadOnly(true)]
+        public Int32 Depth
+        {
+            get => this._depth;
+            set => this.SetPropertyValue(ref _depth, value);
+        }
+
         /// <inheritdoc cref="IFoundationModel.GetPropertyValue(String)"/>
         public override Object GetPropertyValue(String propertyName)
         {
@@ -162,6 +173,7 @@ namespace Foundation.Models
                 case nameof(MultiInstance): retVal = MultiInstance; break;
                 case nameof(ShowInTab): retVal = ShowInTab; break;
                 case nameof(Icon): retVal = Icon; break;
+                case nameof(Depth): retVal = Depth; break;
             }
 
             return retVal;
@@ -185,6 +197,7 @@ namespace Foundation.Models
             retVal._multiInstance = this._multiInstance;
             retVal._showInTa = this._showInTa;
             retVal._icon = this._icon;
+            retVal._depth = this._depth;
 
             retVal.Initialising = false;
 
@@ -231,6 +244,7 @@ namespace Foundation.Models
             hashCode = hashCode * constant + EqualityComparer<Boolean>.Default.GetHashCode(MultiInstance);
             hashCode = hashCode * constant + EqualityComparer<Boolean>.Default.GetHashCode(ShowInTab);
             hashCode = hashCode * constant + EqualityComparer<Byte[]>.Default.GetHashCode(Icon);
+            hashCode = hashCode * constant + EqualityComparer<Int32>.Default.GetHashCode(Depth);
 
             return hashCode;
         }
@@ -257,6 +271,7 @@ namespace Foundation.Models
             retVal &= EqualityComparer<Boolean>.Default.Equals(left.MultiInstance, right.MultiInstance);
             retVal &= EqualityComparer<Boolean>.Default.Equals(left.ShowInTab, right.ShowInTab);
             retVal &= EqualityComparer<Byte[]>.Default.Equals(left.Icon, right.Icon);
+            retVal &= EqualityComparer<Int32>.Default.Equals(left.Depth, right.Depth);
 
             return retVal;
         }

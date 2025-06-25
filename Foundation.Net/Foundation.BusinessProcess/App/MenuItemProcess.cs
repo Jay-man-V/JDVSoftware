@@ -82,7 +82,7 @@ namespace Foundation.BusinessProcess
         public override String Filter2Name => "Parent:";
 
         /// <inheritdoc cref="ICommonBusinessProcess.Filter2DisplayMemberPath"/>
-        public override String Filter2DisplayMemberPath => FDC.MenuItem.Name;
+        public override String Filter2DisplayMemberPath => ComboBoxDisplayMember;
 
 
         /// <inheritdoc cref="ICommonBusinessProcess.ScreenTitle"/>
@@ -92,7 +92,7 @@ namespace Foundation.BusinessProcess
         public override String StatusBarText => "Number of Menu Items:";
 
         /// <inheritdoc cref="ICommonBusinessProcess.ComboBoxDisplayMember" />
-        public override String ComboBoxDisplayMember => FDC.MenuItem.Name;
+        public override String ComboBoxDisplayMember => FDC.MenuItem.Caption;
 
         /// <inheritdoc cref="ICommonBusinessProcess.GetColumnDefinitions()" />
         public override List<IGridColumnDefinition> GetColumnDefinitions()
@@ -101,6 +101,18 @@ namespace Foundation.BusinessProcess
 
             List<IGridColumnDefinition> retVal = GetStandardEntityColumnDefinitions();
             IGridColumnDefinition gridColumnDefinition;
+
+            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.Icon, "Icon", typeof(Image));
+            retVal.Add(gridColumnDefinition);
+
+            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.MultiInstance, "Multi Instance", typeof(String));
+            retVal.Add(gridColumnDefinition);
+
+            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.ShowInTab, "Show in Tab", typeof(String));
+            retVal.Add(gridColumnDefinition);
+
+            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.Depth, "Depth", typeof(Int32));
+            retVal.Add(gridColumnDefinition);
 
             gridColumnDefinition = new GridColumnDefinition(150, FDC.MenuItem.ApplicationId, "Application", typeof(AppId))
             {
@@ -120,13 +132,13 @@ namespace Foundation.BusinessProcess
             };
             retVal.Add(gridColumnDefinition);
 
-            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.Icon, "Icon", typeof(Image));
-            retVal.Add(gridColumnDefinition);
-
             gridColumnDefinition = new GridColumnDefinition(115, FDC.MenuItem.Name, "Name", typeof(String));
             retVal.Add(gridColumnDefinition);
 
             gridColumnDefinition = new GridColumnDefinition(115, FDC.MenuItem.Caption, "Caption", typeof(String));
+            retVal.Add(gridColumnDefinition);
+
+            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.HelpText, "Help text", typeof(String));
             retVal.Add(gridColumnDefinition);
 
             gridColumnDefinition = new GridColumnDefinition(150, FDC.MenuItem.ControllerAssembly, "Controller Assembly", typeof(String));
@@ -139,15 +151,6 @@ namespace Foundation.BusinessProcess
             retVal.Add(gridColumnDefinition);
 
             gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.ViewType, "View Type", typeof(String));
-            retVal.Add(gridColumnDefinition);
-
-            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.HelpText, "Help text", typeof(String));
-            retVal.Add(gridColumnDefinition);
-
-            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.MultiInstance, "Multi Instance", typeof(String));
-            retVal.Add(gridColumnDefinition);
-
-            gridColumnDefinition = new GridColumnDefinition(300, FDC.MenuItem.ShowInTab, "Show in Tab", typeof(String));
             retVal.Add(gridColumnDefinition);
 
             LoggingHelpers.TraceCallReturn(retVal);

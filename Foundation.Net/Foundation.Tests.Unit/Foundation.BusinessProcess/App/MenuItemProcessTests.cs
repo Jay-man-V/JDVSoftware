@@ -35,9 +35,9 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override Boolean ExpectedHasOptionalDropDownParameter2 => true;
         protected override String ExpectedFilter2Name => "Parent:";
-        protected override string ExpectedFilter2DisplayMemberPath => FDC.MenuItem.Name;
+        protected override string ExpectedFilter2DisplayMemberPath => FDC.MenuItem.Caption;
 
-        protected override string ExpectedComboBoxDisplayMember => FDC.MenuItem.Name;
+        protected override string ExpectedComboBoxDisplayMember => FDC.MenuItem.Caption;
 
         protected override IMenuItemRepository CreateRepository()
         {
@@ -101,12 +101,12 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
 
         protected override void CheckAllEntry(IMenuItem entity)
         {
-            Assert.That(entity.Name, Is.EqualTo(ExpectedAllText));
+            Assert.That(entity.Caption, Is.EqualTo(ExpectedAllText));
         }
 
         protected override void CheckNoneEntry(IMenuItem entity)
         {
-            Assert.That(entity.Name, Is.EqualTo(ExpectedNoneText));
+            Assert.That(entity.Caption, Is.EqualTo(ExpectedNoneText));
         }
 
         protected override void CompareEntityProperties(IMenuItem entity1, IMenuItem entity2)

@@ -770,6 +770,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.DataColumnTests
             index++; Assert.That(FDC.MenuItem.MultiInstance, Is.EqualTo(nameof(FDC.MenuItem.MultiInstance)));
             index++; Assert.That(FDC.MenuItem.ShowInTab, Is.EqualTo(nameof(FDC.MenuItem.ShowInTab)));
             index++; Assert.That(FDC.MenuItem.Icon, Is.EqualTo(nameof(FDC.MenuItem.Icon)));
+            index++; Assert.That(FDC.MenuItem.Depth, Is.EqualTo(nameof(FDC.MenuItem.Depth)));
 
             Assert.That(propertyInfos.Length, Is.EqualTo(index));
         }

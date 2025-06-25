@@ -421,6 +421,54 @@ namespace Foundation.Repository
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excludeDeleted">Whether to include deleted entities</param>
+        /// <param name="useValidityPeriod">Whether to check an entities validity period for inclusion</param>
+        /// <returns></returns>
+        protected virtual String GetAllSql(Boolean excludeDeleted, Boolean useValidityPeriod)
+        {
+            StringBuilder retVal = new StringBuilder();
+            retVal.AppendLine("SELECT");
+            retVal.AppendLine("    *");
+            retVal.AppendLine("FROM");
+            retVal.AppendLine(TableName);
+
+            Boolean whereClauseAdded = false;
+            if (excludeDeleted)
+            {
+                whereClauseAdded = true;
+                retVal.AppendLine("WHERE");
+                retVal.AppendLine($"    ({FDC.FoundationEntity.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()}, {EntityStatus.PendingApproval.Id()}, {EntityStatus.Incomplete.Id()} ) )");
+            }
+
+            if (HasValidityPeriodColumns && useValidityPeriod)
+            {
+                retVal.AppendLine(!whereClauseAdded ? "WHERE" : "    AND");
+
+                retVal.AppendLine("    (");
+                retVal.AppendLine($"        ({DataLogicProvider.GetDateFunction} BETWEEN {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo})");
+                retVal.AppendLine("        OR");
+                retVal.AppendLine($"        ({EntityName}.{FDC.FoundationEntity.ValidFrom} IS NULL AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
+                retVal.AppendLine("        OR");
+                retVal.AppendLine($"        ({DataLogicProvider.GetDateFunction} >= {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
+                retVal.AppendLine("    )");
+            }
+
+            String orderByClause = GetAllOrderByClause();
+
+            if (orderByClause.Length > 0)
+            {
+                retVal.AppendLine("ORDER BY");
+                retVal.AppendLine(orderByClause);
+            }
+
+            retVal.AppendLine(";");
+
+            return retVal.ToString();
+        }
+
+        /// <summary>
         /// Gets all active.
         /// </summary>
         /// <param name="excludeDeleted">Whether to include deleted entities</param>
@@ -432,44 +480,9 @@ namespace Foundation.Repository
 
             List<TModel> retVal = new List<TModel>();
 
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT");
-            sql.AppendLine("    *");
-            sql.AppendLine("FROM");
-            sql.AppendLine(TableName);
+            String sql = GetAllSql(excludeDeleted, useValidityPeriod);
 
-            Boolean whereClauseAdded = false;
-            if (excludeDeleted)
-            {
-                whereClauseAdded = true;
-                sql.AppendLine("WHERE");
-                sql.AppendLine($"    ({FDC.FoundationEntity.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()}, {EntityStatus.PendingApproval.Id()}, {EntityStatus.Incomplete.Id()} ) )");
-            }
-
-            if (HasValidityPeriodColumns && useValidityPeriod)
-            {
-                sql.AppendLine(!whereClauseAdded ? "WHERE" : "    AND");
-
-                sql.AppendLine("    (");
-                sql.AppendLine($"        ({DataLogicProvider.GetDateFunction} BETWEEN {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo})");
-                sql.AppendLine("        OR");
-                sql.AppendLine($"        ({EntityName}.{FDC.FoundationEntity.ValidFrom} IS NULL AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
-                sql.AppendLine("        OR");
-                sql.AppendLine($"        ({DataLogicProvider.GetDateFunction} >= {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
-                sql.AppendLine("    )");
-            }
-
-            String orderByClause = GetAllOrderByClause();
-
-            if (orderByClause.Length > 0)
-            {
-                sql.AppendLine("ORDER BY");
-                sql.AppendLine(orderByClause);
-            }
-
-            sql.AppendLine(";");
-
-            using (IDataReader dataReader = FoundationDataAccess.ExecuteReader(sql.ToString()))
+            using (IDataReader dataReader = FoundationDataAccess.ExecuteReader(sql))
             {
                 while (dataReader.Read())
                 {
@@ -486,6 +499,23 @@ namespace Foundation.Repository
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual String GetSql()
+        {
+            StringBuilder retVal = new StringBuilder();
+            retVal.AppendLine("SELECT");
+            retVal.AppendLine("    *");
+            retVal.AppendLine("FROM");
+            retVal.AppendLine(TableName);
+            retVal.AppendLine("WHERE");
+            retVal.AppendLine($"    {EntityName}.{FDC.FoundationEntity.Id} = {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.FoundationEntity.Id}");
+
+            return retVal.ToString();
+        }
+
+        /// <summary>
         /// Gets the specified entity.
         /// </summary>
         /// <param name="entityId">The entity identifier.</param>
@@ -496,20 +526,14 @@ namespace Foundation.Repository
 
             TModel retVal = default;
 
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT");
-            sql.AppendLine("    *");
-            sql.AppendLine("FROM");
-            sql.AppendLine(TableName);
-            sql.AppendLine("WHERE");
-            sql.AppendLine($"    {EntityName}.{FDC.FoundationEntity.Id} = {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.FoundationEntity.Id}");
+            String sql = GetSql();
 
             DatabaseParameters databaseParameters = new DatabaseParameters
             {
                 FoundationDataAccess.CreateParameter($"{EntityName}{FDC.FoundationEntity.Id}", entityId)
             };
 
-            DataTable dataTable = FoundationDataAccess.ExecuteDataTable(sql.ToString(), CommandType.Text, databaseParameters);
+            DataTable dataTable = FoundationDataAccess.ExecuteDataTable(sql, CommandType.Text, databaseParameters);
 
             if (dataTable.Rows.Count > 0)
             {

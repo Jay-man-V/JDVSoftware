@@ -16,50 +16,20 @@ namespace Foundation.Common
     /// <summary>
     /// Defines Logging Helper methods
     /// </summary>
-    public partial class LoggingHelpers
+    [DependencyInjectionSingleton]
+    public partial class LoggingHelpers : IApplicationStartup
     {
         /// <summary>
-        /// The error logger
-        /// </summary>
-        private static LoggingBase ErrorLogger { get; set; }
-
-        /// <summary>
-        /// The warning logger
-        /// </summary>
-        private static LoggingBase WarningLogger { get; set; }
-
-        /// <summary>
-        /// The audit logger
-        /// </summary>
-        private static LoggingBase AuditLogger { get; set; }
-
-        /// <summary>
-        /// The information logger
-        /// </summary>
-        private static LoggingBase InformationLogger { get; set; }
-
-        /// <summary>
-        /// The trace logger
-        /// </summary>
-        private static LoggingBase TraceLogger { get; set; }
-
-        /// <summary>
-        /// Initialises static members of the <see cref="LoggingHelpers"/> class.
+        /// Initialises a new instance of the <see cref="LoggingHelpers"/> class.
         /// </summary>
         /// <exception cref="ConfigurationErrorsException">Raised if the Configuration file does not contain the correct setup</exception>
-        static LoggingHelpers()
-        {
-            IRunTimeEnvironmentSettings runTimeEnvironmentSettings = Core.Core.Instance.Container.Get<IRunTimeEnvironmentSettings>();
-            IDateTimeService dateTimeService = Core.Core.Instance.Container.Get<IDateTimeService>();
-            _ = new LoggingHelpers(runTimeEnvironmentSettings, dateTimeService);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="runTimeEnvironmentSettings">The runtime environment settings</param>
         /// <param name="dateTimeService"></param>
-        public LoggingHelpers(IRunTimeEnvironmentSettings runTimeEnvironmentSettings, IDateTimeService dateTimeService)
+        public LoggingHelpers
+        (
+            IRunTimeEnvironmentSettings runTimeEnvironmentSettings,
+            IDateTimeService dateTimeService
+        )
         {
             String tracingPrefix = LoggingConstants.TracingPrefix;
             String informationPrefix = LoggingConstants.InformationPrefix;
@@ -105,6 +75,31 @@ namespace Foundation.Common
             WarningLogger = new EventLogWriter(runTimeEnvironmentSettings, dateTimeService, ApplicationSettings.ApplicationName, TraceLevel.Warning, warningPrefix, applicationName);
             AuditLogger = new EventLogWriter(runTimeEnvironmentSettings, dateTimeService, ApplicationSettings.ApplicationName, TraceLevel.Info, auditPrefix, applicationName);
         }
+
+        /// <summary>
+        /// The error logger
+        /// </summary>
+        private static LoggingBase ErrorLogger { get; set; }
+
+        /// <summary>
+        /// The warning logger
+        /// </summary>
+        private static LoggingBase WarningLogger { get; set; }
+
+        /// <summary>
+        /// The audit logger
+        /// </summary>
+        private static LoggingBase AuditLogger { get; set; }
+
+        /// <summary>
+        /// The information logger
+        /// </summary>
+        private static LoggingBase InformationLogger { get; set; }
+
+        /// <summary>
+        /// The trace logger
+        /// </summary>
+        private static LoggingBase TraceLogger { get; set; }
 
         /// <summary>
         /// Method to be called on entry to each 'significant' method. As a minimum ALL

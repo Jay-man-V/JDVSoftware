@@ -94,6 +94,7 @@
     <Compile Include="BusinessProcess\Core\IOfficeWeekCalendarProcess.cs" />
     <Compile Include="BusinessProcess\ICommonProcess.cs" />
     <Compile Include="BusinessProcess\Log\IEventLogAttachmentProcess.cs" />
+    <Compile Include="Core\IApplicationStartup.cs" />
     <Compile Include="EventArgs\CreateScheduledTaskEventArgs.cs" />
     <Compile Include="Exceptions\ApplicationConcurrencyException.cs" />
     <Compile Include="Exceptions\ApplicationPermissionsException.cs" />

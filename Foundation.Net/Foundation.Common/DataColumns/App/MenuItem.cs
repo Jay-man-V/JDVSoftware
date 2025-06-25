@@ -153,5 +153,13 @@ namespace Foundation.Common.DataColumns
         /// The icon.
         /// </value>
         public static String Icon => "Icon";
+
+        /// <summary>
+        /// Gets the Depth.
+        /// </summary>
+        /// <value>
+        /// The Depth.
+        /// </value>
+        public static String Depth => "Depth";
     }
 }

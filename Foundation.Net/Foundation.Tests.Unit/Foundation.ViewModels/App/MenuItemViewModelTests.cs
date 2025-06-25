@@ -34,7 +34,7 @@ namespace Foundation.Tests.Unit.Foundation.ViewModels.CoreTests
 
         protected override Boolean ExpectedHasOptionalDropDownParameter2 => true;
         protected override String ExpectedFilter2Name => "Parent:";
-        protected override string ExpectedFilter2DisplayMemberPath => FDC.MenuItem.Name;
+        protected override string ExpectedFilter2DisplayMemberPath => FDC.MenuItem.Caption;
 
         private IApplicationProcess ApplicationProcess { get; set; }
 

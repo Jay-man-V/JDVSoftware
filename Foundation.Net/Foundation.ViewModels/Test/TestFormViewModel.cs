@@ -52,6 +52,9 @@ namespace Foundation.ViewModels
 
         private ITestSupportService TestSupportService { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand DemoCommand => RelayCommandFactory.New(DemoCommand_Click);
 
         private void DemoCommand_Click()

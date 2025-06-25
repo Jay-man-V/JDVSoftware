@@ -5,7 +5,8 @@
 //-----------------------------------------------------------------------
 
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using Foundation.Interfaces;
 
 namespace Foundation.Core
@@ -43,6 +44,13 @@ namespace Foundation.Core
                 _theInstance = new Core();
                 _theInstance.Container.Reset();
                 _theInstance.Container.Initialise();
+
+                _ = _theInstance.Container.GetAll<IApplicationStartup>().ToList();
+                //List<IApplicationSetup> applicationSetups = _theInstance.Container.GetAll<IApplicationSetup>().ToList();
+                //foreach (IApplicationSetup applicationSetup in applicationSetups)
+                //{
+
+                //}
 
                 if (runTimeEnvironmentSettings == null)
                 {

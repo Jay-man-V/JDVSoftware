@@ -108,5 +108,10 @@ namespace Foundation.Interfaces
         /// The icon
         /// </value>
         Byte[] Icon { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Int32 Depth { get; }
     }
 }

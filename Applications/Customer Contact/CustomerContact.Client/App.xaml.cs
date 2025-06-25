@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 using Foundation.Common;
 using Foundation.Interfaces;
@@ -58,9 +57,8 @@ namespace CustomerContact
             LoggingHelpers.TraceCallEnter(e);
 
             // For catching Global uncaught exception
-            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionOccurred;
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-            Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+            ApplicationControl.ApplicationStart(DisplayUnhandledExceptionMessage);
+            Dispatcher.UnhandledException += ApplicationControl.Dispatcher_UnhandledException;
 
             FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
             {
@@ -136,43 +134,6 @@ namespace CustomerContact
             ViewModel.DisplayUnhandledExceptionMessage(exception);
 
             ApplicationControl.LogUnhandledExceptionMessage(exception);
-        }
-
-        /// <summary>
-        /// Handles the UnobservedTaskException event of the TaskScheduler control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="args">The <see cref="UnobservedTaskExceptionEventArgs" /> instance containing the event data.</param>
-        private void TaskScheduler_UnobservedTaskException(Object sender, UnobservedTaskExceptionEventArgs args)
-        {
-            Exception exception = args.Exception;
-
-            DisplayUnhandledExceptionMessage(exception);
-        }
-
-        /// <summary>
-        /// Handles the UnhandledException event of the Dispatcher control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="args">The <see cref="DispatcherUnhandledExceptionEventArgs" /> instance containing the event data.</param>
-        private void Dispatcher_UnhandledException(Object sender, DispatcherUnhandledExceptionEventArgs args)
-        {
-            Exception exception = args.Exception;
-
-            DisplayUnhandledExceptionMessage(exception);
-            args.Handled = true;
-        }
-
-        /// <summary>
-        /// Catches any unhandled exceptions.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The <see cref="UnhandledExceptionEventArgs" /> instance containing the event data.</param>
-        private static void UnhandledExceptionOccurred(Object sender, UnhandledExceptionEventArgs args)
-        {
-            Exception exception = (Exception)args.ExceptionObject;
-
-            DisplayUnhandledExceptionMessage(exception);
         }
     }
 }

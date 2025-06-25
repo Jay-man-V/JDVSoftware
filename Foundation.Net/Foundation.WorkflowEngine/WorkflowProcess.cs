@@ -6,12 +6,12 @@
 
 using System;
 
+using Foundation.Interfaces;
+
 namespace Foundation.WorkflowEngine
 {
-    public class WorkflowProcess
+    [DependencyInjectionTransient]
+    public class WorkflowProcess : IWorkflowProcess
     {
-        public void Test()
-        {
-        }
     }
 }

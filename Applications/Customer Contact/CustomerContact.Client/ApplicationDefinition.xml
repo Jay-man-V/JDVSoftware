@@ -200,7 +200,7 @@
                     <Icon />
                     <Controller assembly="Foundation.Interfaces" type="Foundation.Interfaces.IEventLogApplicationViewModel" />
                     <ViewScreen assembly="Foundation.Views" type="Foundation.Views.GenericDataGridView" />
-                    <HelpText>View all Event Logs</HelpText>
+                    <HelpText>View all Event Log Applications</HelpText>
                     <MultiInstance>false</MultiInstance>
                     <ShowInTab>true</ShowInTab>
                 </MenuItem>

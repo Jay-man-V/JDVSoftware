@@ -85,11 +85,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ApplicationDefinition.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Foundation.Net\Foundation.Core\Foundation.Core.csproj">
       <Project>{9e0051c2-ac27-438c-b3a9-8e084b3506a8}</Project>
       <Name>Foundation.Core</Name>

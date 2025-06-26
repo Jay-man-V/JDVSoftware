@@ -51,9 +51,6 @@ namespace CustomerContact
             Foundation.Core.Core.Initialise(ApplicationSettings.ApplicationId);
             Core = Foundation.Core.Core.Instance;
 
-            IMainApplicationProcess mainApplicationProcess = Core.Container.Get<IMainApplicationProcess>();
-            ApplicationDefinition applicationDefinition = mainApplicationProcess.LoadApplicationDefinition();
-
             LoggingHelpers.TraceCallEnter(e);
 
             // For catching Global uncaught exception
@@ -108,8 +105,8 @@ namespace CustomerContact
 
                     ThisApplication = new MainWindowForm();
                     MainWindow = ThisApplication;
-                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, applicationDefinition, loggedOnUserProcess);
-                    ViewModel.Initialise(ThisApplication, null, applicationDefinition.Name);
+                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, loggedOnUserProcess);
+                    ViewModel.Initialise(ThisApplication, null, "TODO"); // TODO
                     ThisApplication.DataContext = ViewModel;
                     ThisApplication.Show();
 

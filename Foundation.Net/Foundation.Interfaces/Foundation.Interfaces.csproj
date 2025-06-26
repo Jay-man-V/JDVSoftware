@@ -141,11 +141,6 @@
     <Compile Include="Enums\FileTransferMethod.cs" />
     <Compile Include="Enums\ServiceStatus.cs" />
     <Compile Include="Enums\DataStatus.cs" />
-    <Compile Include="MenuConfig\ApplicationDefinition.cs" />
-    <Compile Include="MenuConfig\ViewController.cs" />
-    <Compile Include="MenuConfig\ViewMenuItem.cs" />
-    <Compile Include="MenuConfig\ViewParameter.cs" />
-    <Compile Include="MenuConfig\ViewScreen.cs" />
     <Compile Include="Models\Core\EnumModels\IEntityStatus.cs" />
     <Compile Include="Models\Core\EnumModels\IDataStatus.cs" />
     <Compile Include="Models\Log\IEventLogAttachment.cs" />

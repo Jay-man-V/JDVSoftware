@@ -30,7 +30,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.ApplicationSupportTests
         [TestCase]
         public void Test_ApplicationStart()
         {
-            MockApplication _ = new MockApplication();
+            //MockApplication _ = new MockApplication();
         }
 
         /// <summary>

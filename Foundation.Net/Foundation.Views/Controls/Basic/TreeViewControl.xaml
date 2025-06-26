@@ -8,7 +8,7 @@
 
     mc:Ignorable="d"
     
-    xmlns:commonMenuConfig="clr-namespace:Foundation.Interfaces;assembly=Foundation.Interfaces"
+    xmlns:foundation="clr-namespace:Foundation.Interfaces;assembly=Foundation.Interfaces"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
 
     HorizontalAlignment="{Binding ElementName=ThisControl, Path=HorizontalAlignment}"
@@ -39,7 +39,7 @@
 
     <TreeView.Resources>
         <HierarchicalDataTemplate
-            DataType="{x:Type commonMenuConfig:ViewMenuItem}"
+            DataType="{x:Type foundation:IMenuItem}"
             ItemsSource="{Binding MenuItems}"
             >
             <!--<HierarchicalDataTemplate.Resources>

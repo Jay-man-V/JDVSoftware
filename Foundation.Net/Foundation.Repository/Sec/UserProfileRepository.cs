@@ -65,10 +65,10 @@ namespace Foundation.Repository
         /// <inheritdoc cref="FoundationModelRepository{TModel}.RequiredMinimumEditRole"/>
         protected override ApplicationRole RequiredMinimumEditRole => ApplicationRole.SystemDataAdministrator;
 
-        /// <inheritdoc cref="IUserProfileRepository.Get(AppId, String)"/>
-        public IUserProfile Get(AppId applicationId, String username)
+        /// <inheritdoc cref="IUserProfileRepository.Get(AppId, String, String)"/>
+        public IUserProfile Get(AppId applicationId, String domainName, String username)
         {
-            LoggingHelpers.TraceCallEnter(applicationId, username);
+            LoggingHelpers.TraceCallEnter(applicationId, domainName, username);
 
             IUserProfile retVal = null;
 
@@ -83,6 +83,7 @@ namespace Foundation.Repository
             sql.AppendLine($"             up.{FDC.UserProfile.Id} = aur.{FDC.ApplicationUserRole.UserProfileId}");
             sql.AppendLine("        )");
             sql.AppendLine("WHERE");
+            sql.AppendLine($"    up.{FDC.UserProfile.DomainName} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.DomainName} AND");
             sql.AppendLine($"    up.{FDC.UserProfile.Username} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.Username} AND");
             sql.AppendLine($"    aur.{FDC.ApplicationUserRole.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationUserRole.EntityName}{FDC.ApplicationUserRole.ApplicationId} AND");
             sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
@@ -90,6 +91,7 @@ namespace Foundation.Repository
 
             DatabaseParameters databaseParameters = new DatabaseParameters
             {
+                FoundationDataAccess.CreateParameter($"{FDC.UserProfile.EntityName}{FDC.UserProfile.DomainName}", domainName),
                 FoundationDataAccess.CreateParameter($"{FDC.UserProfile.EntityName}{FDC.UserProfile.Username}", username),
                 FoundationDataAccess.CreateParameter($"{FDC.ApplicationUserRole.EntityName}{FDC.ApplicationUserRole.ApplicationId}", applicationId),
             };
@@ -158,9 +160,9 @@ namespace Foundation.Repository
         }
 
         /// <inheritdoc cref="IUserProfileRepository.SyncActiveDirectoryUserDataFromStaging(IUserProfile)"/>
-        public void SyncActiveDirectoryUserDataFromStaging(IUserProfile loggedOnUserUserProfile)
+        public void SyncActiveDirectoryUserDataFromStaging(IUserProfile loggedOnUserProfile)
         {
-            LoggingHelpers.TraceCallEnter(loggedOnUserUserProfile);
+            LoggingHelpers.TraceCallEnter(loggedOnUserProfile);
 
             using (IDbConnection conn = FoundationDataAccess.GetConnection())
             {
@@ -174,7 +176,7 @@ namespace Foundation.Repository
                         command.CommandText = sql;
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.Add(FoundationDataAccess.CreateParameter("loggedOnUserProfileId", loggedOnUserUserProfile.Id));
+                        command.Parameters.Add(FoundationDataAccess.CreateParameter("loggedOnUserProfileId", loggedOnUserProfile.Id));
 
                         command.ExecuteNonQuery();
                     }

@@ -72,6 +72,9 @@
     <Compile Include="Controls\Basic\ComboBoxControl.xaml.cs">
       <DependentUpon>ComboBoxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Basic\ListBoxControl.xaml.cs">
+      <DependentUpon>ListBoxControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ContactDetailsControl.xaml.cs">
       <DependentUpon>ContactDetailsControl.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Basic\ComboBoxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Basic\ListBoxControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

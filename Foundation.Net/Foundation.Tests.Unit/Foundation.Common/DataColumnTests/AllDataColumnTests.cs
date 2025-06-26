@@ -1135,6 +1135,7 @@ namespace Foundation.Tests.Unit.Foundation.Common.DataColumnTests
 
             index++; Assert.That(FDC.UserProfile.EntityName, Is.EqualTo(nameof(FDC.UserProfile)));
             index++; Assert.That(FDC.UserProfile.ExternalKeyId, Is.EqualTo(nameof(FDC.UserProfile.ExternalKeyId)));
+            index++; Assert.That(FDC.UserProfile.DomainName, Is.EqualTo(nameof(FDC.UserProfile.DomainName)));
             index++; Assert.That(FDC.UserProfile.Username, Is.EqualTo(nameof(FDC.UserProfile.Username)));
             index++; Assert.That(FDC.UserProfile.DisplayName, Is.EqualTo(nameof(FDC.UserProfile.DisplayName)));
             index++; Assert.That(FDC.UserProfile.IsSystemSupport, Is.EqualTo(nameof(FDC.UserProfile.IsSystemSupport)));

@@ -39,7 +39,6 @@ namespace Foundation.ViewModels
         /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="targetWindow">The target window.</param>
-        /// <param name="applicationDefinition">The application definition.</param>
         /// <param name="loggedOnUserProcess">The logged on user process.</param>
         public MainViewModel
         (
@@ -49,7 +48,6 @@ namespace Foundation.ViewModels
             IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             IWindow targetWindow,
-            ApplicationDefinition applicationDefinition,
             ILoggedOnUserProcess loggedOnUserProcess
         ) :
             base
@@ -58,13 +56,12 @@ namespace Foundation.ViewModels
                 runTimeEnvironmentSettings,
                 dateTimeService,
                 wpfApplicationObjects,
-                applicationDefinition.Name
+                ""
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, targetWindow, applicationDefinition, loggedOnUserProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, targetWindow, loggedOnUserProcess);
 
             FileApi = fileApi;
-            ApplicationDefinition = applicationDefinition;
 
             LoggedOnUsername = Core.CurrentLoggedOnUser.Username;
             LoggedOnUserDisplayName = Core.CurrentLoggedOnUser.DisplayName;
@@ -82,8 +79,6 @@ namespace Foundation.ViewModels
             LoggedOnUsersViewModel = new LoggedOnUserViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, wpfApplicationObjects, FileApi, loggedOnUserProcess);
             LoggedOnUsersViewModel.Initialise(targetWindow, this, "Logged on Users");
 
-            InitialiseMenuItems();
-
             TabItems = new ObservableCollection<TabItem>();
 
             LoggingHelpers.TraceCallReturn();
@@ -94,7 +89,14 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            // Nothing to do
+            IApplicationProcess applicationProcess = Core.Container.Get<IApplicationProcess>();
+            IApplication application = applicationProcess.Get(new EntityId(Core.ApplicationId.ToInteger()));
+            ApplicationName = application.Name;
+
+            IMenuItemProcess menuItemProcess = Core.Container.Get<IMenuItemProcess>();
+            MenuItems = menuItemProcess.GetAll(excludeDeleted: true);
+
+            InitialiseMenuItems();
 
             LoggingHelpers.TraceCallReturn();
         }
@@ -124,12 +126,12 @@ namespace Foundation.ViewModels
         protected IFileApi FileApi { get; }
 
         /// <summary>
-        /// Gets the application definition.
+        /// Gets the menu items.
         /// </summary>
         /// <value>
-        /// The application definition.
+        /// The menu items.
         /// </value>
-        protected ApplicationDefinition ApplicationDefinition { get; }
+        protected List<IMenuItem> MenuItems { get; private set; }
 
         /// <summary>
         /// Gets the application name.
@@ -137,7 +139,7 @@ namespace Foundation.ViewModels
         /// <value>
         /// The application name.
         /// </value>
-        public String ApplicationName => ApplicationDefinition.Name;
+        public String ApplicationName { get; private set; }
 
         /// <summary>
         /// Gets the version.
@@ -244,20 +246,20 @@ namespace Foundation.ViewModels
         public ICommand OpenErrorDialogCommand => RelayCommandFactory.New(OnOpenErrorDialog_Click);
 
         /// <summary>
-        /// Gets the TreeView selection left click command.
+        /// Gets the Menu selection left click command.
         /// </summary>
         /// <value>
-        /// The TreeView selection left click command.
+        /// The Menu selection left click command.
         /// </value>
-        public ICommand TreeViewSelectionLeftClickCommand => RelayCommandFactory.New<ViewMenuItem>(OnMenuSelection_LeftClick);
+        public ICommand MenuSelectionLeftClickCommand => RelayCommandFactory.New<IMenuItem>(OnMenuSelection_LeftClick);
 
         /// <summary>
-        /// Gets the TreeView selection right click command.
+        /// Gets the Menu selection right click command.
         /// </summary>
         /// <value>
-        /// The TreeView selection right click command.
+        /// The Menu selection right click command.
         /// </value>
-        public ICommand TreeViewSelectionRightClickCommand => RelayCommandFactory.New<ViewMenuItem>(OnMenuSelection_RightClick);
+        public ICommand MenuSelectionRightClickCommand => RelayCommandFactory.New<IMenuItem>(OnMenuSelection_RightClick);
 
         /// <summary>
         /// Gets the save command.
@@ -265,15 +267,15 @@ namespace Foundation.ViewModels
         /// <value>
         /// The save command.
         /// </value>
-        public ICommand SaveCommand { get { return RelayCommandFactory.New<ViewMenuItem>(OnSave_Click, () => _enabled); } }
+        public ICommand SaveCommand { get { return RelayCommandFactory.New<IMenuItem>(OnSave_Click, () => _enabled); } }
 
         /// <summary>
-        /// Gets the TreeView selected item changed.
+        /// Gets the Menu selected item changed.
         /// </summary>
         /// <value>
-        /// The TreeView selected item changed.
+        /// The Menu selected item changed.
         /// </value>
-        public ICommand TreeViewSelectedItemChanged => RelayCommandFactory.New<ViewMenuItem>(OnTreeViewSelectedItemChanged_Click, RelayCommandFactory.AlwaysTrue);
+        public ICommand MenuSelectedItemChanged => RelayCommandFactory.New<IMenuItem>(MenuSelectedItemChanged_Click, RelayCommandFactory.AlwaysTrue);
 
         /// <summary>
         /// Gets or sets the selected item.
@@ -296,57 +298,58 @@ namespace Foundation.ViewModels
             set => SetPropertyValue(ref _tabItems, value);
         }
 
-        private ObservableCollection<ViewMenuItem> _applicationDefinitions;
+        private ObservableCollection<IMenuItem> _applicationMenuItems;
         /// <summary>
-        /// Gets or sets the application definitions.
+        /// Gets or sets the application menu items.
         /// </summary>
         /// <value>
-        /// The application definitions.
+        /// The application menu items.
         /// </value>
-        public ObservableCollection<ViewMenuItem> ApplicationDefinitions
+        public ObservableCollection<IMenuItem> ApplicationMenuItems
         {
-            get => _applicationDefinitions;
-            set => SetPropertyValue(ref _applicationDefinitions, value);
+            get => _applicationMenuItems;
+            set => SetPropertyValue(ref _applicationMenuItems, value);
         }
 
-        private ViewMenuItem _selectedApplicationDefinition;
+        private IMenuItem _selectedApplicationMenuItem;
         /// <summary>
-        /// Gets or sets the selected application definition.
+        /// Gets or sets the selected application menu item.
         /// </summary>
         /// <value>
-        /// The selected application definition.
+        /// The selected application menu item.
         /// </value>
-        public ViewMenuItem SelectedApplicationDefinition
+        public IMenuItem SelectedApplicationMenuItem
         {
-            get => _selectedApplicationDefinition;
+            get => _selectedApplicationMenuItem;
             set
             {
-                SetPropertyValue(ref _selectedApplicationDefinition, value);
-                TreeViewItems = new ObservableCollection<ViewMenuItem>(_selectedApplicationDefinition.MenuItems);
+                SetPropertyValue(ref _selectedApplicationMenuItem, value);
+                IEnumerable<IMenuItem> applicationMenuItems = MenuItems.Where(mi => mi.ParentMenuItemId == _selectedApplicationMenuItem.Id);
+                AvailableMenuItems = new ObservableCollection<IMenuItem>(applicationMenuItems);
             }
         }
 
-        private ObservableCollection<ViewMenuItem> _treeViewItems;
+        private ObservableCollection<IMenuItem> _availableMenuItems;
         /// <summary>
-        /// Gets or sets the TreeView items.
+        /// Gets or sets the Available menu items.
         /// </summary>
         /// <value>
-        /// The TreeView items.
+        /// The Available menu items.
         /// </value>
-        public ObservableCollection<ViewMenuItem> TreeViewItems
+        public ObservableCollection<IMenuItem> AvailableMenuItems
         {
-            get => _treeViewItems;
-            set => SetPropertyValue(ref _treeViewItems, value);
+            get => _availableMenuItems;
+            set => SetPropertyValue(ref _availableMenuItems, value);
         }
 
-        private BindingList<ViewMenuItem> _menuBarItems;
+        private BindingList<IMenuItem> _menuBarItems;
         /// <summary>
         /// Gets or sets the menu bar items.
         /// </summary>
         /// <value>
         /// The menu bar items.
         /// </value>
-        public BindingList<ViewMenuItem> MenuBarItems
+        public BindingList<IMenuItem> MenuBarItems
         {
             get => _menuBarItems;
             set => SetPropertyValue(ref _menuBarItems, value);
@@ -375,12 +378,12 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            List<ViewMenuItem> menuBarItems = ApplicationDefinition.ViewMenuItems.Where(mi => !String.IsNullOrEmpty(mi.Menu)).ToList();
+            //List<IMenuItem> menuBarItems = ApplicationDefinition.ViewMenuItems.Where(mi => !String.IsNullOrEmpty(mi.Menu)).ToList();
 
-            ApplicationDefinitions = new ObservableCollection<ViewMenuItem>(ApplicationDefinition.ViewMenuItems.Where(mi => mi.MenuItems.Any()));
-            SelectedApplicationDefinition = ApplicationDefinitions[0];
+            ApplicationMenuItems = new ObservableCollection<IMenuItem>(MenuItems.Where(mi => mi.ParentMenuItemId == new EntityId(-1))); // TODO
+            SelectedApplicationMenuItem = ApplicationMenuItems[0];
 
-            MenuBarItems = new BindingList<ViewMenuItem>(menuBarItems);
+            //MenuBarItems = new BindingList<IMenuItem>(menuBarItems);
 
             LoggingHelpers.TraceCallReturn();
         }
@@ -406,7 +409,7 @@ namespace Foundation.ViewModels
         /// Called when [save click].
         /// </summary>
         /// <param name="menuItem">The menu item.</param>
-        private void OnSave_Click(ViewMenuItem menuItem)
+        private void OnSave_Click(IMenuItem menuItem)
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
@@ -416,10 +419,10 @@ namespace Foundation.ViewModels
         }
 
         /// <summary>
-        /// Called when [TreeView selected item changed click].
+        /// Called when [Menu selected item changed click].
         /// </summary>
         /// <param name="menuItem">The menu item.</param>
-        private void OnTreeViewSelectedItemChanged_Click(ViewMenuItem menuItem)
+        private void MenuSelectedItemChanged_Click(IMenuItem menuItem)
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
@@ -435,46 +438,43 @@ namespace Foundation.ViewModels
         /// Called when [menu selection left click].
         /// </summary>
         /// <param name="menuItem">The menu item.</param>
-        private void OnMenuSelection_LeftClick(ViewMenuItem menuItem)
+        private void OnMenuSelection_LeftClick(IMenuItem menuItem)
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 
             using (MouseCursor)
             {
                 if (menuItem.IsNotNull() &&
-                    menuItem.Controller.IsNotNull() &&
-                    menuItem.ViewScreen.IsNotNull())
+                    menuItem.ControllerAssembly.IsNotNull() &&
+                    menuItem.ViewAssembly.IsNotNull())
                 {
                     ChildWindowCounter++;
 
-                    ViewController controller = menuItem.Controller;
-                    ViewScreen view = menuItem.ViewScreen;
+                    String controllerAssembly = menuItem.ControllerAssembly;
+                    String controllerType = menuItem.ControllerType;
+                    String viewAssembly = menuItem.ViewAssembly;
+                    String viewType = menuItem.ViewType;
                     IViewModel viewModel;
                     try
                     {
-                        viewModel = Core.Container.Get<IViewModel>(controller.AssemblyName, controller.AssemblyType);
-
-                        if (menuItem.Parameters.Any())
-                        {
-                            menuItem.Parameters.ForEach(p => viewModel.Parameters.Add(p.Name, p.Value));
-                        }
+                        viewModel = Core.Container.Get<IViewModel>(controllerAssembly, controllerType);
                     }
                     catch (Exception exception)
                     {
-                        throw new Exception($"Unable to create View Model: '{controller.AssemblyType}' from '{controller.AssemblyName}'", exception);
+                        throw new Exception($"Unable to create View Model: '{controllerType}' from '{controllerAssembly}'", exception);
                     }
 
                     ContentControl contentControl;
                     try
                     {
-                        contentControl = Core.Container.Get<ContentControl>(view.AssemblyName, view.AssemblyType);
+                        contentControl = Core.Container.Get<ContentControl>(viewAssembly, viewType);
                         IWindow targetWindow = contentControl as IWindow;
                         viewModel.Initialise(targetWindow, this, menuItem.Caption);
                         contentControl.DataContext = viewModel;
                     }
                     catch (Exception exception)
                     {
-                        throw new Exception($"Unable to View - {menuItem.Caption}: '{view.AssemblyType}' from '{view.AssemblyName}'", exception);
+                        throw new Exception($"Unable to View - {menuItem.Caption}: '{viewType}' from '{viewAssembly}'", exception);
                     }
 
                     TabItem tabItem = null;
@@ -558,7 +558,7 @@ namespace Foundation.ViewModels
         /// Called when [menu selection right click].
         /// </summary>
         /// <param name="menuItem">The menu item.</param>
-        private void OnMenuSelection_RightClick(ViewMenuItem menuItem)
+        private void OnMenuSelection_RightClick(IMenuItem menuItem)
         {
             LoggingHelpers.TraceCallEnter(menuItem);
 

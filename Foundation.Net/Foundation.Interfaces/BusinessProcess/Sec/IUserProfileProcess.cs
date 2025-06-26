@@ -32,9 +32,10 @@ namespace Foundation.Interfaces
         /// Retrieves the user profile specified by <paramref name="username"/> for the application denoted by <paramref name="applicationId"/>
         /// </summary>
         /// <param name="applicationId">The application identifier.</param>
+        /// <param name="domainName">The domainName.</param>
         /// <param name="username">The username.</param>
         /// <returns><see cref="IUserProfile"/></returns>
-        IUserProfile GetUserProfile(AppId applicationId, String username);
+        IUserProfile GetUserProfile(AppId applicationId, String domainName, String username);
 
         /// <summary>
         /// Synchronises the Activity Directory User Data from Staging

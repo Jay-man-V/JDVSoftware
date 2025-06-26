@@ -203,7 +203,6 @@
     <Compile Include="Foundation.BusinessProcess\LogTests\EventLogApplicationProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\LogTests\EventLogProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\LogTests\LogSeverityProcessTests.cs" />
-    <Compile Include="Foundation.BusinessProcess\MainTests\MainApplicationProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationApplicationTypeProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationProcessTests.cs" />
     <Compile Include="Foundation.BusinessProcess\SecTests\ApplicationRoleProcessTests.cs" />
@@ -321,11 +320,6 @@
     <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\LogWritingTests.cs" />
     <Compile Include="Foundation.Common\ConfigurationTests\ApplicationSettingsMissingConfigsTests.cs" />
     <Compile Include="Foundation.Common\LoggingTests\LogWritersTests\TraceLogWriterTests.cs" />
-    <Compile Include="Foundation.Common\MenuConfigTests\ApplicationDefinitionTests.cs" />
-    <Compile Include="Foundation.Common\MenuConfigTests\ControllerTests.cs" />
-    <Compile Include="Foundation.Common\MenuConfigTests\MenuItemTests.cs" />
-    <Compile Include="Foundation.Common\MenuConfigTests\ParameterTests.cs" />
-    <Compile Include="Foundation.Common\MenuConfigTests\ViewTests.cs" />
     <Compile Include="Foundation.Common\ProgressEventTrackingTests\MockProgressTracker.cs" />
     <Compile Include="Foundation.Common\ProgressEventTrackingTests\MockProgressUpdater.cs" />
     <Compile Include="Foundation.Common\ProgressEventTrackingTests\ProgressItemTests.cs" />
@@ -593,6 +587,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".ExpectedResults\ExportToCsv\" />
+    <Folder Include="Foundation.BusinessProcess\MainTests\" />
     <Folder Include="Foundation.BusinessProcess\SecTests\LoggedOnUserProcessTests\" />
     <Folder Include="Foundation.BusinessProcess\SecTests\UserProfileProcessTests\" />
     <Folder Include="Foundation.Repository\BaseTests\FoundationDataAccessTests\.DataLogicProvidersTests\" />

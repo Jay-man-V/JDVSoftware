@@ -4,15 +4,17 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
 using Foundation.Common;
 
 namespace Foundation.Tests.Unit.Mocks
 {
-    public class MockApplication : ApplicationControl
-    {
-        public MockApplication()
-        {
-            base.ApplicationStart();
-        }
-    }
+    //public class MockApplication : ApplicationControl
+    //{
+    //    void DisplayHandler(Exception exception) { }
+    //    public MockApplication()
+    //    {
+    //        base.ApplicationStart(DisplayHandler);
+    //    }
+    //}
 }

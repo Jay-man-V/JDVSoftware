@@ -14,11 +14,5 @@ namespace Foundation.Interfaces
     /// </summary>
     public interface IMainApplicationProcess
     {
-        /// <summary>
-        /// Loads the application definition.
-        /// </summary>
-        /// <returns>Deserialised Application Definition</returns>
-        /// <exception cref="FileNotFoundException">If the ApplicationDefinition.xml file cannot be found</exception>
-        ApplicationDefinition LoadApplicationDefinition(String applicationDefinitionFile = "ApplicationDefinition.xml");
     }
 }

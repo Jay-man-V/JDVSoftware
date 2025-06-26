@@ -22,6 +22,10 @@ namespace Foundation.Interfaces
         /// <value>The external key identifier.</value>
         String ExternalKeyId { get; set; }
 
+        /// <summary>Gets or sets the Domain Name.</summary>
+        /// <value>The Domain Name.</value>
+        String DomainName { get; set; }
+
         /// <summary>Gets or sets the username.</summary>
         /// <value>The username.</value>
         String Username { get; set; }

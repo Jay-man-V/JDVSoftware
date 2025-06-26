@@ -17,10 +17,11 @@ namespace Foundation.Interfaces
         /// Gets the specified application identifier.
         /// </summary>
         /// <param name="applicationId">The application identifier.</param>
+        /// <param name="domainName">The domainName.</param>
         /// <param name="username">The username.</param>
         /// <returns>
         /// </returns>
-        IUserProfile Get(AppId applicationId, String username);
+        IUserProfile Get(AppId applicationId, String domainName, String username);
 
         /// <summary>
         /// Gets the specified application identifier.
@@ -34,7 +35,7 @@ namespace Foundation.Interfaces
         /// <summary>
         /// Synchronizes the active directory user data from staging.
         /// </summary>
-        /// <param name="loggedOnUserUserProfile">The logged on user user profile.</param>
-        void SyncActiveDirectoryUserDataFromStaging(IUserProfile loggedOnUserUserProfile);
+        /// <param name="loggedOnUserProfile">The logged on user profile.</param>
+        void SyncActiveDirectoryUserDataFromStaging(IUserProfile loggedOnUserProfile);
     }
 }

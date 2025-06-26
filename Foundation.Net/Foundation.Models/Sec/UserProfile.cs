@@ -27,6 +27,7 @@ namespace Foundation.Models
     public class UserProfile : FoundationModel, IUserProfile, IEquatable<IUserProfile>
     {
         private String _externalKeyId;
+        private String _domainName;
         private String _userName;
         private String _displayName;
         private Boolean _isSystemSupport;
@@ -51,6 +52,15 @@ namespace Foundation.Models
         {
             get => this._externalKeyId;
             set => this.SetPropertyValue(ref _externalKeyId, value, FDC.UserProfile.Lengths.ExternalKeyId);
+        }
+
+        /// <inheritdoc cref="IUserProfile.DomainName"/>
+        [Column(nameof(FDC.UserProfile.DomainName)), MaxLength(FDC.UserProfile.Lengths.DomainName)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Domain Name must be provided")]
+        public String DomainName
+        {
+            get => this._domainName;
+            set => this.SetPropertyValue(ref _domainName, value, FDC.UserProfile.Lengths.DomainName);
         }
 
         /// <inheritdoc cref="IUserProfile.Username"/>
@@ -96,6 +106,7 @@ namespace Foundation.Models
             switch (propertyName)
             {
                 case nameof(ExternalKeyId): retVal = ExternalKeyId; break;
+                case nameof(DomainName): retVal = DomainName; break;
                 case nameof(Username): retVal = Username; break;
                 case nameof(DisplayName): retVal = DisplayName; break;
                 case nameof(IsSystemSupport): retVal = IsSystemSupport; break;
@@ -113,6 +124,7 @@ namespace Foundation.Models
             retVal.Initialising = true;
 
             retVal._externalKeyId = this._externalKeyId;
+            retVal._domainName = this._domainName;
             retVal._userName = this._userName;
             retVal._displayName = this._displayName;
             retVal._isSystemSupport = this._isSystemSupport;
@@ -155,6 +167,7 @@ namespace Foundation.Models
             Int32 hashCode = base.GetHashCode();
 
             hashCode = hashCode * constant + EqualityComparer<String>.Default.GetHashCode(ExternalKeyId);
+            hashCode = hashCode * constant + EqualityComparer<String>.Default.GetHashCode(DomainName);
             hashCode = hashCode * constant + EqualityComparer<String>.Default.GetHashCode(Username);
             hashCode = hashCode * constant + EqualityComparer<String>.Default.GetHashCode(DisplayName);
             hashCode = hashCode * constant + EqualityComparer<Boolean>.Default.GetHashCode(IsSystemSupport);
@@ -174,6 +187,7 @@ namespace Foundation.Models
             Boolean retVal = FoundationModel.InternalEquals(left, right);
 
             retVal &= EqualityComparer<String>.Default.Equals(left.ExternalKeyId, right.ExternalKeyId);
+            retVal &= EqualityComparer<String>.Default.Equals(left.DomainName, right.DomainName);
             retVal &= EqualityComparer<String>.Default.Equals(left.Username, right.Username);
             retVal &= EqualityComparer<String>.Default.Equals(left.DisplayName, right.DisplayName);
             retVal &= EqualityComparer<Boolean>.Default.Equals(left.IsSystemSupport, right.IsSystemSupport);

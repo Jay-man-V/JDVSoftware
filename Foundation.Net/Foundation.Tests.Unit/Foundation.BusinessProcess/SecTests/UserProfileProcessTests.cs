@@ -120,7 +120,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             expectedUserProfile.ExternalKeyId = Guid.NewGuid().ToString();
             expectedUserProfile.IsSystemSupport = false;
 
-            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
+            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>(), Arg.Any<String>()).Returns(expectedUserProfile);
 
             IUserProfile actualUserProfile = process.GetLoggedOnUserProfile(appId);
 
@@ -158,7 +158,8 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
         {
             IUserProfileProcess process = CreateBusinessProcess();
             AppId appId = new AppId(1);
-            String username = $@"{UserSecuritySupport.UnitTestAccountDomain}\{UserSecuritySupport.UnitTestAccountUserName}";
+            String domainName = $@"{UserSecuritySupport.UnitTestAccountDomain}";
+            String username = $@"{UserSecuritySupport.UnitTestAccountUserName}";
 
             IUserProfile expectedUserProfile = CoreInstance.Container.Get<IUserProfile>();
             expectedUserProfile.Id = new EntityId(1);
@@ -166,9 +167,9 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             expectedUserProfile.ExternalKeyId = Guid.NewGuid().ToString();
             expectedUserProfile.IsSystemSupport = false;
 
-            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>()).Returns(expectedUserProfile);
+            Repository.Get(Arg.Any<AppId>(), Arg.Any<String>(), Arg.Any<String>()).Returns(expectedUserProfile);
 
-            IUserProfile actualUserProfile = process.GetUserProfile(appId, username);
+            IUserProfile actualUserProfile = process.GetUserProfile(appId, domainName, username);
 
             Assert.That(actualUserProfile.Id, Is.EqualTo(expectedUserProfile.Id));
             Assert.That(actualUserProfile.DisplayName, Is.EqualTo(expectedUserProfile.DisplayName));

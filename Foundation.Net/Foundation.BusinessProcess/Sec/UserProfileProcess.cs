@@ -68,6 +68,9 @@ namespace Foundation.BusinessProcess
             List<IGridColumnDefinition> retVal = GetStandardEntityColumnDefinitions();
             IGridColumnDefinition gridColumnDefinition;
 
+            gridColumnDefinition = new GridColumnDefinition(150, FDC.UserProfile.DomainName, "Domain name", typeof(String));
+            retVal.Add(gridColumnDefinition);
+
             gridColumnDefinition = new GridColumnDefinition(150, FDC.UserProfile.Username, "User name", typeof(String));
             retVal.Add(gridColumnDefinition);
 
@@ -94,9 +97,10 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(applicationId);
 
-            String username = RunTimeEnvironmentSettings.UserLogonName;
+            String logonDomain = RunTimeEnvironmentSettings.UserDomainName;
+            String username = RunTimeEnvironmentSettings.UserName;
 
-            IUserProfile retVal = EntityRepository.Get(applicationId, username);
+            IUserProfile retVal = EntityRepository.Get(applicationId, logonDomain, username);
 
             LoggingHelpers.TraceCallReturn(retVal);
 
@@ -115,12 +119,12 @@ namespace Foundation.BusinessProcess
             return retVal;
         }
 
-        /// <inheritdoc cref="IUserProfileProcess.GetUserProfile(AppId, String)"/>
-        public IUserProfile GetUserProfile(AppId applicationId, String username)
+        /// <inheritdoc cref="IUserProfileProcess.GetUserProfile(AppId, String, String)"/>
+        public IUserProfile GetUserProfile(AppId applicationId, String domainName, String username)
         {
-            LoggingHelpers.TraceCallEnter(applicationId, username);
+            LoggingHelpers.TraceCallEnter(applicationId, domainName, username);
 
-            IUserProfile retVal = EntityRepository.Get(applicationId, username);
+            IUserProfile retVal = EntityRepository.Get(applicationId, domainName, username);
 
             LoggingHelpers.TraceCallReturn(retVal);
 

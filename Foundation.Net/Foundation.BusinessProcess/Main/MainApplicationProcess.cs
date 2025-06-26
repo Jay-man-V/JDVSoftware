@@ -37,28 +37,5 @@ namespace Foundation.BusinessProcess
         }
 
         private ICore Core { get; }
-
-        /// <inheritdoc cref="IMainApplicationProcess.LoadApplicationDefinition(String)"/>
-        public ApplicationDefinition LoadApplicationDefinition(String applicationDefinitionFile = DefaultApplicationDefinitionFile)
-        {
-            LoggingHelpers.TraceCallEnter(applicationDefinitionFile);
-
-            ApplicationDefinition retVal = null;
-
-            IFileApi fileApi = Core.Container.Get<IFileApi>();
-
-            fileApi.EnsureFileExists(applicationDefinitionFile);
-
-            XmlSerializer serializer = new XmlSerializer(typeof(ApplicationDefinition));
-
-            using (StreamReader reader = new StreamReader(applicationDefinitionFile))
-            {
-                retVal = (ApplicationDefinition)serializer.Deserialize(reader);
-            }
-
-            LoggingHelpers.TraceCallReturn(retVal);
-
-            return retVal;
-        }
     }
 }

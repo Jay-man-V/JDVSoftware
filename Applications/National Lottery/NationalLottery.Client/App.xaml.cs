@@ -52,9 +52,6 @@ namespace NationalLottery
             Foundation.Core.Core.Initialise(ApplicationSettings.ApplicationId);
             Core = Foundation.Core.Core.Instance;
 
-            IMainApplicationProcess mainApplicationProcess = Core.Container.Get<IMainApplicationProcess>();
-
-            ApplicationDefinition applicationDefinition = mainApplicationProcess.LoadApplicationDefinition();
             Core.Container.Initialise("NationalLottery.*.dll");
 
             LoggingHelpers.TraceCallEnter(e);
@@ -109,7 +106,7 @@ namespace NationalLottery
 
                     ThisApplication = new MainWindowForm();
                     MainWindow = ThisApplication;
-                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, applicationDefinition, loggedOnUserProcess);
+                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, loggedOnUserProcess);
                     ThisApplication.DataContext = ViewModel;
                     ThisApplication.Show();
 

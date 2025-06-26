@@ -169,19 +169,27 @@
                     <DockPanel Grid.Column="0" LastChildFill="True">
                         <ComboBox
                             DockPanel.Dock="Top"
-                            ItemsSource="{Binding ApplicationDefinitions}"
+                            ItemsSource="{Binding ApplicationMenuItems}"
                             DisplayMemberPath="Caption" SelectedValuePath="Name"
-                            SelectedItem="{Binding SelectedApplicationDefinition}"
+                            SelectedItem="{Binding SelectedApplicationMenuItem}"
                             />
-                        <controls:TreeViewControl
+                        <controls:ListBoxControl
                             Margin="0,0,6,0"
                             BorderThickness="0"
-                            SelectedItem_="{Binding SelectedItem, Mode=TwoWay}"
+                            ItemsSource="{Binding AvailableMenuItems}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            LeftClickCommand="{Binding MenuSelectionLeftClickCommand}"
+                            />
+                        <!--<controls:TreeViewControl
+                            Margin="0,0,6,0"
+                            BorderThickness="0"
                             ItemsSource="{Binding TreeViewItems}"
+                            DisplayMemberPath="{Binding Caption}"
+                            SelectedValuePath="{Binding Name}"
+                            SelectedItem_="{Binding SelectedItem, Mode=TwoWay}"
                             LeftClickCommand="{Binding TreeViewSelectionLeftClickCommand}"
                         >
-                            <!---->
-                        </controls:TreeViewControl>
+                        </controls:TreeViewControl>-->
                     </DockPanel>
 
                     <GridSplitter Grid.Column="1" Background="Blue" Width="5" ShowsPreview="True"

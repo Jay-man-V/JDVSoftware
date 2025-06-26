@@ -25,6 +25,11 @@ namespace Foundation.Common.DataColumns
             public const Int32 ExternalKeyId = 100;
 
             /// <summary>
+            /// The DomainName
+            /// </summary>
+            public const Int32 DomainName = 100;
+
+            /// <summary>
             /// The username
             /// </summary>
             public const Int32 Username = 100;
@@ -50,6 +55,14 @@ namespace Foundation.Common.DataColumns
         /// The external key identifier.
         /// </value>
         public static String ExternalKeyId => "ExternalKeyId";
+
+        /// <summary>
+        /// Gets the DomainName.
+        /// </summary>
+        /// <value>
+        /// The DomainName.
+        /// </value>
+        public static String DomainName => "DomainName";
 
         /// <summary>
         /// Gets the username.

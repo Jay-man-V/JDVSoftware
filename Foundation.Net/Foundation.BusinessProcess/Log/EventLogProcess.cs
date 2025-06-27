@@ -136,6 +136,30 @@ namespace Foundation.BusinessProcess
             return retVal;
         }
 
+        /// <inheritdoc cref="IEventLogProcess.Get(EntityId)"/>
+        public override IEventLog Get(EntityId entityId)
+        {
+            LoggingHelpers.TraceCallEnter(entityId);
+
+            IEventLog retVal = Get(new LogId(entityId.TheEntityId));
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
+
+        /// <inheritdoc cref="IEventLogProcess.Get(LogId)"/>
+        public IEventLog Get(LogId logId)
+        {
+            LoggingHelpers.TraceCallEnter(logId);
+
+            IEventLog retVal = EntityRepository.Get(logId);
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
+
         /// <inheritdoc cref="IEventLogProcess.GetLatest(Boolean, EntityId, String, String, String)"/>
         public IEventLog GetLatest(Boolean isFinished, EntityId scheduledTaskId = new EntityId(), String batchName = null, String processName = null, String taskName = null)
         {
@@ -191,7 +215,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(logId, logSeverity, information);
 
-            IEventLog entity = EntityRepository.Get(new EntityId((Int32)logId.ToInteger())); // TODO: Change back to LogId
+            IEventLog entity = EntityRepository.Get(logId);
             entity.FinishedOn = DateTimeService.SystemDateTimeNow;
             entity.LogSeverityId = new EntityId(logSeverity.Id());
 
@@ -270,7 +294,7 @@ namespace Foundation.BusinessProcess
         {
             LoggingHelpers.TraceCallEnter(logId, information);
 
-            IEventLog entity = EntityRepository.Get(new EntityId((Int32)logId.ToInteger())); // TODO: Change back to LogId
+            IEventLog entity = EntityRepository.Get(logId);
 
             if (!String.IsNullOrWhiteSpace(entity.Information))
             {

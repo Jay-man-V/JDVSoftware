@@ -447,11 +447,11 @@ namespace Foundation.Repository
                 retVal.AppendLine(!whereClauseAdded ? "WHERE" : "    AND");
 
                 retVal.AppendLine("    (");
-                retVal.AppendLine($"        ({DataLogicProvider.GetDateFunction} BETWEEN {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo})");
+                retVal.AppendLine($"        ({DataLogicProvider.CurrentDateTimeFunction} BETWEEN {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo})");
                 retVal.AppendLine("        OR");
                 retVal.AppendLine($"        ({EntityName}.{FDC.FoundationEntity.ValidFrom} IS NULL AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
                 retVal.AppendLine("        OR");
-                retVal.AppendLine($"        ({DataLogicProvider.GetDateFunction} >= {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
+                retVal.AppendLine($"        ({DataLogicProvider.CurrentDateTimeFunction} >= {EntityName}.{FDC.FoundationEntity.ValidFrom} AND {EntityName}.{FDC.FoundationEntity.ValidTo} IS NULL)");
                 retVal.AppendLine("    )");
             }
 
@@ -524,13 +524,44 @@ namespace Foundation.Repository
         {
             LoggingHelpers.TraceCallEnter($"TableName: {TableName}", entityId);
 
+            TModel retVal = Get<EntityId>(entityId);
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
+
+        /// <summary>
+        /// Gets the specified entity.
+        /// </summary>
+        /// <param name="tEntityId">The entity identifier.</param>
+        /// <returns>Loaded entity</returns>
+        protected virtual TModel Get<TIdType>(TIdType tEntityId)
+        {
+            LoggingHelpers.TraceCallEnter($"TableName: {TableName}", tEntityId);
+
             TModel retVal = default;
 
             String sql = GetSql();
 
+            IDbDataParameter dataParameter = null;
+
+            if (tEntityId is EntityId entityId)
+            {
+                dataParameter = FoundationDataAccess.CreateParameter($"{EntityName}{FDC.FoundationEntity.Id}", entityId);
+            }
+            else if (tEntityId is AppId appId)
+            {
+                dataParameter = FoundationDataAccess.CreateParameter($"{EntityName}{FDC.FoundationEntity.Id}", appId);
+            }
+            else if (tEntityId is LogId logId)
+            {
+                dataParameter = FoundationDataAccess.CreateParameter($"{EntityName}{FDC.FoundationEntity.Id}", logId);
+            }
+
             DatabaseParameters databaseParameters = new DatabaseParameters
             {
-                FoundationDataAccess.CreateParameter($"{EntityName}{FDC.FoundationEntity.Id}", entityId)
+                dataParameter
             };
 
             DataTable dataTable = FoundationDataAccess.ExecuteDataTable(sql, CommandType.Text, databaseParameters);

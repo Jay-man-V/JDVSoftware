@@ -6,7 +6,9 @@
 
 using System;
 
+using Foundation.Common;
 using Foundation.Interfaces;
+using Foundation.Resources;
 
 namespace Foundation.DataAccess.Database
 {
@@ -16,6 +18,9 @@ namespace Foundation.DataAccess.Database
     [DependencyInjectionTransient]
     internal class OracleDataLogicProvider : IDataLogicProvider
     {
+        /// <inheritdoc cref="IDataLogicProvider.ValidToDateString" />
+        public String ValidToDateString => ApplicationSettings.DefaultValidToDateTime.ToString(Formats.DotNet.DateTimeMilliseconds);
+
         /// <inheritdoc cref="IDataLogicProvider.DatabaseProviderName" />
         public String DatabaseProviderName => DataProviders.OracleClient;
 
@@ -31,8 +36,8 @@ namespace Foundation.DataAccess.Database
         /// <inheritdoc cref="IDataLogicProvider.TimestampOfUpdatedRowSql" />
         public String TimestampOfUpdatedRowSql => "SELECT Timestamp FROM {0} WHERE Id = @id";
 
-        /// <inheritdoc cref="IDataLogicProvider.GetDateFunction" />
-        public String GetDateFunction => "SYSDATE";
+        /// <inheritdoc cref="IDataLogicProvider.CurrentDateTimeFunction" />
+        public String CurrentDateTimeFunction => "SYSDATE";
 
         /// <inheritdoc cref="IDataLogicProvider.UniqueIdFunction"/>
         public String UniqueIdFunction => "SYS_GUID()";

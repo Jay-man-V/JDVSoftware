@@ -101,12 +101,14 @@ namespace CustomerContact
                 {
                     LoggingHelpers.TraceMessage("Starting App");
 
-                    ILoggedOnUserProcess loggedOnUserProcess = Core.Container.Get<ILoggedOnUserProcess>();
+                    IApplicationProcess applicationProcess = Core.Container.Get<IApplicationProcess>();
+                    IApplication application = applicationProcess.Get(Core.ApplicationId);
+                    IMenuItemProcess menuItemProcess = Core.Container.Get<IMenuItemProcess>();
 
                     ThisApplication = new MainWindowForm();
                     MainWindow = ThisApplication;
-                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, loggedOnUserProcess);
-                    ViewModel.Initialise(ThisApplication, null, "TODO"); // TODO
+                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, applicationProcess, menuItemProcess);
+                    ViewModel.Initialise(ThisApplication, null, application.Name);
                     ThisApplication.DataContext = ViewModel;
                     ThisApplication.Show();
 

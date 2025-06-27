@@ -25,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
     [TestFixture]
     public class MenuItemProcessTests : CommonBusinessProcessTestBaseClass<IMenuItem, IMenuItemProcess, IMenuItemRepository>
     {
-        protected override Int32 ColumnDefinitionsCount => 19;
+        protected override Int32 ColumnDefinitionsCount => 20;
         protected override String ExpectedScreenTitle => "Menu Items";
         protected override String ExpectedStatusBarText => "Number of Menu Items:";
 

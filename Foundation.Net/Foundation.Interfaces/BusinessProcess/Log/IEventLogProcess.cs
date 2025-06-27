@@ -14,6 +14,12 @@ namespace Foundation.Interfaces
     public interface IEventLogProcess : ICommonBusinessProcess<IEventLog>
     {
         /// <summary>
+        /// Loads the event log from the data store
+        /// </summary>
+        /// <param name="logId">The Id of the event log to be loaded</param>
+        IEventLog Get(LogId logId);
+
+        /// <summary>
         /// Retrieves the latest <seealso cref="IEventLog"/> entry for the given parameters
         /// regardless of completion status
         /// <para>

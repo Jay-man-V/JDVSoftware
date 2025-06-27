@@ -269,7 +269,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
             Assert.That(logId.TheLogId > 0);
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ApplicationId.TheAppId, Is.EqualTo(applicationId.TheAppId));
@@ -325,7 +325,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 eventLogProcess.EndTask(logId, logSeverity, exception);
             }
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ApplicationId.TheAppId, Is.EqualTo(applicationId.TheAppId));
@@ -375,7 +375,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
             eventLogProcess.EndTask(logId, logSeverity, message);
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ApplicationId.TheAppId, Is.EqualTo(applicationId.TheAppId));
@@ -428,7 +428,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
             eventLogProcess.EndTask(logId, logSeverity, message);
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ApplicationId.TheAppId, Is.EqualTo(applicationId.TheAppId));
@@ -538,7 +538,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
 
             eventLogProcess.EndTask(logId, logSeverity, message);
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ParentId.TheLogId, Is.EqualTo(parentLogId.TheLogId));
@@ -590,7 +590,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
             eventLogProcess.UpdateLogEntry(logId, message);
             eventLogProcess.UpdateLogEntry(logId, message);
 
-            IEventLog eventLog = eventLogProcess.Get(new EntityId(logId.ToInteger())); // TODO:
+            IEventLog eventLog = eventLogProcess.Get(logId);
 
             Assert.That(eventLog.Id.TheLogId, Is.EqualTo(logId.TheLogId));
             Assert.That(eventLog.ApplicationId.TheAppId, Is.EqualTo(applicationId.TheAppId));

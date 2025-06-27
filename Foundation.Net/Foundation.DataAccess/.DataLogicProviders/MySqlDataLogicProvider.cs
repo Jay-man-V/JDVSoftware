@@ -6,7 +6,9 @@
 
 using System;
 
+using Foundation.Common;
 using Foundation.Interfaces;
+using Foundation.Resources;
 
 namespace Foundation.DataAccess.Database
 {
@@ -16,6 +18,9 @@ namespace Foundation.DataAccess.Database
     [DependencyInjectionTransient]
     internal class MySqlDataLogicProvider : IDataLogicProvider
     {
+        /// <inheritdoc cref="IDataLogicProvider.ValidToDateString" />
+        public String ValidToDateString => ApplicationSettings.DefaultValidToDateTime.ToString(Formats.DotNet.DateTimeMilliseconds);
+
         /// <inheritdoc cref="IDataLogicProvider.DatabaseProviderName" />
         public String DatabaseProviderName => DataProviders.MySqlClient;
 
@@ -31,8 +36,8 @@ namespace Foundation.DataAccess.Database
         /// <inheritdoc cref="IDataLogicProvider.TimestampOfUpdatedRowSql" />
         public String TimestampOfUpdatedRowSql => "SELECT RowVersion FROM {0} WHERE Id = @id";
 
-        /// <inheritdoc cref="IDataLogicProvider.GetDateFunction" />
-        public String GetDateFunction => "NOW(3)";
+        /// <inheritdoc cref="IDataLogicProvider.CurrentDateTimeFunction" />
+        public String CurrentDateTimeFunction => "NOW(3)";
 
         /// <inheritdoc cref="IDataLogicProvider.UniqueIdFunction"/>
         public String UniqueIdFunction => "(SELECT uuid())";

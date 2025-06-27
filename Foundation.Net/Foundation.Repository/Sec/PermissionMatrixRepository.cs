@@ -86,9 +86,9 @@ namespace Foundation.Repository
             sql.AppendLine($"    pm.{FDC.PermissionMatrix.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
             sql.AppendLine($"    pm.{FDC.Application.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
             sql.AppendLine($"    r.{FDC.Role.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN pm.{FDC.PermissionMatrix.ValidFrom} AND a.{FDC.PermissionMatrix.ValidTo} AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN r.{FDC.Role.ValidFrom} AND r.{FDC.Role.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN pm.{FDC.PermissionMatrix.ValidFrom} AND a.{FDC.PermissionMatrix.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN r.{FDC.Role.ValidFrom} AND r.{FDC.Role.ValidTo} AND ");
             sql.AppendLine($"    pm.{FDC.PermissionMatrix.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.PermissionMatrix.EntityName}{FDC.PermissionMatrix.ApplicationId} AND ");
             sql.AppendLine($"    pm.{FDC.PermissionMatrix.UserProfileId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.PermissionMatrix.EntityName}{FDC.PermissionMatrix.UserProfileId} AND ");
             sql.AppendLine($"    pm.{FDC.PermissionMatrix.FunctionKey} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.PermissionMatrix.EntityName}{FDC.PermissionMatrix.FunctionKey} ");

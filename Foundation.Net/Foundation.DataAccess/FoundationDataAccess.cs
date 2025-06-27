@@ -340,7 +340,7 @@ namespace Foundation.DataAccess.Database
             return retVal;
         }
 
-        /// <inheritdoc cref="CreateParameter{TValue}(String, TValue)"/>
+        /// <inheritdoc cref="IFoundationDataAccess.CreateParameter{TValue}(String, TValue)"/>
         public IDbDataParameter CreateParameter<TValue>(String parameterName, TValue parameterValue)
         {
             LoggingHelpers.TraceCallEnter(parameterName, parameterValue);

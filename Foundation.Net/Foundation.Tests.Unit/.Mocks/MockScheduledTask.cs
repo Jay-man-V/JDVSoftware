@@ -17,7 +17,6 @@ namespace Foundation.Tests.Unit.Mocks
     public class MockScheduledTask : ScheduledTaskBase
     {
         public EventHandler ProcessJobCalled;
-        public EventHandler<CancelEventArgs> OnCanExecute;
 
         public MockScheduledTask
         (

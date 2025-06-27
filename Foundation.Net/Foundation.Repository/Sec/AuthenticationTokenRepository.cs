@@ -88,8 +88,8 @@ namespace Foundation.Repository
             sql.AppendLine("UPDATE");
             sql.AppendLine($"    {TableName}");
             sql.AppendLine("SET");
-            sql.AppendLine($"    {FDC.AuthenticationToken.LastUpdatedOn} = {DataLogicProvider.GetDateFunction},");
-            sql.AppendLine($"    {FDC.AuthenticationToken.LastRefreshed} = {DataLogicProvider.GetDateFunction}");
+            sql.AppendLine($"    {FDC.AuthenticationToken.LastUpdatedOn} = {DataLogicProvider.CurrentDateTimeFunction},");
+            sql.AppendLine($"    {FDC.AuthenticationToken.LastRefreshed} = {DataLogicProvider.CurrentDateTimeFunction}");
             sql.AppendLine("WHERE ");
             sql.AppendLine($"    {FDC.AuthenticationToken.StatusId} = {EntityStatus.Active.Id()} AND");
             sql.AppendLine($"    {FDC.AuthenticationToken.Id} = {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.Id}1");
@@ -129,7 +129,7 @@ namespace Foundation.Repository
             sql.AppendLine("UPDATE");
             sql.AppendLine($"    {TableName}");
             sql.AppendLine("SET");
-            sql.AppendLine($"    {FDC.AuthenticationToken.LastUpdatedOn} = {DataLogicProvider.GetDateFunction},");
+            sql.AppendLine($"    {FDC.AuthenticationToken.LastUpdatedOn} = {DataLogicProvider.CurrentDateTimeFunction},");
             sql.AppendLine($"    {FDC.AuthenticationToken.StatusId} = {EntityStatus.Inactive.Id()}");
             sql.AppendLine("WHERE ");
             sql.AppendLine($"    {FDC.AuthenticationToken.Id} = {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.Id}");
@@ -182,11 +182,11 @@ namespace Foundation.Repository
             sql.AppendLine("         )");
             sql.AppendLine("WHERE");
             sql.AppendLine($"    a.{FDC.Application.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND");
             sql.AppendLine($"    aur.{FDC.ApplicationUserRole.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN aur.{FDC.ApplicationUserRole.ValidFrom} AND aur.{FDC.ApplicationUserRole.ValidTo} AND");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN aur.{FDC.ApplicationUserRole.ValidFrom} AND aur.{FDC.ApplicationUserRole.ValidTo} AND");
             sql.AppendLine($"    up.{FDC.UserProfile.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
             sql.AppendLine($"    a.{FDC.Application.Id} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.Application.EntityName}{FDC.Application.Id} AND");
             sql.AppendLine($"    up.{FDC.UserProfile.Id} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.Id}");
 
@@ -237,13 +237,13 @@ namespace Foundation.Repository
             sql.AppendLine($"    {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.StatusId},");
             sql.AppendLine($"    {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.CreatedByUserProfileId},");
             sql.AppendLine($"    {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.LastUpdatedByUserProfileId},");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction},");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction},");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction},");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction},");
             sql.AppendLine($"    {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.ApplicationId},");
             sql.AppendLine($"    {DataLogicProvider.DatabaseParameterPrefix}{EntityName}{FDC.AuthenticationToken.UserProfileId},");
             sql.AppendLine($"    {DataLogicProvider.UniqueIdFunction},");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction},");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction}");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction},");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction}");
             sql.AppendLine(");");
             sql.AppendLine();
             sql.AppendLine("SELECT");

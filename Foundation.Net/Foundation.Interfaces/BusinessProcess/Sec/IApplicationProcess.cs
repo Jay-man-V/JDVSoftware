@@ -19,5 +19,11 @@ namespace Foundation.Interfaces
 
         /// <inheritdoc cref="ICommonBusinessProcess.NoneId"/>
         new AppId NoneId { get; }
+
+        /// <summary>
+        /// Loads the application from the data store
+        /// </summary>
+        /// <param name="applicationId">The Id of the application to be loaded</param>
+        IApplication Get(AppId applicationId);
     }
 }

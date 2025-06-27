@@ -106,13 +106,13 @@ namespace Foundation.Repository
             sql.AppendLine($"            {EntityStatus.Active.Id()} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.StatusId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.CreatedByUserProfileId} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.CreatedByUserProfileId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastUpdatedByUserProfileId} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastUpdatedByUserProfileId},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.CreatedOn},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastUpdatedOn},");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.CreatedOn},");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastUpdatedOn},");
             sql.AppendLine();
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.ApplicationId} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.ApplicationId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.UserProfileId} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.UserProfileId},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LoggedOn},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastActive}");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LoggedOn},");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.LastActive}");
             sql.AppendLine("    ) AS source");
             sql.AppendLine("ON");
             sql.AppendLine("    (");
@@ -172,8 +172,8 @@ namespace Foundation.Repository
             sql.AppendLine("UPDATE");
             sql.AppendLine($"    {FDC.TableNames.LoggedOnUser}");
             sql.AppendLine("SET");
-            sql.AppendLine($"    {FDC.LoggedOnUser.LastUpdatedOn} = {DataLogicProvider.GetDateFunction},");
-            sql.AppendLine($"    {FDC.LoggedOnUser.LastActive} = {DataLogicProvider.GetDateFunction}");
+            sql.AppendLine($"    {FDC.LoggedOnUser.LastUpdatedOn} = {DataLogicProvider.CurrentDateTimeFunction},");
+            sql.AppendLine($"    {FDC.LoggedOnUser.LastActive} = {DataLogicProvider.CurrentDateTimeFunction}");
             sql.AppendLine("WHERE");
             sql.AppendLine($"    {FDC.LoggedOnUser.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.ApplicationId} AND");
             sql.AppendLine($"    {FDC.LoggedOnUser.UserProfileId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.UserProfileId}");
@@ -222,11 +222,11 @@ namespace Foundation.Repository
             sql.AppendLine($"    a.{FDC.Application.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
             sql.AppendLine($"    aur.{FDC.ApplicationUserRole.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
             sql.AppendLine($"    r.{FDC.Role.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN aur.{FDC.ApplicationUserRole.ValidFrom} AND aur.{FDC.ApplicationUserRole.ValidTo} AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN r.{FDC.Role.ValidFrom} AND r.{FDC.Role.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN a.{FDC.Application.ValidFrom} AND a.{FDC.Application.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN aur.{FDC.ApplicationUserRole.ValidFrom} AND aur.{FDC.ApplicationUserRole.ValidTo} AND ");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN r.{FDC.Role.ValidFrom} AND r.{FDC.Role.ValidTo} AND ");
             sql.AppendLine($"    lou.{FDC.LoggedOnUser.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.LoggedOnUser.EntityName}{FDC.LoggedOnUser.ApplicationId} AND ");
-            sql.AppendLine($"    {DataLogicProvider.GetMinuteComparisonSql("lou." + FDC.FoundationEntity.LastUpdatedOn, DataLogicProvider.GetDateFunction, "<= 1")}");
+            sql.AppendLine($"    {DataLogicProvider.GetMinuteComparisonSql("lou." + FDC.FoundationEntity.LastUpdatedOn, DataLogicProvider.CurrentDateTimeFunction, "<= 1")}");
             sql.AppendLine("ORDER BY");
             sql.AppendLine($"    {FDC.LoggedOnUser.RoleId} DESC, {FDC.LoggedOnUser.LoggedOn} ASC");
 

@@ -86,8 +86,8 @@ namespace Foundation.Repository
             sql.AppendLine($"    up.{FDC.UserProfile.DomainName} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.DomainName} AND");
             sql.AppendLine($"    up.{FDC.UserProfile.Username} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.Username} AND");
             sql.AppendLine($"    aur.{FDC.ApplicationUserRole.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationUserRole.EntityName}{FDC.ApplicationUserRole.ApplicationId} AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN aur.{FDC.UserProfile.ValidFrom} AND aur.{FDC.UserProfile.ValidTo}");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN aur.{FDC.UserProfile.ValidFrom} AND aur.{FDC.UserProfile.ValidTo}");
 
             DatabaseParameters databaseParameters = new DatabaseParameters
             {
@@ -133,8 +133,8 @@ namespace Foundation.Repository
             sql.AppendLine("WHERE");
             sql.AppendLine($"    up.{FDC.UserProfile.Id} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.UserProfile.EntityName}{FDC.UserProfile.Id} AND");
             sql.AppendLine($"    aur.{FDC.ApplicationUserRole.ApplicationId} = {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationUserRole.EntityName}{FDC.ApplicationUserRole.ApplicationId} AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
-            sql.AppendLine($"    {DataLogicProvider.GetDateFunction} BETWEEN aur.{FDC.UserProfile.ValidFrom} AND aur.{FDC.UserProfile.ValidTo}");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN up.{FDC.UserProfile.ValidFrom} AND up.{FDC.UserProfile.ValidTo} AND");
+            sql.AppendLine($"    {DataLogicProvider.CurrentDateTimeFunction} BETWEEN aur.{FDC.UserProfile.ValidFrom} AND aur.{FDC.UserProfile.ValidTo}");
 
             DatabaseParameters databaseParameters = new DatabaseParameters
             {

@@ -102,5 +102,29 @@ namespace Foundation.BusinessProcess
 
             return retVal;
         }
+
+        /// <inheritdoc cref="IApplicationProcess.Get(EntityId)"/>
+        public override IApplication Get(EntityId entityId)
+        {
+            LoggingHelpers.TraceCallEnter(entityId);
+
+            IApplication retVal = Get(new AppId(entityId.TheEntityId));
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
+
+        /// <inheritdoc cref="IApplicationProcess.Get(AppId)"/>
+        public IApplication Get(AppId applicationId)
+        {
+            LoggingHelpers.TraceCallEnter(applicationId);
+
+            IApplication retVal = EntityRepository.Get(applicationId);
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
     }
 }

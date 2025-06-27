@@ -68,6 +68,10 @@
       <Project>{5181b7e8-4823-45b0-8e81-c8d3228d0099}</Project>
       <Name>Foundation.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Foundation.Resources\Foundation.Resources.csproj">
+      <Project>{41b94fff-0bf0-4b9d-83e3-8514c1e63ecc}</Project>
+      <Name>Foundation.Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

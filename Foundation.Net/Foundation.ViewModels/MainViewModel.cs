@@ -4,6 +4,11 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Foundation.BusinessProcess;
+using Foundation.Common;
+using Foundation.Interfaces;
+using Foundation.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,10 +18,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
-using Foundation.Common;
-using Foundation.Interfaces;
-using Foundation.Views;
 
 using FEnums = Foundation.Interfaces;
 
@@ -39,7 +40,8 @@ namespace Foundation.ViewModels
         /// <param name="wpfApplicationObjects">The wpf application objects collection.</param>
         /// <param name="fileApi">The file service.</param>
         /// <param name="targetWindow">The target window.</param>
-        /// <param name="loggedOnUserProcess">The logged on user process.</param>
+        /// <param name="applicationProcess">The application process.</param>
+        /// <param name="menuItemProcess">The menu item process.</param>
         public MainViewModel
         (
             ICore core,
@@ -48,7 +50,8 @@ namespace Foundation.ViewModels
             IWpfApplicationObjects wpfApplicationObjects,
             IFileApi fileApi,
             IWindow targetWindow,
-            ILoggedOnUserProcess loggedOnUserProcess
+            IApplicationProcess applicationProcess,
+            IMenuItemProcess menuItemProcess
         ) :
             base
             (
@@ -59,9 +62,11 @@ namespace Foundation.ViewModels
                 ""
             )
         {
-            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, targetWindow, loggedOnUserProcess);
+            LoggingHelpers.TraceCallEnter(core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, targetWindow);
 
             FileApi = fileApi;
+            ApplicationProcess = applicationProcess;
+            MenuItemProcess = menuItemProcess;
 
             LoggedOnUsername = Core.CurrentLoggedOnUser.Username;
             LoggedOnUserDisplayName = Core.CurrentLoggedOnUser.DisplayName;
@@ -76,7 +81,7 @@ namespace Foundation.ViewModels
                 UserRole += role.Name;
             }
 
-            LoggedOnUsersViewModel = new LoggedOnUserViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, wpfApplicationObjects, FileApi, loggedOnUserProcess);
+            LoggedOnUsersViewModel = new LoggedOnUserViewModel(Core, RunTimeEnvironmentSettings, DateTimeService, wpfApplicationObjects, FileApi, LoggedOnUserProcess);
             LoggedOnUsersViewModel.Initialise(targetWindow, this, "Logged on Users");
 
             TabItems = new ObservableCollection<TabItem>();
@@ -89,12 +94,10 @@ namespace Foundation.ViewModels
         {
             LoggingHelpers.TraceCallEnter();
 
-            IApplicationProcess applicationProcess = Core.Container.Get<IApplicationProcess>();
-            IApplication application = applicationProcess.Get(new EntityId(Core.ApplicationId.ToInteger()));
+            IApplication application = ApplicationProcess.Get(new EntityId(Core.ApplicationId.ToInteger()));
             ApplicationName = application.Name;
 
-            IMenuItemProcess menuItemProcess = Core.Container.Get<IMenuItemProcess>();
-            MenuItems = menuItemProcess.GetAll(excludeDeleted: true);
+            MenuItems = MenuItemProcess.GetAll(excludeDeleted: true);
 
             InitialiseMenuItems();
 
@@ -124,6 +127,22 @@ namespace Foundation.ViewModels
         /// The file service.
         /// </value>
         protected IFileApi FileApi { get; }
+
+        /// <summary>
+        /// Gets the menu item process.
+        /// </summary>
+        /// <value>
+        /// The menu item process.
+        /// </value>
+        protected IApplicationProcess ApplicationProcess { get; }
+
+        /// <summary>
+        /// Gets the menu item process.
+        /// </summary>
+        /// <value>
+        /// The menu item process.
+        /// </value>
+        protected IMenuItemProcess MenuItemProcess { get; }
 
         /// <summary>
         /// Gets the menu items.
@@ -380,7 +399,7 @@ namespace Foundation.ViewModels
 
             //List<IMenuItem> menuBarItems = ApplicationDefinition.ViewMenuItems.Where(mi => !String.IsNullOrEmpty(mi.Menu)).ToList();
 
-            ApplicationMenuItems = new ObservableCollection<IMenuItem>(MenuItems.Where(mi => mi.ParentMenuItemId == new EntityId(-1))); // TODO
+            ApplicationMenuItems = new ObservableCollection<IMenuItem>(MenuItems.Where(mi => mi.ParentMenuItemId == MenuItemProcess.AllId));
             SelectedApplicationMenuItem = ApplicationMenuItems[0];
 
             //MenuBarItems = new BindingList<IMenuItem>(menuBarItems);
@@ -598,7 +617,7 @@ namespace Foundation.ViewModels
 
             using (MouseCursor)
             {
-                // TODO
+
             }
 
             LoggingHelpers.TraceCallReturn();

@@ -38,7 +38,7 @@ namespace Foundation.Interfaces
         /// </summary>
         ICurrentLoggedOnUser CurrentLoggedOnUser { get; }
 
-        // TODO
+        // TODO - Future development for Cache and Crypto
         // ICache Cache { get; }
 
         // ICrypto Crypto { get; }

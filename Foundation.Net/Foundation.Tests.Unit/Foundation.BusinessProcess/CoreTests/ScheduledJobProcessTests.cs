@@ -305,8 +305,11 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
             Assert.That(scheduledJobProcess.ScheduledTimers.Count, Is.EqualTo(1));
             Assert.That(serverProcessTimer.Enabled, Is.EqualTo(false));
 
-            mockScheduledTask.OnCanExecute += (sender, args) =>
+            Boolean exceptionRaisedDuringTest = false;
+
+            mockScheduledTask.ProcessJobCalled += (sender, args) =>
             {
+                exceptionRaisedDuringTest = true;
                 String errorMessage = "Exception raised during checking CanExecute";
                 throw new Exception(errorMessage);
             };
@@ -320,7 +323,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.CoreTests
                 Thread.Sleep(new TimeSpan(0, 0, 10));
             }
 
-            // TODO: Assert this worked
+            Assert.That(exceptionRaisedDuringTest, Is.EqualTo(true));
         }
 
         [TestCase]

@@ -14,6 +14,11 @@ namespace Foundation.Interfaces
     public interface IDataLogicProvider
     {
         /// <summary>
+        /// The DefaultValidToDateTime as a String for use in the database
+        /// </summary>
+        String ValidToDateString { get; }
+
+        /// <summary>
         /// The name of the database provider
         /// </summary>
         String DatabaseProviderName { get; }
@@ -41,7 +46,7 @@ namespace Foundation.Interfaces
         /// <summary>
         /// The Database function to get the current Date/Time
         /// </summary>
-        String GetDateFunction { get; }
+        String CurrentDateTimeFunction { get; }
 
         /// <summary>
         /// The Database function to generate a Unique Identifier

@@ -11,5 +11,11 @@ namespace Foundation.Interfaces
     /// </summary>
     public interface IApplicationRepository : IFoundationModelRepository<IApplication>
     {
+        /// <summary>
+        /// Gets the specified application.
+        /// </summary>
+        /// <param name="applicationId">The application identifier.</param>
+        /// <returns>Loaded application</returns>
+        IApplication Get(AppId applicationId);
     }
 }

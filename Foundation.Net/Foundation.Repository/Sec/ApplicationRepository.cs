@@ -58,5 +58,17 @@ namespace Foundation.Repository
 
         /// <inheritdoc cref="FoundationModelRepository{TModel}.RequiredMinimumEditRole"/>
         protected override ApplicationRole RequiredMinimumEditRole => ApplicationRole.SystemDataAdministrator;
+
+        /// <inheritdoc cref="IApplicationRepository.Get(AppId)"/>
+        public IApplication Get(AppId applicationId)
+        {
+            LoggingHelpers.TraceCallEnter(applicationId);
+
+            IApplication retVal = base.Get(applicationId);
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
     }
 }

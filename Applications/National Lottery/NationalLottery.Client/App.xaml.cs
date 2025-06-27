@@ -102,11 +102,12 @@ namespace NationalLottery
                 {
                     LoggingHelpers.TraceMessage("Starting App");
 
-                    ILoggedOnUserProcess loggedOnUserProcess = Core.Container.Get<ILoggedOnUserProcess>();
+                    IApplicationProcess applicationProcess = Core.Container.Get<IApplicationProcess>();
+                    IMenuItemProcess menuItemProcess = Core.Container.Get<IMenuItemProcess>();
 
                     ThisApplication = new MainWindowForm();
                     MainWindow = ThisApplication;
-                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, loggedOnUserProcess);
+                    ViewModel = new MainViewModel(Core, runTimeEnvironmentSettings, dateTimeService, wpfApplicationObjects, fileApi, ThisApplication, applicationProcess, menuItemProcess);
                     ThisApplication.DataContext = ViewModel;
                     ThisApplication.Show();
 

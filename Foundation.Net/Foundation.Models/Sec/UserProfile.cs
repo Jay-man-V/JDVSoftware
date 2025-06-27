@@ -28,7 +28,7 @@ namespace Foundation.Models
     {
         private String _externalKeyId;
         private String _domainName;
-        private String _userName;
+        private String _username;
         private String _displayName;
         private Boolean _isSystemSupport;
         private EntityId _contactDetailId;
@@ -68,8 +68,8 @@ namespace Foundation.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Username must be provided")]
         public String Username
         {
-            get => this._userName;
-            set => this.SetPropertyValue(ref _userName, value, FDC.UserProfile.Lengths.Username);
+            get => this._username;
+            set => this.SetPropertyValue(ref _username, value, FDC.UserProfile.Lengths.Username);
         }
 
         /// <inheritdoc cref="IUserProfile.DisplayName"/>
@@ -125,7 +125,7 @@ namespace Foundation.Models
 
             retVal._externalKeyId = this._externalKeyId;
             retVal._domainName = this._domainName;
-            retVal._userName = this._userName;
+            retVal._username = this._username;
             retVal._displayName = this._displayName;
             retVal._isSystemSupport = this._isSystemSupport;
             retVal._contactDetailId = this._contactDetailId;

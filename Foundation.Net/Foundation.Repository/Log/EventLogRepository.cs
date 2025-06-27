@@ -125,5 +125,17 @@ namespace Foundation.Repository
         {
             throw new NotImplementedException();
         }
+
+        /// <inheritdoc cref="IEventLogRepository.Get(LogId)"/>
+        public IEventLog Get(LogId logId)
+        {
+            LoggingHelpers.TraceCallEnter(logId);
+
+            IEventLog retVal = base.Get(logId);
+
+            LoggingHelpers.TraceCallReturn(retVal);
+
+            return retVal;
+        }
     }
 }

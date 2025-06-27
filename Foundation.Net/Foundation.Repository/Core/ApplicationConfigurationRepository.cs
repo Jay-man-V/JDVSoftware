@@ -94,7 +94,7 @@ namespace Foundation.Repository
             sql.AppendLine("            )");
             sql.AppendLine("    WHERE");
             sql.AppendLine($"        ac.{FDC.ApplicationConfiguration.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND");
-            sql.AppendLine($"        {DataLogicProvider.GetDateFunction} BETWEEN ac.{FDC.ApplicationConfiguration.ValidFrom} AND ac.{FDC.ApplicationConfiguration.ValidTo} AND");
+            sql.AppendLine($"        {DataLogicProvider.CurrentDateTimeFunction} BETWEEN ac.{FDC.ApplicationConfiguration.ValidFrom} AND ac.{FDC.ApplicationConfiguration.ValidTo} AND");
             sql.AppendLine($"        ac.[{FDC.ApplicationConfiguration.Key}] = {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.Key} AND");
             sql.AppendLine($"        COALESCE ( ac.{FDC.ApplicationConfiguration.ApplicationId}, 0 ) IN ( 0, /* Core System Application */ {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ApplicationId} ) AND");
             sql.AppendLine($"        ac.{FDC.ApplicationConfiguration.CreatedByUserProfileId} IN ( 1, /* System User */ {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedByUserProfileId} )");
@@ -148,7 +148,7 @@ namespace Foundation.Repository
             sql.AppendLine("            )");
             sql.AppendLine("    WHERE");
             sql.AppendLine($"        ac.{FDC.ApplicationConfiguration.StatusId} IN ( {EntityStatus.Active.Id()}, {EntityStatus.Approved.Id()} ) AND");
-            sql.AppendLine($"        {DataLogicProvider.GetDateFunction} BETWEEN ac.{FDC.ApplicationConfiguration.ValidFrom} AND ac.{FDC.ApplicationConfiguration.ValidTo} AND");
+            sql.AppendLine($"        {DataLogicProvider.CurrentDateTimeFunction} BETWEEN ac.{FDC.ApplicationConfiguration.ValidFrom} AND ac.{FDC.ApplicationConfiguration.ValidTo} AND");
             sql.AppendLine($"        ac.[{FDC.ApplicationConfiguration.Key}] LIKE {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.Key} AND");
             sql.AppendLine($"        COALESCE ( ac.{FDC.ApplicationConfiguration.ApplicationId}, 0 ) IN ( 0, /* Core System Application */ {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ApplicationId} ) AND");
             sql.AppendLine($"        ac.{FDC.ApplicationConfiguration.CreatedByUserProfileId} IN ( 1, /* System User */ {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedByUserProfileId} )");
@@ -193,10 +193,10 @@ namespace Foundation.Repository
             sql.AppendLine($"            {EntityStatus.Active.Id()} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.StatusId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedByUserProfileId} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedByUserProfileId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.LastUpdatedByUserProfileId} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.LastUpdatedByUserProfileId},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedOn},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.LastUpdatedOn},");
-            sql.AppendLine($"            {DataLogicProvider.GetDateFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ValidFrom},");
-            sql.AppendLine($"            '2199-12-31 23:59:59' AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ValidTo},"); // TODO replace with constant
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.CreatedOn},");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.LastUpdatedOn},");
+            sql.AppendLine($"            {DataLogicProvider.CurrentDateTimeFunction} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ValidFrom},");
+            sql.AppendLine($"            {DataLogicProvider.ValidToDateString} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ValidTo},");
             sql.AppendLine();
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ApplicationId} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ApplicationId},");
             sql.AppendLine($"            {DataLogicProvider.DatabaseParameterPrefix}{FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ConfigurationScopeId} AS {FDC.ApplicationConfiguration.EntityName}{FDC.ApplicationConfiguration.ConfigurationScopeId},");

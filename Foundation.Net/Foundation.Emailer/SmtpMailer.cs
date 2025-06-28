@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="SmtpEmailer.cs" company="JDV Software Ltd">
+// <copyright file="SmtpMailer.cs" company="JDV Software Ltd">
 //     Copyright (c) JDV Software Ltd. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -20,17 +20,50 @@ using Mail = System.Net.Mail;
 namespace Foundation.Emailer
 {
     /// <summary>
-    /// The SMTP Emailer class
+    /// The SMTP Mailer class
     /// </summary>
     [DependencyInjectionTransient]
-    public class SmtpEmailer : IEmailServices
+    public class SmtpMailer : IEmailServices
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="core">The core foundation service.</param>
+        /// <param name="applicationConfigurationProcess">The application configuration process.</param>
+        public SmtpMailer
+        (
+            ICore core,
+            IApplicationConfigurationProcess applicationConfigurationProcess
+        )
+        {
+            LoggingHelpers.TraceCallEnter(core, applicationConfigurationProcess);
+
+            Core = core;
+            ApplicationConfigurationProcess = applicationConfigurationProcess;
+
+            LoggingHelpers.TraceCallReturn();
+        }
+
+        ICore Core { get; }
+        IApplicationConfigurationProcess ApplicationConfigurationProcess { get; }
+
+        private void SetupSmtpClient(Mail.SmtpClient client)
+        {
+            String username = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostUsername);
+            String password = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostPassword);
+
+            client.Port = ApplicationConfigurationProcess.Get<Int32>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostPort);
+            client.Host = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostAddress);
+            client.EnableSsl = ApplicationConfigurationProcess.Get<Boolean>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostEnableSsl);
+            client.Credentials = new NetworkCredential(username, password);
+        }
+
         /// <inheritdoc cref="IEmailServices.SendTestMail(String)"/>
         public void SendTestMail(String toAddress)
         {
             LoggingHelpers.TraceCallEnter(toAddress);
 
-            String mailFrom = ApplicationSettings.SmtpConfiguration.FromAddress;
+            String mailFrom = ApplicationConfigurationProcess.Get<String>(Core.ApplicationId, Core.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailFromAddress);
             String mailSubject = "Test email";
             String mailBody = "Test email";
 
@@ -39,13 +72,7 @@ namespace Foundation.Emailer
 
             using (Mail.SmtpClient client = new Mail.SmtpClient())
             {
-                String username = ApplicationSettings.SmtpConfiguration.Username;
-                String password = ApplicationSettings.SmtpConfiguration.Password;
-
-                client.Port = ApplicationSettings.SmtpConfiguration.Port;
-                client.Host = ApplicationSettings.SmtpConfiguration.Server;
-                client.EnableSsl = ApplicationSettings.SmtpConfiguration.EnableSsl;
-                client.Credentials = new NetworkCredential(username, password);
+                SetupSmtpClient(client);
 
                 using (Mail.MailMessage mailMessage = new Mail.MailMessage())
                 {
@@ -126,13 +153,7 @@ namespace Foundation.Emailer
 
             using (Mail.SmtpClient client = new Mail.SmtpClient())
             {
-                String username = ApplicationSettings.SmtpConfiguration.Username;
-                String password = ApplicationSettings.SmtpConfiguration.Password;
-
-                client.Port = ApplicationSettings.SmtpConfiguration.Port;
-                client.Host = ApplicationSettings.SmtpConfiguration.Server;
-                client.EnableSsl = ApplicationSettings.SmtpConfiguration.EnableSsl;
-                client.Credentials = new NetworkCredential(username, password);
+                SetupSmtpClient(client);
 
                 using (Mail.MailMessage message = CreateSmtpMailMessage(mailMessage))
                 {

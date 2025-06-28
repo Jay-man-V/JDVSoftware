@@ -74,31 +74,11 @@ namespace Foundation.Common
         public static LoggingConfiguration LoggingConfiguration { get; set; }
 
         /// <summary>
-        /// Gets the Smtp Configuration.
-        /// </summary>
-        /// <value>
-        /// The Smtp Configuration.
-        /// </value>
-        public static SmtpConfiguration SmtpConfiguration { get; set; }
-
-        /// <summary>
         /// Initialises:
-        /// <see cref="SmtpConfiguration"/>
         /// <see cref="LoggingConfiguration"/>
         /// </summary>
         public static void Initialise()
         {
-            SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-            SmtpConfiguration = new SmtpConfiguration
-            {
-                FromAddress = section.From,
-                Server = section.Network.Host,
-                Port = section.Network.Port,
-                EnableSsl = section.Network.EnableSsl,
-                Username = section.Network.UserName,
-                Password = section.Network.Password,
-            };
-
             LoggingConfiguration = ConfigurationManager.GetSection(LoggingConstants.EventLoggingSection) as LoggingConfiguration;
 
             if (LoggingConfiguration.IsNull())

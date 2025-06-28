@@ -31,17 +31,11 @@ namespace Foundation.Tests.System.Foundation.Emailer
     [DeploymentItem(@".Support\SampleDocuments\Sample Word Document.docx", @".Support\SampleDocuments\")]
     public class SendMailTests : SystemTestBase
     {
-        private readonly String _toAddress = "Jayesh.Varsani@datalore.me.uk";
-        private readonly String _fromAddress = ApplicationSettings.SmtpConfiguration.FromAddress;
-        private readonly String _fromAddressDisplayName = "Automated Unit Test Program";
-        private readonly String _subject = $"Test Email Subject - {DateTime.Now.ToString(Formats.DotNet.DateTimeSeconds)}";
-        private readonly String _body = $"Test Email Body - {DateTime.Now.ToString(Formats.DotNet.DateTimeSeconds)}";
-
         [TestCase]
         public void Test_SendTestMail()
         {
             IEmailServices emailServices = Core.Core.Instance.Container.Get<IEmailServices>();
-            emailServices.SendTestMail(_toAddress);
+            emailServices.SendTestMail(EmailToAddress);
         }
 
         [TestCase]
@@ -75,7 +69,7 @@ namespace Foundation.Tests.System.Foundation.Emailer
             String functionName = LocationUtils.GetFunctionName();
 
             IEmailServices emailServices = Core.Core.Instance.Container.Get<IEmailServices>();
-            emailServices.SendFormalEmail(_toAddress, _fromAddress, _fromAddressDisplayName, _subject + " " + functionName, _body);
+            emailServices.SendFormalEmail(EmailToAddress, EmailFromAddress, EmailFromDisplayName, EmailSubject + " " + functionName, EmailBody);
         }
 
         [TestCase]
@@ -86,7 +80,7 @@ namespace Foundation.Tests.System.Foundation.Emailer
             List<IMailAttachment> mailAttachments = CreateMailMessageAttachments();
 
             IEmailServices emailServices = Core.Core.Instance.Container.Get<IEmailServices>();
-            emailServices.SendFormalEmail(_toAddress, _fromAddress, _fromAddressDisplayName, _subject + " " + functionName, _body, mailAttachments);
+            emailServices.SendFormalEmail(EmailToAddress, EmailFromAddress, EmailFromDisplayName, EmailSubject + " " + functionName, EmailBody, mailAttachments);
         }
 
         [TestCase]
@@ -95,7 +89,7 @@ namespace Foundation.Tests.System.Foundation.Emailer
             String functionName = LocationUtils.GetFunctionName();
 
             IEmailServices emailServices = Core.Core.Instance.Container.Get<IEmailServices>();
-            emailServices.SendSimpleEmail(_toAddress, _fromAddress, _fromAddressDisplayName, _subject + " " + functionName, _body);
+            emailServices.SendSimpleEmail(EmailToAddress, EmailFromAddress, EmailFromDisplayName, EmailSubject + " " + functionName, EmailBody);
         }
 
         [TestCase]
@@ -106,19 +100,19 @@ namespace Foundation.Tests.System.Foundation.Emailer
             List<IMailAttachment> mailAttachments = CreateMailMessageAttachments();
 
             IEmailServices emailServices = Core.Core.Instance.Container.Get<IEmailServices>();
-            emailServices.SendSimpleEmail(_toAddress, _fromAddress, _fromAddressDisplayName, _subject + " " + functionName, _body, mailAttachments);
+            emailServices.SendSimpleEmail(EmailToAddress, EmailFromAddress, EmailFromDisplayName, EmailSubject + " " + functionName, EmailBody, mailAttachments);
         }
 
         private MailMessage CreateMailMessageForTests(String functionName)
         {
             MailMessage mailMessage = new MailMessage
             {
-                FromAddress = _fromAddress,
-                FromAddressDisplayName = _fromAddressDisplayName,
-                Subject = _subject + " " + functionName,
-                Body = _body,
+                FromAddress = EmailFromAddress,
+                FromAddressDisplayName = EmailFromDisplayName,
+                Subject = EmailSubject + " " + functionName,
+                Body = EmailBody,
             };
-            mailMessage.ToAddress.Add(_toAddress);
+            mailMessage.ToAddress.Add(EmailToAddress);
 
             return mailMessage;
         }

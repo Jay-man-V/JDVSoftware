@@ -51,7 +51,6 @@
     </Compile>
     <Compile Include="ApplicationSupport\ApplicationControl.cs" />
     <Compile Include="Configuration\ApplicationSettings.cs" />
-    <Compile Include="Configuration\SmtpConfiguration.cs" />
     <Compile Include="DataColumns\.Base\FoundationEntity.cs" />
     <Compile Include="DataColumns\.Specialised\DbSchemaColumn.cs" />
     <Compile Include="DataColumns\.Specialised\DbSchemaTable.cs" />

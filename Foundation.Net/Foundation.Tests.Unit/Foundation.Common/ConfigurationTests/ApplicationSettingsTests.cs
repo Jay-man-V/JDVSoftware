@@ -35,7 +35,6 @@ namespace Foundation.Tests.Unit.Foundation.Common.ConfigurationTests
             Assert.That(propertyInfos[index++].Name, Is.EqualTo(nameof(ApplicationSettings.ApplicationId)));
             Assert.That(propertyInfos[index++].Name, Is.EqualTo(nameof(ApplicationSettings.TraceLevel)));
             Assert.That(propertyInfos[index++].Name, Is.EqualTo(nameof(ApplicationSettings.LoggingConfiguration)));
-            Assert.That(propertyInfos[index++].Name, Is.EqualTo(nameof(ApplicationSettings.SmtpConfiguration)));
 
             Assert.That(propertyInfos.Length, Is.EqualTo(index));
         }

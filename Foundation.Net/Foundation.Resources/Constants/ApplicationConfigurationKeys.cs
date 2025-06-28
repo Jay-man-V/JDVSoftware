@@ -29,6 +29,11 @@ namespace Foundation.Resources
         public static String EmailFromAddress => "email.from.address";
 
         /// <summary>
+        /// email.from.address
+        /// </summary>
+        public static String EmailFromDisplayName => "email.from.display.name";
+
+        /// <summary>
         /// email.smtp.host.address
         /// </summary>
         public static String EmailSmtpHostAddress => "email.smtp.host.address";
@@ -39,9 +44,9 @@ namespace Foundation.Resources
         public static String EmailSmtpHostPort => "email.smtp.host.port";
 
         /// <summary>
-        /// email.smtp.host.enablessl
+        /// email.smtp.host.enable.ssl
         /// </summary>
-        public static String EmailSmtpHostEnableSsl => "email.smtp.host.enablessl";
+        public static String EmailSmtpHostEnableSsl => "email.smtp.host.enable.ssl";
 
         /// <summary>
         /// email.smtp.host.username

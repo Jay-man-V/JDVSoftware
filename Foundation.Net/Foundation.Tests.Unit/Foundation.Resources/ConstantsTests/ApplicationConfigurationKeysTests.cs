@@ -60,9 +60,10 @@ namespace Foundation.Tests.Unit.Foundation.Resources.ConstantsTests
             index++; Assert.That(ApplicationConfigurationKeys.UserDataPath, Is.EqualTo("UserDataPath"));
             index++; Assert.That(ApplicationConfigurationKeys.SystemDataPath, Is.EqualTo("SystemDataPath"));
             index++; Assert.That(ApplicationConfigurationKeys.EmailFromAddress, Is.EqualTo("email.from.address"));
+            index++; Assert.That(ApplicationConfigurationKeys.EmailFromDisplayName, Is.EqualTo("email.from.display.name"));
             index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostAddress, Is.EqualTo("email.smtp.host.address"));
             index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostPort, Is.EqualTo("email.smtp.host.port"));
-            index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostEnableSsl, Is.EqualTo("email.smtp.host.enablessl"));
+            index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostEnableSsl, Is.EqualTo("email.smtp.host.enable.ssl"));
             index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostUsername, Is.EqualTo("email.smtp.host.username"));
             index++; Assert.That(ApplicationConfigurationKeys.EmailSmtpHostPassword, Is.EqualTo("email.smtp.host.password"));
             index++; Assert.That(ApplicationConfigurationKeys.ServiceHolidaysNationalUkUrl, Is.EqualTo("service.holidays.national.uk.url"));

@@ -19,7 +19,7 @@ using NUnit.Framework;
 
 using Foundation.Common;
 using Foundation.Interfaces;
-
+using Foundation.Resources;
 using FModels = Foundation.Models;
 
 namespace Foundation.Tests.Unit.Support
@@ -42,9 +42,22 @@ namespace Foundation.Tests.Unit.Support
         protected DateTime SystemDateTime => new DateTime(2022, 11, 28, 13, 11, 54, DateTimeKind.Utc);
         protected DateTime SystemDateTimeMs => new DateTime(2022, 11, 28, 13, 11, 54, 300, DateTimeKind.Utc);
 
+        protected String EmailSmtpHostUsername => "email.smtp.host.username";
+        protected String EmailSmtpHostPassword => "email.smtp.host.password";
+        protected Int32 EmailSmtpHostPort => 123;
+        protected String EmailSmtpHostAddress => "email.smtp.host.address";
+        protected Boolean EmailSmtpHostEnableSsl => true;
+        protected String EmailFromAddress => "no.reply.test@datalore.me.uk";
+        protected String EmailFromDisplayName => "Automated Unit Test Program";
+
+        protected String EmailToAddress => "Unit.Testing@datalore.me.uk";
+        protected String EmailSubject => $"Test Email Subject - {DateTime.Now.ToString(Formats.DotNet.DateTimeSeconds)}";
+        protected String EmailBody => $"Test Email Body - {DateTime.Now.ToString(Formats.DotNet.DateTimeSeconds)}";
+
         protected ICore CoreInstance { get; set; }
         protected IRunTimeEnvironmentSettings RunTimeEnvironmentSettings { get; set; }
         protected IDateTimeService DateTimeService { get; set; }
+        protected IApplicationConfigurationProcess ApplicationConfigurationProcess { get; set; }
         protected IStatusRepository StatusRepository { get; set; }
         protected IUserProfileRepository UserProfileRepository { get; set; }
         protected IStatusProcess StatusProcess { get; set; }
@@ -295,6 +308,17 @@ namespace Foundation.Tests.Unit.Support
             DateTimeService = Substitute.For<IDateTimeService>();
             DateTimeService.SystemDateTimeNowWithoutMilliseconds.Returns(SystemDateTime);
             DateTimeService.SystemDateTimeNow.Returns(SystemDateTimeMs);
+
+            ApplicationConfigurationProcess = Substitute.For<IApplicationConfigurationProcess>();
+            ApplicationConfigurationProcess.Get<String>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostUsername).Returns(EmailSmtpHostUsername);
+            ApplicationConfigurationProcess.Get<String>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostPassword).Returns(EmailSmtpHostPassword);
+            ApplicationConfigurationProcess.Get<Int32>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostPort).Returns(EmailSmtpHostPort);
+            ApplicationConfigurationProcess.Get<String>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostAddress).Returns(EmailSmtpHostAddress);
+            ApplicationConfigurationProcess.Get<Boolean>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailSmtpHostEnableSsl).Returns(EmailSmtpHostEnableSsl);
+
+            ApplicationConfigurationProcess.Get<String>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailFromAddress).Returns(EmailFromAddress);
+            ApplicationConfigurationProcess.Get<String>(CoreInstance.ApplicationId, CoreInstance.CurrentLoggedOnUser.UserProfile, ApplicationConfigurationKeys.EmailFromDisplayName).Returns(EmailFromDisplayName);
+
 
             _ = new LoggingHelpers(RunTimeEnvironmentSettings, DateTimeService);
 

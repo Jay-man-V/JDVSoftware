@@ -357,6 +357,8 @@
     <Compile Include="Api\ICommonController.cs" />
     <Compile Include="Api\Core\IApplicationConfigurationController.cs" />
     <Compile Include="Api\IHeartbeatController.cs" />
+    <Compile Include="Workflow\IWorkflowReminderScheduledTask.cs" />
+    <Compile Include="Workflow\IWorkflowItem.cs" />
     <Compile Include="Workflow\IWorkflowProcess.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -115,6 +115,16 @@ namespace Foundation.BusinessProcess
             return retVal;
         }
 
+        /// <inheritdoc cref="IApplicationProcess.Delete(AppId)"/>
+        public void Delete(AppId applicationId)
+        {
+            LoggingHelpers.TraceCallEnter(applicationId);
+
+            EntityRepository.Delete(applicationId);
+
+            LoggingHelpers.TraceCallReturn();
+        }
+
         /// <inheritdoc cref="IApplicationProcess.Get(AppId)"/>
         public IApplication Get(AppId applicationId)
         {

@@ -459,7 +459,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);

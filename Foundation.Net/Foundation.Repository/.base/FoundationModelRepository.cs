@@ -671,6 +671,31 @@ namespace Foundation.Repository
         }
 
         /// <summary>
+        /// Deletes the entity with the <paramref name="tEntityId"/>
+        /// </summary>
+        /// <param name="tEntityId">The entity id.</param>
+        /// <exception cref="ArgumentNullException"> if <paramref name="tEntityId"/> is null</exception>
+        protected virtual void Delete<TIdType>(TIdType tEntityId)
+        {
+            LoggingHelpers.TraceCallEnter($"TableName: {TableName}", tEntityId);
+
+            if (tEntityId is EntityId entityId)
+            {
+                Delete(entityId);
+            }
+            else if (tEntityId is AppId appId)
+            {
+                Delete(appId);
+            }
+            else if (tEntityId is LogId)
+            {
+                throw new ArgumentException("It is not possible to delete Log entries");
+            }
+
+            LoggingHelpers.TraceCallReturn();
+        }
+
+        /// <summary>
         /// Deletes the <paramref name="entity"/>
         /// </summary>
         /// <param name="entity">The entity.</param>

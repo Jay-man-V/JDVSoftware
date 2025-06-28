@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+
 namespace Foundation.Interfaces
 {
     /// <summary>
@@ -11,6 +13,13 @@ namespace Foundation.Interfaces
     /// </summary>
     public interface IApplicationRepository : IFoundationModelRepository<IApplication>
     {
+        /// <summary>
+        /// Deletes the entity with the <paramref name="applicationId"/>
+        /// </summary>
+        /// <param name="applicationId">The entity id.</param>
+        /// <exception cref="ArgumentNullException"> if <paramref name="applicationId"/> is null</exception>
+        void Delete(AppId applicationId);
+
         /// <summary>
         /// Gets the specified application.
         /// </summary>

@@ -59,6 +59,16 @@ namespace Foundation.Repository
         /// <inheritdoc cref="FoundationModelRepository{TModel}.RequiredMinimumEditRole"/>
         protected override ApplicationRole RequiredMinimumEditRole => ApplicationRole.SystemDataAdministrator;
 
+        /// <inheritdoc cref="IApplicationRepository.Delete(AppId)"/>
+        public void Delete(AppId applicationId)
+        {
+            LoggingHelpers.TraceCallEnter(applicationId);
+
+            base.Delete(applicationId);
+
+            LoggingHelpers.TraceCallReturn();
+        }
+
         /// <inheritdoc cref="IApplicationRepository.Get(AppId)"/>
         public IApplication Get(AppId applicationId)
         {

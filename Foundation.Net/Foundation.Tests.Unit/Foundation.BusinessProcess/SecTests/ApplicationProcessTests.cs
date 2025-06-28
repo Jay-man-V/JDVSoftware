@@ -123,5 +123,81 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             entity.Name += "Updated";
             entity.Description += "Updated";
         }
+
+        [TestCase]
+        public override void Test_Delete_Entity_Id()
+        {
+            IApplicationProcess process = CreateBusinessProcess();
+
+            IApplication entity1 = CreateEntity(process);
+
+            Repository.Save(Arg.Is(entity1)).Returns(args =>
+            {
+                IApplication retVal = (IApplication)args[0];
+                retVal.Id = new AppId(1);
+                retVal.EntityState = EntityState.Saved;
+                return retVal;
+            });
+
+            IApplication savedEntity = process.Save(entity1);
+
+            Repository.Get(Arg.Is(savedEntity.Id)).Returns(args =>
+            {
+                IApplication retVal = (IApplication)savedEntity.Clone();
+                retVal.Id = new AppId(1);
+                retVal.EntityLife = EntityLife.Deleted;
+                retVal.EntityState = EntityState.Saved;
+                retVal.EntityStatus = EntityStatus.Inactive;
+                return retVal;
+            });
+
+            IApplication loadedEntity1 = process.Get(savedEntity.Id);
+            process.Delete(loadedEntity1.Id);
+
+            IApplication loadedEntity2 = process.Get(entity1.Id);
+
+            Assert.That(loadedEntity2.EntityLife, Is.EqualTo(EntityLife.Deleted));
+            Assert.That(loadedEntity2.EntityState, Is.EqualTo(EntityState.Saved));
+            Assert.That(loadedEntity2.EntityStatus, Is.EqualTo(EntityStatus.Inactive));
+            Assert.That((Object)savedEntity == (Object)loadedEntity2, Is.EqualTo(false));
+        }
+
+        [TestCase]
+        public override void Test_Delete_Entity_Object()
+        {
+            IApplicationProcess process = CreateBusinessProcess();
+
+            IApplication entity1 = CreateEntity(process);
+
+            Repository.Save(Arg.Is(entity1)).Returns(args =>
+            {
+                IApplication retVal = (IApplication)args[0];
+                retVal.Id = new AppId(1);
+                retVal.EntityState = EntityState.Saved;
+                return retVal;
+            });
+
+            IApplication savedEntity = process.Save(entity1);
+
+            Repository.Get(Arg.Is(savedEntity.Id)).Returns(args =>
+            {
+                IApplication retVal = (IApplication)savedEntity.Clone();
+                retVal.Id = new AppId(1);
+                retVal.EntityLife = EntityLife.Deleted;
+                retVal.EntityState = EntityState.Saved;
+                retVal.EntityStatus = EntityStatus.Inactive;
+                return retVal;
+            });
+
+            IApplication loadedEntity1 = process.Get(savedEntity.Id);
+            process.Delete(loadedEntity1);
+
+            IApplication loadedEntity2 = process.Get(entity1.Id);
+
+            Assert.That(loadedEntity2.EntityLife, Is.EqualTo(EntityLife.Deleted));
+            Assert.That(loadedEntity2.EntityState, Is.EqualTo(EntityState.Saved));
+            Assert.That(loadedEntity2.EntityStatus, Is.EqualTo(EntityStatus.Inactive));
+            Assert.That((Object)savedEntity == (Object)loadedEntity2, Is.EqualTo(false));
+        }
     }
 }

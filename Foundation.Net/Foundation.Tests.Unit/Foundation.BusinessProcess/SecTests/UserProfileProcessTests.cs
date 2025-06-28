@@ -25,7 +25,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
     [TestFixture]
     public class UserProfileProcessTests : CommonBusinessProcessTestBaseClass<IUserProfile, IUserProfileProcess, IUserProfileRepository>
     {
-        protected override Int32 ColumnDefinitionsCount => 11;
+        protected override Int32 ColumnDefinitionsCount => 12;
         protected override String ExpectedScreenTitle => "User Profiles";
         protected override String ExpectedStatusBarText => "Number of User Profiles:";
 
@@ -69,6 +69,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.SecTests
             retVal.ValidTo = process.DefaultValidToDateTime;
 
             retVal.DisplayName = Guid.NewGuid().ToString();
+            retVal.DomainName = Guid.NewGuid().ToString();
             retVal.Username = Guid.NewGuid().ToString();
             retVal.ExternalKeyId = Guid.NewGuid().ToString();
             retVal.ContactDetailId = new EntityId(1);

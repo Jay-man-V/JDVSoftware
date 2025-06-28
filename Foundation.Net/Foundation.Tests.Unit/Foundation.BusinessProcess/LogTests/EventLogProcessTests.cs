@@ -251,7 +251,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -299,7 +299,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -356,7 +356,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -407,7 +407,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -441,7 +441,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         }
 
         [TestCase]
-        public void Test_CreateLogEntry_1()
+        public void Test_CreateLogEntry_Handling_ExceptionObjects()
         {
             IEventLogProcess eventLogProcess = CreateBusinessProcess();
 
@@ -498,7 +498,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
         }
 
         [TestCase]
-        public void Test_CreateLogEntry_2()
+        public void Test_CreateLogEntry_Parent_Child()
         {
             IEventLogProcess eventLogProcess = CreateBusinessProcess();
 
@@ -517,7 +517,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
@@ -570,7 +570,7 @@ namespace Foundation.Tests.Unit.Foundation.BusinessProcess.LogTests
                 return entity;
             });
 
-            Repository.Get(Arg.Any<EntityId>()).Returns(args =>
+            Repository.Get(Arg.Any<LogId>()).Returns(args =>
             {
                 IEventLog entity = CoreInstance.Container.Get<IEventLog>();
                 entity.Id = new LogId(1);
